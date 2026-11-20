@@ -29,7 +29,7 @@ const FACTS_FOOD = [
     explain: "כ-92% מהאבטיח הוא מים, ולכן הוא מרווה כל כך." },
   { id: "food-008", topic: "food", pic: "pizza", level: "medium", answer: true,
     text: "הפיצה שאנחנו מכירים נולדה בנאפולי שבאיטליה.",
-    explain: "בעיר נאפולי התחילו להכין את הפיצה עם עגבנייה וגבינה, ומשם היא התפשטה לכל העולם." }, // TODO: verify this fact
+    explain: "בעיר נאפולי התחילו להכין את הפיצה עם עגבנייה וגבינה, ומשם היא התפשטה לכל העולם.", verified: false }, // TODO: verify this fact (verified:false = hidden from the game until checked)
   { id: "food-009", topic: "food", pic: "strawberry", level: "medium", answer: true,
     text: "הנקודות הקטנות על התות הן בעצם פירות זעירים.",
     explain: "בכל אחת מהנקודות האלה יש זרע. התות עצמו הוא החלק האדום והעסיסי שמחזיק אותן." },
@@ -62,7 +62,7 @@ const FACTS_FOOD = [
     explain: "יש פטריות רעילות שדומות מאוד לפטריות טובות. לעולם לא אוכלים פטריות מהטבע בלי מבוגר שמבין בזה!" },
   { id: "food-018", topic: "food", pic: "pineapple", level: "medium", answer: false,
     text: "אננס גדל על עץ.",
-    explain: "אננס גדל על צמח נמוך על הקרקע, לא על עץ גבוה." }, // TODO: verify this fact
+    explain: "אננס גדל על צמח נמוך על הקרקע, לא על עץ גבוה.", verified: false }, // TODO: verify this fact (verified:false = hidden from the game until checked)
   { id: "food-019", topic: "food", pic: "tomato", level: "hard", answer: false,
     text: "העגבנייה הגיעה במקור מאיטליה.",
     explain: "העגבנייה הגיעה מדרום ומרכז אמריקה, ורק לפני כמה מאות שנים הגיעה לאירופה." },

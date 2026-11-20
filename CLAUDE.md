@@ -1,6 +1,7 @@
 # CLAUDE.md — Bunny World (working title; Hebrew title TBD)
 
-> Status: planning. Do NOT build or generate game files until the user explicitly asks.
+> Status: v1 playable build exists (players, Fact Detective, notebook, briefcase, Kitchen = placeholder). Built on explicit user request for family playtesting; Kitchen game still to be designed.
+> Players: several per phone, stored only in the phone's localStorage (key `frooky.v1`); names are never in code or URLs. Facts with `verified: false` are hidden from the game.
 
 ## 1. Project Overview
 - **Audience:** A 9-year-old girl, on an Android phone (portrait). Interests: animals, food, space/universe, drawing.

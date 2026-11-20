@@ -62,7 +62,7 @@ const FACTS_SPACE = [
     explain: "כוכב נופל הוא אבן קטנה מהחלל. היא נשרפת באוויר שלנו ויוצרת פס אור." },
   { id: "space-018", topic: "space", pic: "pluto", level: "medium", answer: false,
     text: "פלוטו הוא אחד משמונת כוכבי הלכת.",
-    explain: "פלוטו הוא כוכב לכת ננסי. יש שמונה כוכבי לכת במערכת השמש." }, // TODO: verify this fact
+    explain: "פלוטו הוא כוכב לכת ננסי. יש שמונה כוכבי לכת במערכת השמש.", verified: false }, // TODO: verify this fact (verified:false = hidden from the game until checked)
   { id: "space-019", topic: "space", pic: "earth", level: "easy", answer: false,
     text: "יום ולילה קורים כי השמש מסתובבת סביב כדור הארץ.",
     explain: "כדור הארץ מסתובב סביב עצמו פעם ב-24 שעות, אז לפעמים הצד שלנו פונה לשמש ולפעמים לא." },
