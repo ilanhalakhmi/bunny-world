@@ -123,7 +123,7 @@ SCREENS.factsPlay = (root) => {
   let busy = false;
 
   const speech = h("div", { class: "bubble small" }, isRepeat ? "הנה זה חוזר – מוכנים?" : "מה דעתכם? אמת או שטויות?");
-  const face = h("div", { class: "face", html: frookyHead("curious") });
+  const face = h("div", { class: "face", html: frookyFull("curious") });
   const stamp = h("div", { class: "stamp" });
   const result = h("div", { class: "result" });
   const card = h("div", { class: "case-card" },
@@ -145,7 +145,7 @@ SCREENS.factsPlay = (root) => {
       h("div", { class: "speech-row tight" }, face, speech),
       answers)));
 
-  function setFace(expr) { face.innerHTML = frookyHead(expr); }
+  function setFace(expr) { face.innerHTML = frookyFull(expr); }
 
   function answer(sayTrue) {
     if (busy) return; busy = true;
@@ -172,8 +172,8 @@ SCREENS.factsPlay = (root) => {
     if (right) { R.stars++; tool = addStar(topicId); }
     saveDB();
     // --- show it ---
-    stamp.textContent = f.answer ? "נכון!" : "שטויות במיץ עגבניות!";
-    stamp.className = "stamp slam " + (f.answer ? "yes" : "no");
+    stamp.textContent = right ? "תשובה נכונה!" : "טעות!";
+    stamp.className = "stamp slam " + (right ? "yes" : "no");
     Snd.sfx("stamp");
     setTimeout(() => Snd.sfx(right ? (R.streak >= 3 ? "streak" : "correct") : "wrong"), 160);
     setFace(right ? (R.streak >= 3 ? "celebrating" : "happy") : "sad");

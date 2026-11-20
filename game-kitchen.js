@@ -19,7 +19,7 @@ const KITCHEN_REACTIONS = [
 
 SCREENS.kitchen = (root) => {
   Snd.music("food");
-  const face = h("div", { class: "kitchen-frooky", html: frookyHead("curious") });
+  const face = h("div", { class: "kitchen-frooky", html: frookyFull("curious") });
   const say = h("div", { class: "bubble" }, "מה נאכיל את פרוקי?");
   let timer = null;
   const keys = shuffle(Object.keys(PICS_FOOD)).slice(0, 8);
@@ -28,9 +28,9 @@ SCREENS.kitchen = (root) => {
   function feed() {
     const r = rndItem(KITCHEN_REACTIONS);
     Snd.sfx("splash");
-    setTimeout(() => { Snd.sfx(r.sfx); face.innerHTML = frookyHead(r.face); say.textContent = rndItem(r.say); }, 250);
+    setTimeout(() => { Snd.sfx(r.sfx); face.innerHTML = frookyFull(r.face); say.textContent = rndItem(r.say); }, 250);
     clearTimeout(timer);
-    timer = setTimeout(() => { face.innerHTML = frookyHead("curious"); say.textContent = "מה נאכיל עכשיו?"; }, 2600);
+    timer = setTimeout(() => { face.innerHTML = frookyFull("curious"); say.textContent = "מה נאכיל עכשיו?"; }, 2600);
   }
   root.append(h("div", { class: "screen play" },
     h("div", { class: "bg", html: BACKGROUNDS.food }),
