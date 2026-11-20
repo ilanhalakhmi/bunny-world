@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.0.7";
+const VERSION = "1.0.8";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
@@ -61,6 +61,7 @@ function go(name, args) {
   root.innerHTML = "";
   SCREENS[name](root, args || {});
   window.scrollTo(0, 0);
+  if (pendingUpdateReg) setTimeout(showPendingUpdate, 400);
 }
 function modal(content) {
   closeModal();
@@ -197,6 +198,22 @@ function updateFooter() {
     h("button", { class: "ver-btn", onclick: checkUpdate }, "🔄 עדכון"),
     h("small", {}, "גרסה " + VERSION));
 }
+// Silent update check on every launch: only speaks up when a new version is ready. Failures are ignored (nice-to-have).
+let pendingUpdateReg = null;
+function showPendingUpdate() {
+  if (!pendingUpdateReg || (currentScreen !== "home" && currentScreen !== "players") || document.getElementById("modal")) return;
+  const reg = pendingUpdateReg; pendingUpdateReg = null;   // ask once per launch
+  offerUpdate(reg);
+}
+function silentUpdateCheck(reg) {
+  const found = () => { if (reg.waiting && navigator.serviceWorker.controller) { pendingUpdateReg = reg; showPendingUpdate(); } };
+  reg.update().then(() => {
+    if (reg.waiting) return found();
+    const w = reg.installing;
+    if (!w) return;
+    w.addEventListener("statechange", () => { if (w.state === "installed") found(); });
+  }).catch(() => {});
+}
 function updateModal(title, text, buttons) {
   Snd.sfx("select");
   modal([h("h2", {}, title), h("p", { style: "text-align:center;margin:8px 0 12px" }, text), ...buttons]);
@@ -245,7 +262,7 @@ const App = {
     else if (players.length === 1) { DB.current = players[0].id; go("home"); }
     else go("players");
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js").catch(() => {});
+      navigator.serviceWorker.register("sw.js").then(silentUpdateCheck).catch(() => {});
       const hadController = !!navigator.serviceWorker.controller;
       let reloading = false;
       navigator.serviceWorker.addEventListener("controllerchange", () => { if (!hadController || reloading) return; reloading = true; location.reload(); });
