@@ -89,7 +89,7 @@ const FACTS_ART = [
   { id: "art-026", topic: "art", pic: "clay", level: "medium", answer: true,
     text: "כלי חימר נשרפים בכבשן כדי שיתקשו.",
     explain: "החום הופך את החימר הרך לחומר קשה, כמו בקערות ובסירים.", src: "https://www.britannica.com/art/pottery" },
-  { id: "art-027", topic: "art", pic: "white-paint", level: "easy", answer: true,
+  { id: "art-027", topic: "art", pic: "brush", level: "easy", answer: true,
     text: "אם מערבבים צבע שחור ולבן, מקבלים אפור.",
     explain: "יותר לבן נותן אפור בהיר, ויותר שחור נותן אפור כהה.", src: "https://human.libretexts.org/Courses/Cosumnes_River_College/ART_323%3A_Color_Theory_Course_Pack/01%3A_Materials_and_Resources/1.03%3A_Color_Mixing_Tips" },
   { id: "art-028", topic: "art", pic: "palette", level: "hard", answer: true,

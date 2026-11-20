@@ -149,7 +149,7 @@ const FACTS_ANIMALS = [
   { id: "animals-047", topic: "animals", pic: "octopus", level: "medium", answer: true,
     text: "לתמנון יש דם בצבע כחול.",
     explain: "הדם שלו מכיל נחושת, ולא ברזל כמו אצלנו.", src: "https://www.nationalgeographic.com/animals/article/150312-blood-antarctica-octopus-animals-science-colors" },
-  { id: "animals-048", topic: "animals", pic: "mosquito", level: "medium", answer: true,
+  { id: "animals-048", topic: "animals", pic: "dolphin", level: "easy", answer: true,
     text: "רק יתושות נקבות עוקצות.",
     explain: "הנקבות צריכות את הדם כדי להטיל ביצים. הזכרים אוכלים צוף.", src: "https://www.nea.gov.sg/corporate-functions/resources/research/wolbachia-aedes-mosquito-suppression-strategy/male-mosquitoes-do-not-bite" },
   { id: "animals-049", topic: "animals", pic: "lion", level: "medium", answer: true,
