@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>בדיקת שאלות – העולם של פרוקי</title>
+<style>
+  :root { --ink:#111; --blue:#005CA9; --green:#008D36; --orange:#F37021; --line:#d9d9d9; --bg:#fafafa; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: "Segoe UI", Roboto, "Noto Sans Hebrew", Arial, sans-serif; color:var(--ink); background:var(--bg); font-size:16px; line-height:1.45; }
+  header { position: sticky; top:0; z-index:5; background:#fff; border-bottom:2px solid #000; padding:10px 14px; }
+  h1 { margin:0 0 6px; font-size:20px; color:var(--blue); }
+  .note { font-size:13px; color:#555; margin:0 0 8px; }
+  .bar { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+  .chip { border:2px solid #000; border-radius:18px; background:#fff; padding:4px 12px; font-size:14px; font-weight:bold; cursor:pointer; }
+  .chip.on { background:#FFD100; }
+  .bar input[type=search] { flex:1; min-width:140px; border:2px solid #000; border-radius:12px; padding:5px 10px; font-size:15px; }
+  .sep { width:1px; align-self:stretch; background:#bbb; margin:0 2px; }
+  main { padding:12px 14px 60px; max-width:1100px; margin:0 auto; }
+  section { margin-bottom:28px; }
+  h2 { margin:18px 0 6px; font-size:22px; color:var(--blue); display:flex; gap:10px; align-items:baseline; flex-wrap:wrap; }
+  h2 small { font-size:13px; color:#555; font-weight:normal; }
+  table { width:100%; border-collapse:collapse; background:#fff; border:2px solid #000; border-radius:10px; overflow:hidden; }
+  th { background:#eef3f9; text-align:right; font-size:13px; padding:6px 8px; border-bottom:2px solid #000; white-space:nowrap; }
+  td { padding:8px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:last-child td { border-bottom:0; }
+  td.n { color:#777; font-size:12px; white-space:nowrap; width:1%; }
+  td.pic { width:1%; }
+  td.pic svg { width:54px; height:54px; display:block; border:1px solid #ccc; border-radius:6px; background:#fff; }
+  .ans { display:inline-block; padding:2px 9px; border-radius:12px; font-weight:bold; font-size:13px; white-space:nowrap; color:#fff; }
+  .ans.t { background:var(--green); } .ans.f { background:var(--orange); }
+  .clue { font-weight:bold; }
+  .exp { color:#333; font-size:14px; margin-top:2px; }
+  .meta { font-size:12px; color:#666; margin-top:3px; }
+  .meta a { color:var(--blue); }
+  .lvl { font-size:12px; color:#555; white-space:nowrap; }
+  .hidden-flag { background:#fde2e2; border:1px solid #e99; border-radius:8px; padding:1px 7px; font-size:12px; }
+  .nosrc { color:#b00; font-weight:bold; }
+  tr.hide { display:none; }
+  @media (max-width:640px) {
+    header { position: static; }
+    td.pic, th.pic, td.lvlc, th.lvlc { display:none; }
+    td, th { padding:6px 6px; }
+  }
+  @media print { header { position:static; } .bar { display:none; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>בדיקת שאלות ותשובות</h1>
+  <p class="note">הדף נטען ישירות מקבצי הנתונים, ולכן תמיד מעודכן. אין צורך לתחזק אותו.</p>
+  <div class="bar" id="bar"></div>
+</header>
+<main id="main"></main>
+
+<script src="data/pics-animals.js"></script><script src="data/pics-space.js"></script><script src="data/pics-food.js"></script><script src="data/pics-art.js"></script>
+<script src="data/data-facts-animals.js"></script><script src="data/data-facts-space.js"></script><script src="data/data-facts-food.js"></script><script src="data/data-facts-art.js"></script>
+<script>
+const TOPICS = [
+  { id: "animals", name: "חיות", facts: typeof FACTS_ANIMALS !== "undefined" ? FACTS_ANIMALS : [] },
+  { id: "space",   name: "חלל",  facts: typeof FACTS_SPACE   !== "undefined" ? FACTS_SPACE   : [] },
+  { id: "food",    name: "אוכל", facts: typeof FACTS_FOOD    !== "undefined" ? FACTS_FOOD    : [] },
+  { id: "art",     name: "אמנות", facts: typeof FACTS_ART     !== "undefined" ? FACTS_ART     : [] }
+];
+const PICS = Object.assign({}, typeof PICS_ANIMALS !== "undefined" ? PICS_ANIMALS : {}, typeof PICS_SPACE !== "undefined" ? PICS_SPACE : {}, typeof PICS_FOOD !== "undefined" ? PICS_FOOD : {}, typeof PICS_ART !== "undefined" ? PICS_ART : {});
+const LEVELS = { easy: "קל", medium: "בינוני", hard: "קשה" };
+const state = { topic: "all", ans: "all", level: "all", src: "all", q: "" };
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const host = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return u; } };
+
+function chip(group, value, label) {
+  return `<button class="chip${state[group] === value ? " on" : ""}" data-g="${group}" data-v="${value}">${label}</button>`;
+}
+function renderBar() {
+  document.getElementById("bar").innerHTML =
+    chip("topic", "all", "הכול") + TOPICS.map(t => chip("topic", t.id, t.name + " (" + t.facts.length + ")")).join("") +
+    '<span class="sep"></span>' + chip("ans", "all", "הכול") + chip("ans", "t", "נכון") + chip("ans", "f", "שטויות") +
+    '<span class="sep"></span>' + chip("level", "all", "כל הרמות") + Object.keys(LEVELS).map(l => chip("level", l, LEVELS[l])).join("") +
+    '<span class="sep"></span>' + chip("src", "all", "כל הסטטוסים") + chip("src", "nosrc", "בלי מקור") + chip("src", "hidden", "מוסתרות") +
+    '<input type="search" id="q" placeholder="חיפוש…" value="' + esc(state.q) + '">';
+  document.getElementById("q").addEventListener("input", e => { state.q = e.target.value; renderMain(); });
+}
+function keep(f) {
+  if (state.ans === "t" && !f.answer) return false;
+  if (state.ans === "f" && f.answer) return false;
+  if (state.level !== "all" && f.level !== state.level) return false;
+  if (state.src === "nosrc" && f.src) return false;
+  if (state.src === "hidden" && f.verified !== false) return false;
+  const q = state.q.trim();
+  if (q && !((f.text || "") + " " + (f.explain || "") + " " + (f.pic || "")).includes(q)) return false;
+  return true;
+}
+function renderMain() {
+  const out = [];
+  for (const t of TOPICS) {
+    if (state.topic !== "all" && state.topic !== t.id) continue;
+    const rows = t.facts.filter(keep);
+    const nt = t.facts.filter(f => f.answer).length, nf = t.facts.length - nt;
+    const nsrc = t.facts.filter(f => f.src).length;
+    out.push(`<section><h2>${t.name} <small>${t.facts.length} שאלות · ${nt} נכון · ${nf} שטויות · ${nsrc} עם מקור${rows.length !== t.facts.length ? " · מוצגות " + rows.length : ""}</small></h2>`);
+    out.push('<table><thead><tr><th>#</th><th class="pic">ציור</th><th>שאלה והסבר</th><th>תשובה</th><th class="lvlc">רמה</th></tr></thead><tbody>');
+    rows.forEach(f => {
+      const svg = PICS[f.pic] ? `<svg viewBox="0 0 200 200">${PICS[f.pic]}</svg>` : "";
+      const src = f.src ? `<a href="${esc(f.src)}" target="_blank" rel="noopener">מקור: ${esc(host(f.src))}</a>` : '<span class="nosrc">אין מקור</span>';
+      out.push(`<tr><td class="n">${esc(f.id.split("-")[1])}</td><td class="pic">${svg}</td>` +
+        `<td><div class="clue">${esc(f.text)}</div><div class="exp">${esc(f.explain)}</div><div class="meta">${src}${f.verified === false ? ' · <span class="hidden-flag">מוסתרת מהמשחק</span>' : ""} · ציור: ${esc(f.pic)}</div></td>` +
+        `<td><span class="ans ${f.answer ? "t" : "f"}">${f.answer ? "נכון" : "שטויות"}</span></td><td class="lvl lvlc">${LEVELS[f.level] || ""}</td></tr>`);
+    });
+    out.push("</tbody></table></section>");
+  }
+  document.getElementById("main").innerHTML = out.join("");
+}
+document.getElementById("bar").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  state[b.dataset.g] = b.dataset.v; renderBar(); renderMain();
+});
+renderBar(); renderMain();
+</script>
+</body>
+</html>
