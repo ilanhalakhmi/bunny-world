@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 720" width="930" height="1080" font-family="Arial, sans-serif">
+<defs>
+  <clipPath id="wallClip"><rect x="20" y="30" width="160" height="140" rx="6"/></clipPath>
+</defs>
+<rect width="620" height="720" fill="#fff"/>
+<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+
+<!-- sunflowers -->
+<g transform="translate(10 10)">
+  <path d="M78 96 Q72 130 90 148 M126 90 Q132 130 112 148 M102 78 Q100 120 100 148" fill="none" stroke="#008D36" stroke-width="7"/>
+  <path d="M70 150 H130 Q134 150 134 156 L128 184 Q126 188 120 188 H80 Q74 188 72 184 L66 156 Q66 150 70 150 Z" fill="#F37021"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(0 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(36 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(72 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(108 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(144 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(180 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(216 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(252 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(288 70 82)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="70" cy="60" rx="8" ry="13" transform="rotate(324 70 82)" fill="#FFD100" stroke-width="4"/>
+<circle cx="70" cy="82" r="14" fill="#6b3b1e" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(0 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(36 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(72 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(108 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(144 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(180 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(216 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(252 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(288 130 78)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="130" cy="56" rx="8" ry="13" transform="rotate(324 130 78)" fill="#FFD100" stroke-width="4"/>
+<circle cx="130" cy="78" r="14" fill="#6b3b1e" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(0 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(36 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(72 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(108 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(144 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(180 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(216 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(252 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(288 100 56)" fill="#FFD100" stroke-width="4"/>
+<ellipse cx="100" cy="34" rx="8" ry="13" transform="rotate(324 100 56)" fill="#FFD100" stroke-width="4"/>
+<circle cx="100" cy="56" r="14" fill="#6b3b1e" stroke-width="4"/>
+</g>
+<text x="110" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">sunflowers · חמניות</text>
+
+<!-- pencil -->
+<g transform="translate(210 10)">
+  <g transform="rotate(35 100 100)">
+    <rect x="82" y="10" width="36" height="22" rx="8" fill="#F6879B"/>
+    <rect x="82" y="32" width="36" height="14" fill="#9aa3ad"/><path d="M82 39 H118" fill="none" stroke-width="3"/>
+    <rect x="82" y="46" width="36" height="96" fill="#FFD100"/>
+    <path d="M100 46 V142" fill="none" stroke="#F6C45A" stroke-width="4"/>
+    <path d="M82 142 L118 142 L100 180 Z" fill="#F6C9A0"/>
+    <path d="M92 162 L108 162 L100 180 Z" fill="#3a3a3a" stroke-width="3.5"/>
+  </g>
+</g>
+<text x="310" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">pencil · עיפרון</text>
+
+<!-- statue -->
+<g transform="translate(410 10)">
+  <rect x="54" y="162" width="92" height="24" rx="4" fill="#cfcac0"/>
+  <rect x="78" y="112" width="20" height="52" rx="8" fill="#E8E6E1"/><rect x="102" y="112" width="20" height="52" rx="8" fill="#E8E6E1"/>
+  <ellipse cx="64" cy="108" rx="10" ry="28" transform="rotate(6 64 108)" fill="#E8E6E1"/>
+  <path d="M68 80 Q100 70 132 80 L124 126 Q100 134 76 126 Z" fill="#E8E6E1"/>
+  <path d="M84 100 Q100 108 116 100" fill="none" stroke="#bdb8ad" stroke-width="3.5"/>
+  <path d="M132 92 Q148 78 130 58" fill="none" stroke-width="20"/><path d="M132 92 Q148 78 130 58" fill="none" stroke="#E8E6E1" stroke-width="10"/>
+  <rect x="92" y="62" width="16" height="16" rx="5" fill="#E8E6E1" stroke-width="4"/>
+  <circle cx="100" cy="50" r="19" fill="#E8E6E1"/>
+  <path d="M80 48 Q80 26 100 26 Q120 26 120 48 Q112 38 100 40 Q88 38 80 48 Z" fill="#E8E6E1" stroke-width="4.5"/>
+  <circle cx="93" cy="52" r="2.5" fill="#000" stroke="none"/><circle cx="107" cy="52" r="2.5" fill="#000" stroke="none"/>
+  <path d="M95 61 Q100 64 105 61" fill="none" stroke-width="3"/>
+</g>
+<text x="510" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">statue · פסל</text>
+
+<!-- color wheel -->
+<g transform="translate(10 250)">
+  <path d="M100 100 L100 30 A70 70 0 0 1 160.6 65 Z" fill="#E63B2E"/>
+  <path d="M100 100 L160.6 65 A70 70 0 0 1 160.6 135 Z" fill="#F37021"/>
+  <path d="M100 100 L160.6 135 A70 70 0 0 1 100 170 Z" fill="#FFD100"/>
+  <path d="M100 100 L100 170 A70 70 0 0 1 39.4 135 Z" fill="#008D36"/>
+  <path d="M100 100 L39.4 135 A70 70 0 0 1 39.4 65 Z" fill="#005CA9"/>
+  <path d="M100 100 L39.4 65 A70 70 0 0 1 100 30 Z" fill="#7a3fa0"/>
+  <circle cx="100" cy="100" r="14" fill="#fff"/>
+</g>
+<text x="110" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">color wheel · גלגל צבעים</text>
+
+<!-- paper -->
+<g transform="translate(210 250)">
+  <path d="M44 28 H156 V140 L128 172 H44 Z" fill="#FFF3C4"/>
+  <path d="M156 140 L128 140 L128 172 Z" fill="#E6D3A3"/>
+  <path d="M60 56 H140 M60 76 H140 M60 96 H140 M60 116 H112" fill="none" stroke="#9aa3ad" stroke-width="4"/>
+  <rect x="60" y="136" width="22" height="22" rx="3" fill="#E63B2E" stroke-width="4"/>
+</g>
+<text x="310" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">paper · נייר</text>
+
+<!-- film strip -->
+<g transform="translate(410 250)">
+  <rect x="8" y="52" width="184" height="96" rx="6" fill="#1a1a1a"/>
+  <g fill="#fff" stroke="none"><rect x="16" y="58" width="12" height="8"/><rect x="40" y="58" width="12" height="8"/><rect x="64" y="58" width="12" height="8"/><rect x="88" y="58" width="12" height="8"/><rect x="112" y="58" width="12" height="8"/><rect x="136" y="58" width="12" height="8"/><rect x="160" y="58" width="12" height="8"/>
+  <rect x="16" y="134" width="12" height="8"/><rect x="40" y="134" width="12" height="8"/><rect x="64" y="134" width="12" height="8"/><rect x="88" y="134" width="12" height="8"/><rect x="112" y="134" width="12" height="8"/><rect x="136" y="134" width="12" height="8"/><rect x="160" y="134" width="12" height="8"/></g>
+  <g fill="#fff" stroke-width="3.5"><rect x="18" y="72" width="48" height="56"/><rect x="76" y="72" width="48" height="56"/><rect x="134" y="72" width="48" height="56"/></g>
+  <g fill="#F37021" stroke-width="3.5"><circle cx="42" cy="86" r="9"/><ellipse cx="100" cy="112" rx="11" ry="8"/><circle cx="158" cy="92" r="9"/></g>
+</g>
+<text x="510" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">animation · אנימציה</text>
+
+<!-- mural -->
+<g transform="translate(10 490)">
+  <rect x="20" y="30" width="160" height="140" rx="6" fill="#E0A85C"/>
+  <g clip-path="url(#wallClip)" fill="none" stroke="#B9803A" stroke-width="3">
+    <path d="M20 58 H180 M20 86 H180 M20 114 H180 M20 142 H180 M50 30 V58 M110 30 V58 M150 58 V86 M80 58 V86 M50 86 V114 M110 86 V114 M150 114 V142 M80 114 V142 M50 142 V170 M110 142 V170"/>
+  </g>
+  <rect x="44" y="44" width="112" height="112" rx="10" fill="#9ED8F0"/>
+  <circle cx="122" cy="72" r="14" fill="#FFD100" stroke-width="4"/>
+  <path d="M44 150 Q74 100 104 130 Q130 108 156 134 V146 Q156 156 146 156 H54 Q44 156 44 146 Z" fill="#008D36" stroke-width="5"/>
+  <path d="M60 80 Q58 68 72 68 Q78 58 90 64 Q102 62 100 76 Q104 86 90 86 H70 Q58 88 60 80 Z" fill="#fff" stroke-width="4"/>
+  <rect x="44" y="44" width="112" height="112" rx="10" fill="none"/>
+</g>
+<text x="110" y="708" text-anchor="middle" font-size="15" stroke="none" fill="#555">mural · ציור קיר</text>
+</g>
+</svg>
