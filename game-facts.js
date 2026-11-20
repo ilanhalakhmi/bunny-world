@@ -169,7 +169,7 @@ SCREENS.factsPlay = (root) => {
       if (n < 2) { R.requeued[f.id] = n + 1; R.queue.splice(Math.min(R.queue.length, R.pos + 3), 0, f.id); }
     }
     let tool = null;
-    if (right) { R.stars++; tool = addStar(topicId); }
+    if (right) { R.stars++; tool = addStar(topicId); const sc = document.querySelector(".topbar .starcount"); if (sc) sc.textContent = "⭐ " + p.stars; }
     saveDB();
     // --- show it ---
     stamp.textContent = right ? "תשובה נכונה!" : "טעות!";

@@ -62,3 +62,7 @@ Before asking the user to review any facts/recipes/Hebrew text:
 
 ## 7. Review table
 - `facts-review.html` (project root) lists every clue/answer/explanation/source/drawing by topic with filters. It loads `data/*.js` directly, so it is always current and needs no maintenance. Open it by double-click, or at https://ilanhalakhmi.github.io/bunny-world/facts-review.html (noindex).
+
+## 8. Automated tests
+- Run `powershell -ExecutionPolicy Bypass -File tests\run.ps1` (needs Chrome) before every push. It checks: file/manifest/service-worker consistency, version match, data rules for every clue (shape, drawing exists in its own topic, `src` on an allow-listed host, balance, no duplicate clues), a clue id never changes its answer (`tests/snapshot.js`; regenerate with `tests\update-snapshot.ps1` after intentionally adding clues; a changed claim needs a NEW id because saved progress is keyed by id), every drawing/expression is valid SVG, audio code paths, a full UI play-through (rounds, stars, tools, resume, delete/multi-player), corrupt/old/blocked localStorage, a simulated service worker (precache, offline, cleanup), and layout at 9 phone/tablet sizes (overflow, clipping, tap targets, answers reachable).
+- `tests\serve.ps1` serves the project on http://localhost:8123 for manual testing. A real (non-simulated) service-worker/offline test was not possible in headless Chrome here; check offline play on a phone after a release.

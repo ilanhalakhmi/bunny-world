@@ -133,7 +133,7 @@ const FACTS_SPACE = [
   { id: "space-041", topic: "space", pic: "venus", level: "easy", answer: false,
     text: "נוגה הוא כוכב הלכת הקרוב ביותר לשמש.",
     explain: "הקרוב ביותר לשמש הוא כוכב חמה.", src: "https://science.nasa.gov/solar.system/planets" },
-  { id: "space-042", topic: "space", pic: "earth", level: "easy", answer: true,
+  { id: "space-047", topic: "space", pic: "earth", level: "easy", answer: true,
     text: "כדור הארץ משלים הקפה אחת סביב השמש תוך שנה.",
     explain: "זה לוקח כ-365 ימים ורבע.", src: "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html" },
   { id: "space-043", topic: "space", pic: "star", level: "medium", answer: false,

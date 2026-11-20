@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.1.6";
+const VERSION = "1.1.7";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
@@ -26,7 +26,40 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 /* ---------- storage (localStorage, always in try/catch) ---------- */
 let DB = { players: {}, current: null, settings: { sfx: true, music: true } };
 function loadDB() {
-  try { const r = localStorage.getItem(STORE_KEY); if (r) { const d = JSON.parse(r); DB = Object.assign(DB, d); DB.settings = Object.assign({ sfx: true, music: true }, d.settings); } } catch (e) {}
+  try {
+    const r = localStorage.getItem(STORE_KEY);
+    if (r) { const d = JSON.parse(r); if (d && typeof d === "object" && !Array.isArray(d)) DB = Object.assign(DB, d); }
+  } catch (e) {}
+  normalizeDB();
+}
+// Whatever is in storage (old versions, partial data, hand edits), make it safe to use.
+function normalizeDB() {
+  if (!DB || typeof DB !== "object" || Array.isArray(DB)) DB = {};
+  if (!DB.players || typeof DB.players !== "object" || Array.isArray(DB.players)) DB.players = {};
+  DB.settings = Object.assign({ sfx: true, music: true }, DB.settings && typeof DB.settings === "object" ? DB.settings : {});
+  const num = (v, d = 0) => Number.isFinite(+v) && v !== null && v !== "" ? Math.max(0, Math.floor(+v)) : d;
+  const obj = v => v && typeof v === "object" && !Array.isArray(v) ? v : {};
+  const knownTools = TOOL_COLLECTIONS.facts.map(t => t.id), clean = {};
+  for (const id in DB.players) {
+    const p = DB.players[id]; if (!p || typeof p !== "object") continue;
+    const q = {
+      id, name: typeof p.name === "string" && p.name.trim() ? [...p.name.trim()].slice(0, 12).join("") : "שחקן",
+      color: typeof p.color === "string" && /^#[0-9a-fA-F]{3,8}$/.test(p.color) ? p.color : PLAYER_COLORS[0],
+      stars: num(p.stars), tools: Array.isArray(p.tools) ? [...new Set(p.tools.filter(t => knownTools.includes(t)))] : [],
+      facts: {}, round: null, casesClosed: num(p.casesClosed), correct: num(p.correct), wrong: num(p.wrong),
+      topicDone: obj(p.topicDone), lastPlayed: num(p.lastPlayed, Date.now())
+    };
+    const facts = obj(p.facts);
+    for (const k in facts) { const s = obj(facts[k]); q.facts[k] = { right: num(s.right), wrong: num(s.wrong), s: ["seen", "missed", "learned"].includes(s.s) ? s.s : "seen" }; }
+    const r = p.round;
+    if (r && typeof r === "object" && Array.isArray(r.queue) && r.queue.length && Number.isFinite(+r.pos)) {
+      q.round = { topic: typeof r.topic === "string" ? r.topic : "mix", queue: r.queue.filter(x => typeof x === "string"), pos: num(r.pos), total: num(r.total, 10) || 10,
+        solved: num(r.solved), firstTry: num(r.firstTry), stars: num(r.stars), streak: num(r.streak), requeued: obj(r.requeued), seen: obj(r.seen) };
+    }
+    clean[id] = q;
+  }
+  DB.players = clean;
+  if (!DB.players[DB.current]) DB.current = null;
 }
 function saveDB() { try { localStorage.setItem(STORE_KEY, JSON.stringify(DB)); } catch (e) {} }
 const me = () => DB.players[DB.current];

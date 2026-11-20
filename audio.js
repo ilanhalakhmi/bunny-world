@@ -248,7 +248,7 @@ const Snd = {
   // play a sound effect by name (see S above); returns its length in seconds when it has one
   sfx(name, arg) { if (!this.sfxOn || !S[name]) return 0; try { return S[name](arg) || 0; } catch (e) { return 0; } },
   // suspense before an answer reveal: 0 = skipped this time
-  maybeSuspense() { return this.sfxOn ? (S.maybeSuspense() || 0) : 0; },
+  maybeSuspense() { if (!this.sfxOn) return 0; try { return S.maybeSuspense() || 0; } catch (e) { return 0; } },
   // background music for a place: 'home' | 'animals' | 'space' | 'food' | 'art' | '' (silence)
   music(style) { this.wanted = style || ''; if (this.musicOn && this.wanted) { if (mus.timer && mus.style === this.wanted) return; try { musicStart(this.wanted); } catch (e) {} } else { musicStop(); } },
   setSfx(on) { this.sfxOn = on; },
