@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.0.1";
+const VERSION = "1.0.2";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
@@ -221,9 +221,18 @@ function checkUpdate() {
 }
 
 /* ---------- start ---------- */
+// Tablets: scale the whole UI up (CSS zoom) so it matches the phone's proportions.
+function applyScale() {
+  const w = window.innerWidth, hgt = window.innerHeight;
+  const z = Math.max(1, Math.min(w / 400, hgt / 760, 2.4));
+  document.body.style.zoom = z > 1.02 ? z : "";
+  document.documentElement.style.setProperty("--vh", (hgt / (z > 1.02 ? z : 1)) + "px");
+}
+window.addEventListener("resize", applyScale);
+
 const App = {
   start() {
-    loadDB();
+    loadDB(); applyScale();
     Snd.sfxOn = DB.settings.sfx; Snd.musicOn = DB.settings.music;
     // sound can only start after the first tap
     document.addEventListener("pointerdown", () => Snd.unlock(), { once: false, passive: true });
