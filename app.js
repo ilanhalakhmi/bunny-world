@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.0.6";
+const VERSION = "1.0.7";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
@@ -115,7 +115,7 @@ SCREENS.players = (root) => {
     h("h1", {}, "מי משחק?"),
     list,
     h("button", { class: "btn blue", onclick: () => { Snd.sfx("select"); askName(); } }, "＋ שחקן חדש"),
-    h("div", { class: "ver" }, "גרסה " + VERSION)));
+    updateFooter()));
   if (!players.length) askName();
 };
 
@@ -171,7 +171,7 @@ SCREENS.home = (root) => {
     h("div", { class: "btn-row two" },
       h("button", { class: "btn white", onclick: () => { Snd.sfx("select"); go("notebook"); } }, "📓 המחברת", h("small", {}, learned + " עובדות")),
       h("button", { class: "btn white", onclick: () => { Snd.sfx("select"); go("briefcase"); } }, "💼 התיק", h("small", {}, p.tools.length + "/" + TOOL_COLLECTIONS.facts.length + " כלים"))),
-    h("div", { class: "ver" }, h("button", { class: "btn white ver-btn", onclick: checkUpdate }, "🔄 בדיקת עדכון"), h("small", {}, "גרסה " + VERSION))));
+    h("div", { class: "ver" }, "גרסה " + VERSION)));
 };
 
 /* ---------- briefcase: collection of tools ---------- */
@@ -191,6 +191,12 @@ SCREENS.briefcase = (root) => {
 };
 
 /* ---------- update check (button at the bottom of the home screen) ---------- */
+// small "check for update" button + version, bottom-left corner (players screen)
+function updateFooter() {
+  return h("div", { class: "ver ver-row" },
+    h("button", { class: "ver-btn", onclick: checkUpdate }, "🔄 עדכון"),
+    h("small", {}, "גרסה " + VERSION));
+}
 function updateModal(title, text, buttons) {
   Snd.sfx("select");
   modal([h("h2", {}, title), h("p", { style: "text-align:center;margin:8px 0 12px" }, text), ...buttons]);
