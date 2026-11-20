@@ -5,7 +5,10 @@
 ## 1. Project Overview
 - **Audience:** A 9-year-old girl, on an Android phone (portrait). Interests: animals, food, space/universe, drawing.
 - **Language:** Hebrew, `<html lang="he" dir="rtl">`. Playful, warm, age-appropriate tone.
-- **Character:** An ORIGINAL Miffy-inspired bunny (name TBD — use placeholder `BUNNY_NAME` in code/text until chosen). Never use the name "Miffy" or copy Miffy/Dick Bruna designs; only the general minimalist style.
+- **Character:** **Frooky (פרוקי)**, an ORIGINAL boy bunny (Miffy-inspired style only). Never use the name "Miffy" or copy Miffy/Dick Bruna designs.
+  Look (approved): two straight ears with yellow insides, dot eyes, orange cheeks, small orange HEART nose, small "w" smile, blue overalls (pocket, yellow buttons, rolled cuffs), orange briefcase with magnifying-glass + pencil stickers. Personality: loyal friend, very curious.
+  Approved art lives in `design/` (`frooky.svg`, `frooky-expressions.svg` + PNG previews). Reuse these SVG shapes; do not redesign without asking.
+- **Expressions (12, in `design/frooky-expressions.svg`):** Fact Detective: curious (default), thinking, happy (correct), celebrating, sad (wrong), surprised. Kitchen: yummy, yucky (green tint), sour (lemon), salty (shaker), spicy (red tint, flame), sweet (heart eyes, lollipop). Swap face parts only; head/ears stay the same.
 - **Privacy:** Public site. Never put the child's name or personal info in code, URLs, or content.
 
 ## 2. Architecture & Tech Stack (STRICT)
@@ -27,7 +30,7 @@
 - **Home Screen:** hub with the bunny SVG; buttons launch mini-games; shows stars and sticker-book entry.
 - **Game 1 — "בלשית העובדות" (Fact Detective):** True/False trivia; bunny & friends react; 1-sentence explanation each. Data: editable `FACTS` array in `data-facts.js`.
 - **Game 2 — "הטבחית" (Kitchen):** pick ingredients from a pantry (incl. funny wrong ones), cook in a pot, feed the bunny → dynamic face (happy vs. disgusted/surprised). Data: editable `RECIPES` array in `data-recipes.js`. Primary design investment goes here.
-- **Rewards (shared across games):** stars (correct answers, successful dishes, streak bonus) → unlock stickers in a sticker book (game-specific badges, mystery stickers; funny failed dishes earn "discovery" stickers). Kitchen unlocks new ingredients/recipes with progress. Later: decorate the bunny's room with earned items.
+- **Rewards:** stars (correct answers, successful dishes, streak bonus) shared across games. Frooky's briefcase holds **collectable exploration tools** (collectables only — NO gameplay power-ups). Each game has its OWN separate collection: Fact Detective (animals, space, drawing, general: magnifying glass, telescope, compass, notebook+pencil, flashlight, bug jar/net, binoculars, paint brush, camera, magnet, microscope, map, mystery "?" tool…) and Kitchen (spoon, whisk, recipe book, spice jars, scale…). Tool unlocks follow the subject of the questions/recipes when possible; when a subject's set is complete, unlock from the next subject. Tools live in an editable array. Later: sticker book, decorate Frooky's room, kitchen ingredient/recipe unlocks, funny failed dishes earn "discovery" stickers.
 - **Content themes:** animals, food, space/universe, drawing.
 - **Future:** new games register in a `GAMES` list; adding games/data must not require refactoring core.
 

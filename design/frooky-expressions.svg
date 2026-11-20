@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1100" width="900" height="1650" font-family="Arial, sans-serif">
+<defs>
+  <!-- head with ears, no face -->
+  <g id="head" stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M190 192 C150 140 138 60 152 30 C160 12 185 14 200 40 C220 80 232 130 236 172 Z" fill="#fff"/>
+    <path d="M190 165 C172 130 166 85 176 68 C190 72 205 120 212 160 Z" fill="#FFD100" stroke-width="3.5"/>
+    <g transform="translate(520 0) scale(-1 1)">
+      <path d="M190 192 C150 140 138 60 152 30 C160 12 185 14 200 40 C220 80 232 130 236 172 Z" fill="#fff"/>
+      <path d="M190 165 C172 130 166 85 176 68 C190 72 205 120 212 160 Z" fill="#FFD100" stroke-width="3.5"/>
+    </g>
+    <path d="M260 163 C320 163 365 200 365 255 C365 305 320 345 262 345 C200 345 155 310 155 255 C155 200 200 163 260 163 Z" fill="#fff"/>
+  </g>
+  <path id="headshape" d="M260 163 C320 163 365 200 365 255 C365 305 320 345 262 345 C200 345 155 310 155 255 C155 200 200 163 260 163 Z"/>
+  <g id="cheeks"><ellipse cx="190" cy="293" rx="14" ry="8" fill="#F37021" stroke="none" opacity=".7"/><ellipse cx="328" cy="290" rx="14" ry="8" fill="#F37021" stroke="none" opacity=".7"/></g>
+  <path id="nose" d="M260 291.2 C249.4 284.6 250.8 276 256 276 C258.7 276 260 278 260 280 C260 278 261.3 276 264 276 C269.2 276 270.6 284.6 260 291.2 Z" fill="#F37021" stroke="#000" stroke-width="2.8"/>
+  <g id="dots"><circle cx="206" cy="268" r="7" fill="#000" stroke="none"/><circle cx="312" cy="266" r="7" fill="#000" stroke="none"/></g>
+  <path id="heartS" d="M0 8 C-13 1 -8 -9 0 -3 C8 -9 13 1 0 8 Z"/>
+</defs>
+<rect width="600" height="1100" fill="#fff"/>
+<g text-anchor="middle" font-weight="bold" fill="#005CA9" font-size="22">
+  <text x="300" y="26">Fact Detective · בלשית העובדות</text>
+  <text x="300" y="576" fill="#008D36">Kitchen · המטבח</text>
+</g>
+
+<!-- ============ ROW 0 ============ -->
+<!-- 1 curious (default) -->
+<g transform="translate(-39 44) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <use href="#dots"/><use href="#cheeks"/><use href="#nose"/>
+  <path d="M260 291 V299 M245 299 Q252 311 260 299 Q268 311 275 299"/>
+ </g></g>
+<text x="91" y="238" text-anchor="middle" font-size="18" font-weight="bold">סקרן</text><text x="91" y="258" text-anchor="middle" font-size="14" fill="#555">Curious</text>
+
+<!-- 2 thinking -->
+<g transform="translate(151 44) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="211" cy="262" r="7" fill="#000" stroke="none"/><circle cx="317" cy="260" r="7" fill="#000" stroke="none"/>
+  <path d="M192 248 Q206 242 220 248"/><path d="M298 238 Q312 230 326 238"/>
+  <use href="#cheeks"/><use href="#nose"/>
+  <path d="M260 291 V298 M246 305 Q258 300 274 297"/>
+  <circle cx="378" cy="232" r="4" fill="#000" stroke="none"/><circle cx="392" cy="212" r="6" fill="#000" stroke="none"/><circle cx="412" cy="186" r="9" fill="#000" stroke="none"/>
+ </g></g>
+<text x="281" y="238" text-anchor="middle" font-size="18" font-weight="bold">חושב</text><text x="281" y="258" text-anchor="middle" font-size="14" fill="#555">Thinking</text>
+
+<!-- 3 happy (correct) -->
+<g transform="translate(341 44) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M194 272 Q206 256 218 272"/><path d="M300 270 Q312 254 324 270"/>
+  <use href="#cheeks"/><use href="#nose"/>
+  <path d="M238 297 Q260 334 282 297 Z" fill="#fff"/>
+  <ellipse cx="260" cy="311" rx="9" ry="4.5" fill="#F6A27A" stroke="none"/>
+ </g></g>
+<text x="471" y="238" text-anchor="middle" font-size="18" font-weight="bold">שמח - נכון!</text><text x="471" y="258" text-anchor="middle" font-size="14" fill="#555">Happy (correct)</text>
+
+<!-- ============ ROW 1 ============ -->
+<!-- 4 celebrating -->
+<g transform="translate(-39 294) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M194 272 Q206 256 218 272"/><path d="M300 270 Q312 254 324 270"/>
+  <ellipse cx="188" cy="294" rx="17" ry="10" fill="#F37021" stroke="none" opacity=".85"/><ellipse cx="330" cy="291" rx="17" ry="10" fill="#F37021" stroke="none" opacity=".85"/>
+  <use href="#nose"/>
+  <path d="M232 295 Q260 342 288 295 Z" fill="#fff"/>
+  <ellipse cx="260" cy="316" rx="11" ry="5.5" fill="#F6A27A" stroke="none"/>
+  <g stroke="none"><circle cx="125" cy="205" r="8" fill="#008D36"/><circle cx="110" cy="270" r="6" fill="#005CA9"/><circle cx="130" cy="330" r="7" fill="#FFD100"/>
+  <rect x="385" y="198" width="14" height="14" fill="#F37021" transform="rotate(25 392 205)"/><circle cx="400" cy="275" r="7" fill="#FFD100"/><circle cx="385" cy="335" r="8" fill="#008D36"/>
+  <circle cx="260" cy="110" r="7" fill="#F37021"/><rect x="240" y="60" width="12" height="12" fill="#005CA9" transform="rotate(20 246 66)"/></g>
+ </g></g>
+<text x="91" y="488" text-anchor="middle" font-size="18" font-weight="bold">חוגג</text><text x="91" y="508" text-anchor="middle" font-size="14" fill="#555">Celebrating</text>
+
+<!-- 5 sad (wrong) -->
+<g transform="translate(151 294) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <use href="#dots"/>
+  <path d="M192 254 L220 244"/><path d="M300 244 L328 254"/>
+  <use href="#cheeks"/><use href="#nose"/>
+  <path d="M246 308 Q260 294 274 308"/>
+  <path d="M200 284 Q208 296 200 304 Q192 296 200 284 Z" fill="#4aa3e0" stroke-width="3"/>
+ </g></g>
+<text x="281" y="488" text-anchor="middle" font-size="18" font-weight="bold">עצוב - טעות</text><text x="281" y="508" text-anchor="middle" font-size="14" fill="#555">Sad (wrong)</text>
+
+<!-- 6 surprised -->
+<g transform="translate(341 294) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="206" cy="266" r="12" fill="#fff" stroke-width="4"/><circle cx="206" cy="266" r="5" fill="#000" stroke="none"/>
+  <circle cx="312" cy="264" r="12" fill="#fff" stroke-width="4"/><circle cx="312" cy="264" r="5" fill="#000" stroke="none"/>
+  <path d="M190 240 Q206 230 222 240"/><path d="M296 238 Q312 228 328 238"/>
+  <use href="#cheeks"/><use href="#nose"/>
+  <ellipse cx="260" cy="307" rx="7" ry="9" fill="#fff"/>
+ </g></g>
+<text x="471" y="488" text-anchor="middle" font-size="18" font-weight="bold">מופתע</text><text x="471" y="508" text-anchor="middle" font-size="14" fill="#555">Surprised</text>
+
+<!-- ============ ROW 2 (kitchen) ============ -->
+<!-- 7 yummy -->
+<g transform="translate(-39 594) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M194 272 Q206 256 218 272"/><path d="M300 270 Q312 254 324 270"/>
+  <ellipse cx="188" cy="294" rx="17" ry="10" fill="#F37021" stroke="none" opacity=".85"/><ellipse cx="330" cy="291" rx="17" ry="10" fill="#F37021" stroke="none" opacity=".85"/>
+  <use href="#nose"/>
+  <path d="M240 297 Q260 322 280 297"/>
+  <ellipse cx="277" cy="313" rx="10" ry="6" fill="#F6A27A" transform="rotate(35 277 313)" stroke-width="4"/>
+  <g transform="translate(392 230)" fill="#FFD100" stroke-width="4"><use href="#heartS" transform="scale(1.6)" fill="#F37021"/></g>
+ </g></g>
+<text x="91" y="788" text-anchor="middle" font-size="18" font-weight="bold">טעים!</text><text x="91" y="808" text-anchor="middle" font-size="14" fill="#555">Yummy</text>
+
+<!-- 8 yucky -->
+<g transform="translate(151 594) scale(.5)"><use href="#head"/>
+ <use href="#headshape" fill="#008D36" opacity=".3"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M198 256 L216 268 L198 280"/><path d="M326 254 L308 266 L326 278"/>
+  <ellipse cx="190" cy="293" rx="14" ry="8" fill="#008D36" stroke="none" opacity=".6"/><ellipse cx="328" cy="290" rx="14" ry="8" fill="#008D36" stroke="none" opacity=".6"/>
+  <use href="#nose"/>
+  <path d="M242 304 Q251 297 260 304 Q269 311 278 304"/>
+  <path d="M252 306 V318 Q260 328 268 318 V306" fill="#F6A27A" stroke-width="4"/>
+ </g></g>
+<text x="281" y="788" text-anchor="middle" font-size="18" font-weight="bold">איכס!</text><text x="281" y="808" text-anchor="middle" font-size="14" fill="#555">Yucky</text>
+
+<!-- 9 sour -->
+<g transform="translate(341 594) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M194 266 Q206 278 218 266"/><path d="M300 264 Q312 276 324 264"/>
+  <path d="M190 250 L220 258"/><path d="M330 248 L300 256"/>
+  <use href="#cheeks"/><use href="#nose"/>
+  <circle cx="260" cy="306" r="5.5"/>
+  <path d="M248 301 L253 303 M272 301 L267 303 M250 311 L254 309 M270 311 L266 309" stroke-width="4"/>
+  <ellipse cx="396" cy="314" rx="24" ry="17" fill="#FFD100" transform="rotate(-20 396 314)"/><path d="M406 292 Q420 286 424 296 Q414 302 406 292 Z" fill="#008D36" stroke-width="3"/>
+ </g></g>
+<text x="471" y="788" text-anchor="middle" font-size="18" font-weight="bold">חמוץ</text><text x="471" y="808" text-anchor="middle" font-size="14" fill="#555">Sour</text>
+
+<!-- ============ ROW 3 (kitchen) ============ -->
+<!-- 10 salty -->
+<g transform="translate(-39 844) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <use href="#dots"/>
+  <path d="M192 252 Q206 248 220 242"/><path d="M300 242 Q314 248 328 252"/>
+  <use href="#cheeks"/><use href="#nose"/>
+  <path d="M242 304 Q248 297 254 304 Q260 311 266 304 Q272 297 278 304"/>
+  <path d="M338 205 Q346 218 338 226 Q330 218 338 205 Z" fill="#4aa3e0" stroke-width="3"/>
+  <g transform="translate(396 288) rotate(-160) scale(1.35)" stroke-width="3.2">
+    <rect x="-14" y="-6" width="28" height="36" rx="7" fill="#fff"/>
+    <path d="M-14 -6 Q-14 -26 0 -26 Q14 -26 14 -6 Z" fill="#005CA9"/>
+    <g fill="#fff" stroke="none"><circle cx="-5" cy="-15" r="2.2"/><circle cx="3" cy="-18" r="2.2"/><circle cx="6" cy="-11" r="2.2"/></g>
+  </g>
+  <g fill="#fff" stroke-width="2.5"><circle cx="384" cy="332" r="3.5"/><circle cx="394" cy="342" r="3.5"/><circle cx="378" cy="348" r="3.5"/><circle cx="388" cy="358" r="3.5"/><circle cx="372" cy="362" r="3"/></g>
+ </g></g>
+<text x="91" y="1038" text-anchor="middle" font-size="18" font-weight="bold">מלוח</text><text x="91" y="1058" text-anchor="middle" font-size="14" fill="#555">Salty</text>
+
+<!-- 11 spicy -->
+<g transform="translate(151 844) scale(.5)"><use href="#head"/>
+ <use href="#headshape" fill="#F37021" opacity=".35"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <use href="#dots"/>
+  <path d="M192 248 Q206 242 220 248"/><path d="M298 246 Q312 240 326 246"/>
+  <ellipse cx="188" cy="294" rx="17" ry="10" fill="#F37021" stroke="none"/><ellipse cx="330" cy="291" rx="17" ry="10" fill="#F37021" stroke="none"/>
+  <use href="#nose"/>
+  <path d="M244 297 Q260 338 276 297 Z" fill="#fff"/>
+  <ellipse cx="260" cy="316" rx="9" ry="5" fill="#F6A27A" stroke="none"/>
+  <path d="M338 205 Q346 218 338 226 Q330 218 338 205 Z" fill="#4aa3e0" stroke-width="3"/>
+  <path d="M395 290 C406 302 414 310 408 326 C404 338 386 338 382 324 C379 314 389 310 391 300 C393 304 395 300 395 290 Z" fill="#F37021"/>
+  <path d="M396 312 C401 318 403 324 399 329 C394 332 389 328 390 322 C391 318 395 318 396 312 Z" fill="#FFD100" stroke-width="3"/>
+ </g></g>
+<text x="281" y="1038" text-anchor="middle" font-size="18" font-weight="bold">חריף</text><text x="281" y="1058" text-anchor="middle" font-size="14" fill="#555">Spicy</text>
+
+<!-- 12 sweet -->
+<g transform="translate(341 844) scale(.5)"><use href="#head"/>
+ <g fill="none" stroke="#000" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(206 268) scale(1.5)" fill="#F37021" stroke-width="3"><use href="#heartS"/></g>
+  <g transform="translate(312 266) scale(1.5)" fill="#F37021" stroke-width="3"><use href="#heartS"/></g>
+  <ellipse cx="188" cy="294" rx="17" ry="10" fill="#F37021" stroke="none" opacity=".85"/><ellipse cx="330" cy="291" rx="17" ry="10" fill="#F37021" stroke="none" opacity=".85"/>
+  <use href="#nose"/>
+  <path d="M245 299 Q260 316 275 299"/>
+  <path d="M400 330 V372" stroke-width="5"/><circle cx="400" cy="308" r="22" fill="#FFD100"/><path d="M400 308 m-12 0 a12 12 0 1 1 12 12 M400 308 m-5 0 a5 5 0 1 1 5 5" stroke-width="3"/>
+ </g></g>
+<text x="471" y="1038" text-anchor="middle" font-size="18" font-weight="bold">מתוק</text><text x="471" y="1058" text-anchor="middle" font-size="14" fill="#555">Sweet</text>
+</svg>
