@@ -11,7 +11,8 @@ const FACT_TOPICS = [
 ];
 const FACT_SOURCES = () => ({ animals: FACTS_ANIMALS, space: FACTS_SPACE, food: FACTS_FOOD, art: FACTS_ART });
 const PIC_SOURCES = () => ({ animals: PICS_ANIMALS, space: PICS_SPACE, food: PICS_FOOD, art: PICS_ART });
-const CORRECT_MSGS = ["כל הכבוד!", "בול!", "מצוין!", "יפה מאוד!", "תשובה מעולה!", "פתרון מושלם!", "בלש אמיתי!"];
+const correctMsgs = p => ["כל הכבוד!", "בול!", "מצוין!", "יפה מאוד!", "תשובה מעולה!", "פתרון מושלם!", G(p, "בלש אמיתי!", "בלשית אמיתית!", "בלש אמיתי!")];
+const factsTitle = p => G(p, "בלש העובדות", "בלשית העובדות", "בלשית העובדות");
 const WRONG_MSGS = ["אופס, כמעט!", "לא נורא, ככה לומדים!", "אוי, זה היה מסובך!", "הפעם זה לא יצא. נחזור לזה עוד מעט!", "שטויות במיץ עגבניות... כמעט נפלנו בפח!"];
 
 /* ---------- fact data helpers ---------- */
@@ -60,7 +61,7 @@ function buildQueue(p, topicId) {
 
 /* ---------- registration on the home screen ---------- */
 GAMES.push({
-  id: "facts", title: "בלשית העובדות", icon: "🔍", color: "blue",
+  id: "facts", title: p => factsTitle(p), icon: "🔍", color: "blue",
   subtitle(p) { const r = p.round; return r && r.pos < r.queue.length ? "ממשיכים: חידה " + (Math.min(r.solved + 1, r.total)) + " מתוך " + r.total : "נכון או שטויות במיץ עגבניות?"; },
   open() { go("facts"); }
 });
@@ -72,7 +73,7 @@ SCREENS.facts = (root) => {
     Snd.music("home");
     const t = FACT_TOPICS.find(x => x.id === r.topic);
     root.append(h("div", { class: "screen" },
-      topBar("בלשית העובדות"),
+      topBar(factsTitle(p)),
       h("div", { class: "hero-small", html: frookyHead("curious") }),
       h("div", { class: "case-card open-case" },
         h("div", { class: "case-tab" }, "תיק פתוח"),
@@ -97,13 +98,14 @@ SCREENS.factsTopics = (root) => {
   cards.push(h("button", { class: "topic-card mix", onclick: () => { Snd.sfx("select"); startRound("mix"); } },
     h("span", { class: "ticon" }, "🎲"), h("span", { class: "tname" }, "הפתעה!"), h("small", {}, "מכל הנושאים")));
   root.append(h("div", { class: "screen" },
-    topBar("בלשית העובדות", "home"),
+    topBar(factsTitle(p), "home"),
     h("div", { class: "speech-row" }, h("div", { class: "hero-small", html: frookyHead("curious") }), h("div", { class: "bubble" }, "על מה נחקור היום?")),
     h("div", { class: "topic-grid" }, cards)));
 };
 
 function startRound(topicId) {
   const p = me();
+  p.topicsPlayed[topicId] = true;
   p.round = { topic: topicId, queue: buildQueue(p, topicId), pos: 0, total: ROUND_SIZE, solved: 0, firstTry: 0, stars: 0, streak: 0, requeued: {}, seen: {} };
   saveDB();
   go("factsPlay");
@@ -122,7 +124,7 @@ SCREENS.factsPlay = (root) => {
 
   let busy = false;
 
-  const speech = h("div", { class: "bubble small" }, isRepeat ? "הנה זה חוזר – מוכנים?" : "מה דעתכם? אמת או שטויות?");
+  const speech = h("div", { class: "bubble small" }, isRepeat ? G(p, "הנה זה חוזר – מוכן?", "הנה זה חוזר – מוכנה?", "הנה זה חוזר – מוכנים?") : G(p, "מה דעתך? אמת או שטויות?", "מה דעתך? אמת או שטויות?", "מה דעתכם? אמת או שטויות?"));
   const face = h("div", { class: "face", html: frookyFull("curious") });
   const stamp = h("div", { class: "stamp" });
   const result = h("div", { class: "result" });
@@ -161,7 +163,9 @@ SCREENS.factsPlay = (root) => {
     const right = sayTrue === f.answer;
     // --- save progress for this fact ---
     const st = p.facts[f.id] || (p.facts[f.id] = { right: 0, wrong: 0, s: "seen" });
-    if (right) { st.right++; st.s = st.right >= 2 ? "learned" : "seen"; p.correct++; R.solved++; R.streak++; if (!isRepeat) R.firstTry++; }
+    const wasMissed = st.s === "missed";
+    if (right) { st.right++; st.s = st.right >= 2 ? "learned" : "seen"; p.correct++; R.solved++; R.streak++; if (!isRepeat) R.firstTry++;
+      if (!f.answer) p.myths++; if (wasMissed) p.comebacks++; if (R.streak > p.bestStreak) p.bestStreak = R.streak; }
     else { st.wrong++; st.s = "missed"; p.wrong++; R.streak = 0; }
     R.seen[f.id] = true; R.pos++;
     if (!right) {                       // missed clues come back later in the same round (max 2 times)
@@ -170,6 +174,7 @@ SCREENS.factsPlay = (root) => {
     }
     let tool = null;
     if (right) { R.stars++; tool = addStar(topicId); const sc = document.querySelector(".topbar .starcount"); if (sc) sc.textContent = "⭐ " + p.stars; }
+    const medals = checkMedals(p);
     saveDB();
     // --- show it ---
     stamp.textContent = right ? "תשובה נכונה!" : "טעות!";
@@ -177,7 +182,7 @@ SCREENS.factsPlay = (root) => {
     Snd.sfx("stamp");
     setTimeout(() => Snd.sfx(right ? (R.streak >= 3 ? "streak" : "correct") : "wrong"), 160);
     setFace(right ? (R.streak >= 3 ? "celebrating" : "happy") : "sad");
-    speech.textContent = right ? rndItem(CORRECT_MSGS) : rndItem(WRONG_MSGS);
+    speech.textContent = right ? rndItem(correctMsgs(p)) : rndItem(WRONG_MSGS);
     result.innerHTML = "";
     result.append(h("b", {}, f.answer ? "ידעת? " : "האמת היא: "), f.explain);
     result.classList.add("show");
@@ -186,17 +191,28 @@ SCREENS.factsPlay = (root) => {
     }
     const next = h("button", { class: "btn blue", onclick: () => { Snd.sfx("tap"); go("factsPlay"); } }, R.pos >= R.queue.length ? "לסיום התיק ›" : "להמשיך ›");
     answers.replaceWith(h("div", { class: "answers single" }, next));
-    if (tool) setTimeout(() => showToolModal(tool), 1200);
+    // a new tool and/or new medals pop up after the stamp (the medals come after the tool)
+    const showMedals = () => { if (medals.length) showAwardsModal(medals); };
+    if (tool) setTimeout(() => showToolModal(tool, showMedals), 1200); else if (medals.length) setTimeout(showMedals, 1200);
   }
 };
 
-function showToolModal(tool) {
+function showToolModal(tool, then) {
   Snd.sfx("briefcase");
   modal([
     h("h2", {}, "התיק נפתח!"),
     h("div", { class: "tool-big" }, tool.icon),
     h("p", { class: "big" }, "כלי חדש: " + tool.name),
     h("p", {}, "הוא נשמר בתיק של פרוקי 💼"),
+    h("button", { class: "btn green", onclick: () => { Snd.sfx("tap"); closeModal(); if (then) then(); } }, "מעולה!")
+  ]);
+}
+function showAwardsModal(medals) {
+  Snd.sfx("star");
+  modal([
+    h("h2", {}, medals.length > 1 ? "פרסים חדשים! 🏅" : "פרס חדש! 🏅"),
+    h("div", { class: "award-list" }, medals.map(m => h("div", { class: "award" }, h("span", { class: "micon" }, m.icon), h("div", { class: "mtext" }, h("b", {}, m.name), h("small", {}, m.desc))))),
+    h("p", {}, "הפרסים נשמרים בתיק של פרוקי 💼"),
     h("button", { class: "btn green", onclick: () => { Snd.sfx("tap"); closeModal(); } }, "מעולה!")
   ]);
 }
@@ -208,7 +224,9 @@ function finishRound() {
   const mastered = [];
   const topics = R.topic === "mix" ? FACT_TOPICS.map(t => t.id) : [R.topic];
   topics.forEach(t => { const total = topicFacts(t).length; if (total && learnedCount(p, t) >= total && !p.topicDone[t]) { p.topicDone[t] = true; mastered.push(t); } });
-  const summary = { topic: R.topic, stars: R.stars, firstTry: R.firstTry, total: R.total, mastered };
+  if (R.firstTry >= R.total) p.perfect++;
+  const awards = checkMedals(p);
+  const summary = { topic: R.topic, stars: R.stars, firstTry: R.firstTry, total: R.total, mastered, awards };
   p.round = null; saveDB();
   go("factsDone", summary);
 }
@@ -224,8 +242,10 @@ SCREENS.factsDone = (root, s) => {
       h("div", { class: "case-tab" }, "סיכום תיק"), stamp,
       h("p", { class: "big" }, "⭐ " + s.stars + " כוכבים בתיק הזה"),
       h("p", {}, s.firstTry + " מתוך " + s.total + " תשובות נכונות בניסיון הראשון"),
-      s.mastered.length ? h("p", { class: "big trophy" }, "🏆 סיימתם את כל החידות בנושא " + s.mastered.map(topicName).join(", ") + "!") : null,
-      s.mastered.length ? h("p", {}, "אפשר לנסות נושא אחר או לחזור על חידות ישנות.") : null),
+      s.mastered.length ? h("p", { class: "big trophy" }, "🏆 " + G(p, "סיימת", "סיימת", "סיימתם") + " את כל החידות בנושא " + s.mastered.map(topicName).join(", ") + "!") : null,
+      s.mastered.length ? h("p", {}, "אפשר לנסות נושא אחר או לחזור על חידות ישנות.") : null,
+      (s.awards && s.awards.length) ? h("div", { class: "award-list" }, h("p", { class: "big" }, s.awards.length > 1 ? "🏅 פרסים חדשים!" : "🏅 פרס חדש!"),
+        s.awards.map(m => h("div", { class: "award" }, h("span", { class: "micon" }, m.icon), h("div", { class: "mtext" }, h("b", {}, m.name), h("small", {}, m.desc))))) : null),
     h("button", { class: "btn blue", onclick: () => { Snd.sfx("select"); s.topic ? startRound(s.topic) : go("factsTopics"); } }, "🔍 תיק חדש באותו נושא"),
     h("button", { class: "btn white", onclick: () => { Snd.sfx("select"); go("factsTopics"); } }, "📂 בחירת נושא"),
     h("button", { class: "btn white", onclick: () => { Snd.sfx("back"); go("home"); } }, "🏠 הביתה")));

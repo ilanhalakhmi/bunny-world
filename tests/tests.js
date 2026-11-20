@@ -15,6 +15,7 @@ function warn(msg) { WARNS.push(curTest + " :: " + msg); }
 async function T(name, fn) {
   curTest = name; const e0 = ERRORS.length, f0 = FAILS.length;
   try { await fn(); } catch (e) { FAILS.push(name + " :: EXCEPTION " + e.message + " | " + String(e.stack || "").split("\n")[1]); }
+  await sleep(1400); closeModal();   // let timers of this test (award popups) fire before the next test starts
   if (ERRORS.length > e0) FAILS.push(name + " :: page errors: " + ERRORS.slice(e0).join(" | "));
   if (FAILS.length === f0) PASSED.push(name);
 }
@@ -23,6 +24,7 @@ async function waitFor(sel, ms = 4000) {
   while (Date.now() - t0 < ms) { const e = document.querySelector(sel); if (e) return e; await sleep(15); }
   throw new Error("timeout waiting for " + sel + " (screen=" + currentScreen + ")");
 }
+const _createPlayer = createPlayer; createPlayer = (n, g) => { const p = _createPlayer(n, g); p.genderAsked = true; return p; };
 function quiet() { Snd.sfxOn = false; Snd.musicOn = false; }
 function freshDB() { try { localStorage.clear(); } catch (e) {} DB = { players: {}, current: null, settings: { sfx: false, music: false } }; quiet(); _byId = null; }
 
@@ -161,22 +163,99 @@ async function core() {
     ok(q.filter(id => !p2.facts[id]).length >= Math.min(ROUND_SIZE, list.length - seenAll) - 1, "unseen clues not preferred");
   });
 
-  await T("ui: new player flow (empty state, validation, duplicate names, 12-char limit)", async () => {
+  await T("ui: new player flow (empty state, validation, gender, duplicate names, 12-char limit)", async () => {
     freshDB(); go("players");
     await waitFor(".modal .name-input");
     const input = document.querySelector(".name-input"), okBtn = document.querySelector(".modal .btn.green");
     ok(input.maxLength === 12, "name maxlength");
+    ok(document.querySelectorAll(".gender-btn").length === 2, "boy/girl buttons missing");
     okBtn.click(); ok(document.querySelector(".form-msg").textContent.length > 0, "empty name should show a message"); ok(!Object.keys(DB.players).length, "empty name created a player");
-    input.value = "  דנה   כהן "; okBtn.click(); await sleep(30);
-    const p = me(); ok(p && p.name === "דנה כהן", "name not trimmed/normalized: " + (p && p.name)); ok(currentScreen === "home", "should go home after creating a player");
+    input.value = "  דנה   כהן "; okBtn.click(); ok(!Object.keys(DB.players).length, "a player was created without choosing boy/girl");
+    ok(document.querySelector(".form-msg").textContent.includes("בן או בת"), "should ask to choose boy or girl");
+    document.querySelector('.gender-btn[data-g="f"]').click(); ok(document.querySelector('.gender-btn[data-g="f"]').classList.contains("on"), "chosen gender should be highlighted");
+    okBtn.click(); await sleep(30);
+    const p = me(); ok(p && p.name === "דנה כהן", "name not trimmed/normalized: " + (p && p.name)); ok(p.gender === "f", "gender not saved"); ok(currentScreen === "home", "should go home after creating a player");
     go("players"); document.querySelector(".btn.blue").click(); await waitFor(".modal .name-input");
-    document.querySelector(".name-input").value = "דנה כהן"; document.querySelector(".modal .btn.green").click();
+    document.querySelector(".name-input").value = "דנה כהן"; document.querySelector('.gender-btn[data-g="m"]').click(); document.querySelector(".modal .btn.green").click();
     ok(Object.keys(DB.players).length === 1, "duplicate name was accepted");
     document.querySelector(".modal .btn.white").click(); ok(!document.getElementById("modal"), "cancel should close the modal");
     document.querySelector(".name-input") || document.querySelector(".btn.blue").click();
-    document.querySelector(".name-input").value = "<b>x</b> & \"y\""; document.querySelector(".modal .btn.green").click(); await sleep(30);
+    document.querySelector(".name-input").value = "<b>x</b> & \"y\""; document.querySelector('.gender-btn[data-g="m"]').click(); document.querySelector(".modal .btn.green").click(); await sleep(30);
     ok(document.querySelectorAll("#app b").length === 0, "player name was interpreted as HTML");
   });
+
+  await T("ui: edit a player's name and gender; renaming to someone else's name is refused", async () => {
+    freshDB(); createPlayer("אחד", "m"); const a = me(); createPlayer("שתיים", "f"); const b = me(); go("players");
+    const row = [...document.querySelectorAll(".player-card")].find(r => r.textContent.includes("אחד")); row.querySelector('[aria-label="עריכת שחקן"]').click(); await waitFor(".modal .name-input");
+    ok(document.querySelector(".name-input").value === "אחד", "edit should pre-fill the name"); ok(document.querySelector('.gender-btn[data-g="m"]').classList.contains("on"), "edit should pre-select the gender");
+    document.querySelector(".name-input").value = "שתיים"; document.querySelector(".modal .btn.green").click(); ok(a.name === "אחד", "renamed onto an existing name");
+    document.querySelector(".name-input").value = "אחד אחד"; document.querySelector('.gender-btn[data-g="f"]').click(); document.querySelector(".modal .btn.green").click(); await sleep(20);
+    ok(a.name === "אחד אחד" && a.gender === "f", "edit not saved: " + a.name + "/" + a.gender); ok(Object.keys(DB.players).length === 2, "edit created a new player"); ok(currentScreen === "players", "should return to the players list");
+    ok(JSON.parse(localStorage.getItem(STORE_KEY)).players[a.id].gender === "f", "edit not persisted");
+    const keep = [...document.querySelectorAll(".player-card")].find(r => r.textContent.includes("אחד אחד")); keep.querySelector('[aria-label="עריכת שחקן"]').click(); await waitFor(".modal .name-input");
+    document.querySelector(".name-input").value = "אחד אחד"; document.querySelector(".modal .btn.green").click(); await sleep(10); ok(a.name === "אחד אחד", "re-saving the same name must be allowed");
+  });
+
+  await T("gender: wording follows boy / girl / not chosen", async () => {
+    const m = { gender: "m", stars: 0, tools: [], medals: {} }, f = { gender: "f", stars: 0, tools: [], medals: {} }, n = { stars: 0, tools: [], medals: {} };
+    ok(factsTitle(m) === "בלש העובדות" && factsTitle(f) === "בלשית העובדות", "game title by gender");
+    ok(rankOf(m) !== rankOf(f) && rankOf(m).includes("בלש") && rankOf(f).includes("בלשית"), "rank wording by gender: " + rankOf(m) + " / " + rankOf(f));
+    ok(rankOf(n).includes("/"), "no gender -> neutral rank: " + rankOf(n));
+    ok(correctMsgs(f).includes("בלשית אמיתית!") && !correctMsgs(f).includes("בלש אמיתי!") && correctMsgs(m).includes("בלש אמיתי!"), "praise by gender");
+    ok(G(m, "a", "b", "c") === "a" && G(f, "a", "b", "c") === "b" && G(n, "a", "b", "c") === "c" && G(undefined, "a", "b", "c") === "c", "G()");
+    // the real screens
+    freshDB(); createPlayer("בן", "m"); go("home"); ok(document.querySelector(".gtitle").textContent === "בלש העובדות", "home shows the boy title");
+    go("facts"); ok(!document.querySelector(".topbar-title").textContent.includes("בלשית"), "boy topic screen title");
+    startRound("food"); await waitFor(".clue"); ok(document.querySelector(".bubble").textContent.includes("מה דעתך"), "boy clue prompt");
+    freshDB(); createPlayer("בת", "f"); go("home"); ok(document.querySelector(".gtitle").textContent === "בלשית העובדות", "home shows the girl title");
+    go("kitchen"); ok(document.querySelector(".case-card").textContent.includes("לחצי"), "girl kitchen text uses feminine imperative");
+    freshDB(); createPlayer("בן", "m"); go("kitchen"); ok(document.querySelector(".case-card").textContent.includes("לחץ על"), "boy kitchen text uses masculine imperative");
+    freshDB(); createPlayer("ללא"); go("kitchen"); ok(document.querySelector(".case-card").textContent.includes("לחצו"), "no gender -> plural");
+  });
+
+  await T("gender: players created before this feature are asked once (and can skip)", async () => {
+    freshDB(); const p = _createPlayer("ישנה"); ok(p.genderAsked === false && p.gender === undefined, "old-style player expected");
+    go("home"); await waitFor("#modal", 2000); ok(document.querySelector("#modal h2").textContent.includes("בן או בת"), "gender question not shown");
+    document.querySelector("#modal .btn.green").click(); ok(document.querySelector("#modal .form-msg").textContent.includes("בן או בת"), "saving without a choice should ask again");
+    document.querySelector("#modal .btn.white").click(); ok(!document.getElementById("modal") && p.genderAsked === true && p.gender === undefined, "skip should close and not ask again");
+    go("home"); await sleep(600); ok(!document.getElementById("modal"), "asked a second time");
+    freshDB(); const q = _createPlayer("ישן"); go("home"); await waitFor("#modal", 2000); document.querySelector('#modal .gender-btn[data-g="f"]').click(); document.querySelector("#modal .btn.green").click(); await sleep(30);
+    ok(q.gender === "f", "choice not saved"); ok(document.querySelector(".gtitle").textContent === "בלשית העובדות", "home not refreshed with the new wording");
+  });
+
+  await T("rewards: more tools, medals with unique ids, ranks", () => {
+    ok(TOOLS_FACTS.length >= 50, "expected 50+ tools, have " + TOOLS_FACTS.length);
+    ok(new Set(TOOLS_FACTS.map(t => t.icon)).size === TOOLS_FACTS.length, "two tools share an icon"); ok(new Set(TOOLS_FACTS.map(t => t.name)).size === TOOLS_FACTS.length, "two tools share a name");
+    for (const t of ["animals", "space", "food", "art", "general"]) ok(TOOLS_FACTS.filter(x => x.topic === t).length >= 8, "few tools for " + t);
+    ok(MEDALS.length >= 25 && new Set(MEDALS.map(m => m.id)).size === MEDALS.length, "medal ids"); ok(new Set(MEDALS.map(m => m.icon)).size === MEDALS.length, "two medals share an icon");
+    MEDALS.forEach(m => ok(m.name && m.desc && typeof m.ok === "function", "medal incomplete " + m.id));
+    ok(RANKS.every((r, i) => i === 0 || r.min > RANKS[i - 1].min) && RANKS[0].min === 0, "ranks must increase from 0");
+    freshDB(); const p = createPlayer("מדליה", "f"); ok(Object.keys(p.medals).length === 0 && checkMedals(p).length === 0, "a new player has no medals");
+    p.stars = 1; ok(checkMedals(p).map(m => m.id).join() === "star1", "first star medal"); ok(checkMedals(p).length === 0, "a medal must be given only once");
+    p.stars = 200; p.casesClosed = 30; p.perfect = 1; p.bestStreak = 10; p.myths = 60; p.comebacks = 10; p.topicsPlayed = { animals: 1, space: 1, food: 1, art: 1, mix: 1 };
+    TOOLS_FACTS.forEach(t => p.tools.push(t.id)); Object.keys(TOPIC_DATA).forEach(t => { p.topicDone[t] = true; topicFacts(t).forEach(f => { p.facts[f.id] = { right: 2, wrong: 0, s: "learned" }; }); });
+    checkMedals(p); ok(Object.keys(p.medals).length === MEDALS.length, "a complete player should hold every medal; missing: " + MEDALS.filter(m => !p.medals[m.id]).map(m => m.id));
+  });
+
+  await T("ui: medals are awarded while playing (popup), counters update, briefcase tabs work", async () => {
+    freshDB(); Snd.maybeSuspense = () => 0; createPlayer("פרסים", "f"); const p = me();
+    startRound("animals"); let f = factById(p.round.queue[0]);
+    document.querySelectorAll(".btn.ans")[f.answer ? 0 : 1].click(); await waitFor(".answers.single .btn");
+    ok(p.medals.star1, "first correct answer should give the first-star medal"); const m = await waitFor("#modal", 3000);
+    ok(m.querySelector("h2").textContent.includes("פרס") && m.textContent.includes("כוכב ראשון"), "award popup content"); m.querySelector(".btn").click(); ok(!document.getElementById("modal"), "award popup should close");
+    // a myth caught after a miss counts for both counters
+    const R = p.round; const myth = topicFacts("animals").find(x => !x.answer && x.id !== f.id); R.queue[R.pos] = myth.id; p.facts[myth.id] = { right: 0, wrong: 1, s: "missed" }; go("factsPlay");
+    await waitFor(".clue"); const before = { myths: p.myths, back: p.comebacks };
+    document.querySelectorAll(".btn.ans")[1].click(); await waitFor(".answers.single .btn"); ok(p.myths === before.myths + 1 && p.comebacks === before.back + 1, "myth/comeback counters");
+    ok(p.bestStreak >= 2, "best streak tracked: " + p.bestStreak); closeModal();
+    go("briefcase"); ok(document.querySelectorAll(".tool").length === TOOLS_FACTS.length, "tools tab");
+    [...document.querySelectorAll(".tab")][1].click(); ok(document.querySelectorAll(".medal").length === MEDALS.length, "medals tab"); ok(document.querySelectorAll(".medal.got").length === Object.keys(p.medals).length, "earned medals highlighted");
+    ok(document.querySelector(".rank").textContent.includes("בלשית"), "rank line uses feminine wording"); [...document.querySelectorAll(".tab")][0].click(); ok(document.querySelector(".tool-grid"), "back to tools");
+    // finishing a perfect case: summary lists new medals
+    freshDB(); createPlayer("מושלם", "m"); const q = me(); startRound("space"); q.round.firstTry = 10; q.round.pos = q.round.queue.length; go("factsPlay"); await waitFor(".done");
+    ok(q.perfect === 1 && q.medals.perfect && q.medals.case1, "perfect case + first case medals"); ok(document.querySelector(".award-list .award"), "summary should list the new medals");
+  });
+
 
   await T("ui: multiple players are independent; delete works; selecting a player opens home", async () => {
     freshDB(); createPlayer("אחת"); const a = me(); createPlayer("שניים"); const b = me(); createPlayer("שלוש"); const c = me(); a.lastPlayed = 1000; b.lastPlayed = 2000; c.lastPlayed = 3000;
@@ -269,8 +348,8 @@ async function core() {
     freshDB(); Snd.maybeSuspense = () => 0; createPlayer("כלים"); const p = me(); p.stars = 4; saveDB();
     startRound("animals"); const R = p.round; const f = factById(R.queue[0]);
     document.querySelectorAll(".btn.ans")[f.answer ? 0 : 1].click(); await waitFor(".answers.single .btn");
-    ok(p.stars === 5 && p.tools.length === 1, "5th star should give a tool"); const m = await waitFor("#modal", 3000); ok(m.textContent.includes(TOOLS_FACTS.find(t => t.id === p.tools[0]).name), "modal names the tool");
-    m.querySelector(".btn").click(); ok(!document.getElementById("modal"), "tool modal should close");
+    ok(p.stars === 5 && p.tools.length === 1, "5th star should give a tool"); const m = await waitFor("#modal", 3000); ok(m.textContent.includes(TOOLS_FACTS.find(t => t.id === p.tools[0]).name), "modal names the tool: [" + m.textContent + "]");
+    m.querySelector(".btn").click(); const next = document.getElementById("modal"); ok(!next || next.querySelector("h2").textContent.includes("פרס"), "after the tool popup only the medals popup may follow"); if (next) { next.querySelector(".btn").click(); ok(!document.getElementById("modal"), "medals popup should close"); }
   });
 
   await T("storage: corrupt / partial / old-format data never crashes the app", async () => {
@@ -378,8 +457,8 @@ async function core() {
 async function layoutMode() {
   quiet(); freshDB(); Snd.maybeSuspense = () => 0;
   const issues = [], tag = innerWidth + "x" + innerHeight;
-  createPlayer("שרה"); const p = me(); p.stars = 12; createPlayer("אברהם-יצחק"); createPlayer("מיכל"); DB.current = p.id;
-  TOOLS_FACTS.slice(0, 11).forEach(t => p.tools.push(t.id));
+  createPlayer("שרה", "f"); const p = me(); p.stars = 12; createPlayer("אברהם-יצחק", "m"); createPlayer("מיכל"); DB.current = p.id;
+  TOOLS_FACTS.slice(0, 23).forEach(t => p.tools.push(t.id)); p.stars = 135; MEDALS.slice(0, 12).forEach(m => { p.medals[m.id] = 1; });
   for (const t of Object.keys(TOPIC_DATA)) TOPIC_DATA[t][0].forEach((f, i) => { if (i % 2 === 0) p.facts[f.id] = { right: 1 + (i % 3 === 0), wrong: 0, s: "seen" }; });
   saveDB(); applyScale();
   const z = parseFloat(document.body.style.zoom || "1");
@@ -408,7 +487,9 @@ async function layoutMode() {
   await render("facts-open-case", () => go("facts"));
   p.round = null; await render("topics", () => go("factsTopics"));
   await render("notebook-animals", () => { notebookTopic = "animals"; go("notebook"); }); await render("notebook-food", () => { notebookTopic = "food"; go("notebook"); });
-  await render("briefcase", () => go("briefcase")); await render("kitchen", () => go("kitchen"));
+  briefcaseTab = "tools"; await render("briefcase-tools", () => go("briefcase")); briefcaseTab = "medals"; await render("briefcase-medals", () => go("briefcase")); briefcaseTab = "tools";
+  await render("edit-player-modal", () => { go("players"); askName(p); }); await render("ask-gender-modal", () => { go("players"); askGender(p); }); await render("awards-modal", () => { go("home"); showAwardsModal(MEDALS.slice(0, 3)); }); await render("tool-modal", () => { go("home"); showToolModal(TOOLS_FACTS[20]); });
+  await render("kitchen", () => go("kitchen"));
   await render("done", () => go("factsDone", { topic: "animals", stars: 8, firstTry: 7, total: 10, mastered: ["animals", "space"] }));
   // the longest clue and the longest explanation of every topic, before and after answering
   for (const topic of Object.keys(TOPIC_DATA)) {
@@ -416,7 +497,7 @@ async function layoutMode() {
     for (const f of [byClue, byExp]) {
       p.round = { topic, queue: [f.id, facts[0].id], pos: 0, total: 10, solved: 0, firstTry: 0, stars: 0, streak: 0, requeued: {}, seen: {} }; saveDB();
       await render("play-" + topic + "-" + f.id + "-question", () => go("factsPlay"), { noScroll: innerHeight >= 640 });
-      document.querySelectorAll(".btn.ans")[0].click(); await waitFor(".answers.single .btn"); await sleep(1300); closeModal(); measure("play-" + topic + "-" + f.id + "-answered", { noScroll: false });
+      document.querySelectorAll(".btn.ans")[0].click(); await waitFor(".answers.single .btn"); await sleep(80); closeModal(); measure("play-" + topic + "-" + f.id + "-answered", { noScroll: false });
       const doc = document.documentElement; if (doc.scrollHeight > innerHeight * 1.35 + 2) issues.push("play-" + topic + "-" + f.id + "-answered: page is " + Math.round(100 * doc.scrollHeight / innerHeight) + "% of the screen height");
     }
   }

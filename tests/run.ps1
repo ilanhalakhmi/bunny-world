@@ -35,7 +35,7 @@ if (-not $chrome) { Fail "Chrome not found"; exit 1 }
 $page = "file:///" + ((Join-Path $root "tests\test.html") -replace '\\', '/')
 $outFile = Join-Path $env:TEMP "frooky-test-dump.html"
 if (Test-Path $outFile) { Remove-Item $outFile -Force }
-$argList = @("--headless", "--disable-gpu", "--allow-file-access-from-files", "--virtual-time-budget=240000", "--window-size=1000,900", "--dump-dom", ('"' + $page + '"'))
+$argList = @("--headless", "--disable-gpu", "--allow-file-access-from-files", "--virtual-time-budget=900000", "--window-size=1000,900", "--dump-dom", ('"' + $page + '"'))
 Start-Process -FilePath $chrome -ArgumentList $argList -RedirectStandardOutput $outFile -RedirectStandardError ($outFile + ".err") -NoNewWindow -Wait
 $txt = [System.IO.File]::ReadAllText($outFile, [System.Text.Encoding]::UTF8)
 $m2 = [regex]::Match($txt, '<pre id="out"[^>]*>(.*?)</pre>', 'Singleline')

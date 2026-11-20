@@ -176,3 +176,24 @@ small { font-size: 14px; color: inherit; opacity: .8; }
   .play-inner { gap: 10px; }
   .ans { min-height: 64px; }
 }
+/* gender picker, rank line, medals */
+.gender-row { display: flex; gap: 10px; margin: 8px 0 4px; }
+.gender-btn { flex: 1; min-height: 56px; border: 3px solid #000; border-radius: 16px; background: #fff; font-size: 20px; font-weight: bold; }
+.gender-btn.on { background: var(--yellow); box-shadow: 0 3px 0 #000; }
+.rank { text-align: center; font-weight: bold; color: var(--blue); font-size: 16px; }
+.medal-list, .award-list { display: flex; flex-direction: column; gap: 8px; }
+.medal, .award { display: flex; align-items: center; gap: 12px; border: 3px solid #999; border-radius: 14px; background: #eee; padding: 8px 12px; color: #777; }
+.medal.got, .award { background: #FFF3C4; border-color: #000; color: #000; }
+.micon { font-size: 32px; width: 44px; text-align: center; flex: none; }
+.mtext { display: flex; flex-direction: column; min-width: 0; }
+.mtext b { font-size: 17px; }
+.mtext small { font-size: 13px; opacity: .85; }
+.award-list { margin: 6px 0 10px; text-align: right; }
+.award-list .big { text-align: center; margin: 4px 0; }
+.modal .award-list { max-height: 40vh; overflow-y: auto; }
+.player-card .icon-btn { flex: none; }
+/* narrow phones (320px) with 3-digit star counts: the top row may shrink instead of overflowing */
+.home-top > * { min-width: 0; }
+.chip { max-width: 46%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.toggles { flex: none; }
+@media (max-width: 360px) { .home-top { gap: 4px; } .starcount { font-size: 17px; padding: 4px 8px; } }

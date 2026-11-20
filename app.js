@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.1.7";
+const VERSION = "1.2.0";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
@@ -47,8 +47,12 @@ function normalizeDB() {
       color: typeof p.color === "string" && /^#[0-9a-fA-F]{3,8}$/.test(p.color) ? p.color : PLAYER_COLORS[0],
       stars: num(p.stars), tools: Array.isArray(p.tools) ? [...new Set(p.tools.filter(t => knownTools.includes(t)))] : [],
       facts: {}, round: null, casesClosed: num(p.casesClosed), correct: num(p.correct), wrong: num(p.wrong),
-      topicDone: obj(p.topicDone), lastPlayed: num(p.lastPlayed, Date.now())
+      topicDone: obj(p.topicDone), lastPlayed: num(p.lastPlayed, Date.now()),
+      gender: p.gender === "m" || p.gender === "f" ? p.gender : undefined, genderAsked: p.genderAsked === true,
+      medals: {}, bestStreak: num(p.bestStreak), perfect: num(p.perfect), myths: num(p.myths), comebacks: num(p.comebacks), topicsPlayed: obj(p.topicsPlayed)
     };
+    const known = MEDALS.map(m => m.id), got = obj(p.medals);
+    for (const k in got) if (known.includes(k)) q.medals[k] = num(got[k], Date.now());
     const facts = obj(p.facts);
     for (const k in facts) { const s = obj(facts[k]); q.facts[k] = { right: num(s.right), wrong: num(s.wrong), s: ["seen", "missed", "learned"].includes(s.s) ? s.s : "seen" }; }
     const r = p.round;
@@ -65,13 +69,14 @@ function saveDB() { try { localStorage.setItem(STORE_KEY, JSON.stringify(DB)); }
 const me = () => DB.players[DB.current];
 const PLAYER_COLORS = ["#F37021", "#005CA9", "#008D36", "#F6879B", "#7FD1D6", "#FFD100"];
 
-function newPlayerData(name) {
+function newPlayerData(name, gender) {
   const id = "p" + Date.now().toString(36) + Math.floor(Math.random() * 1000).toString(36);
   const used = Object.values(DB.players).map(p => p.color);
   const color = PLAYER_COLORS.find(c => !used.includes(c)) || rndItem(PLAYER_COLORS);
-  return { id, name, color, stars: 0, tools: [], facts: {}, round: null, casesClosed: 0, correct: 0, wrong: 0, topicDone: {}, lastPlayed: Date.now() };
+  return { id, name, color, gender: gender === "m" || gender === "f" ? gender : undefined, genderAsked: !!gender, stars: 0, tools: [], facts: {}, round: null, casesClosed: 0, correct: 0, wrong: 0, topicDone: {}, lastPlayed: Date.now(),
+    medals: {}, bestStreak: 0, perfect: 0, myths: 0, comebacks: 0, topicsPlayed: {} };
 }
-function createPlayer(name) { const p = newPlayerData(name); DB.players[p.id] = p; DB.current = p.id; saveDB(); return p; }
+function createPlayer(name, gender) { const p = newPlayerData(name, gender); DB.players[p.id] = p; DB.current = p.id; saveDB(); return p; }
 function deletePlayer(id) { delete DB.players[id]; if (DB.current === id) DB.current = null; saveDB(); }
 function sortedPlayers() { return Object.values(DB.players).sort((a, b) => b.lastPlayed - a.lastPlayed); }
 
@@ -140,6 +145,7 @@ SCREENS.players = (root) => {
         h("span", { class: "pinfo" },
           h("span", { class: "pname" }, p.name),
           h("span", { class: "pstats" }, "⭐ " + p.stars + "   🗂️ " + p.casesClosed + " תיקים סגורים" + (i === 0 && players.length > 1 ? "   🕘 אחרון" : "")))),
+      h("button", { class: "icon-btn small", "aria-label": "עריכת שחקן", onclick: () => askName(p) }, "✏️"),
       h("button", { class: "icon-btn small danger", "aria-label": "מחיקת שחקן", onclick: () => confirmDelete(p) }, "🗑️"));
     list.append(row);
   });
@@ -153,24 +159,56 @@ SCREENS.players = (root) => {
   if (!players.length) askName();
 };
 
-function askName() {
-  const input = h("input", { class: "name-input", type: "text", maxlength: "12", placeholder: "איך קוראים לך?", autocomplete: "off" });
+// two big buttons: boy / girl. picker.get() returns "m", "f" or undefined.
+function genderPicker(initial) {
+  let value = initial;
+  const wrap = h("div", { class: "gender-row" });
+  const mk = (v, label) => {
+    const b = h("button", { class: "gender-btn" + (value === v ? " on" : ""), type: "button", "data-g": v }, label);
+    b.onclick = () => { value = v; Snd.sfx("tap"); [...wrap.children].forEach(c => c.classList.toggle("on", c.dataset.g === value)); };
+    return b;
+  };
+  wrap.append(mk("m", "👦 בן"), mk("f", "👧 בת"));
+  wrap.get = () => value;
+  return wrap;
+}
+
+// new player (no argument) or edit an existing player's name and gender
+function askName(editing) {
+  const input = h("input", { class: "name-input", type: "text", maxlength: "12", placeholder: "איך קוראים לך?", autocomplete: "off", value: editing ? editing.name : "" });
+  const picker = genderPicker(editing ? editing.gender : undefined);
   const msg = h("div", { class: "form-msg" });
   const submit = () => {
     const name = input.value.trim().replace(/\s+/g, " ");
     if (!name) { msg.textContent = "כתבו שם קודם 🙂"; Snd.sfx("wrong"); return; }
-    if (Object.values(DB.players).some(p => p.name.toLowerCase() === name.toLowerCase())) { msg.textContent = "כבר יש שחקן בשם הזה. נסו שם אחר."; Snd.sfx("wrong"); return; }
-    createPlayer(name); Snd.sfx("star"); go("home");
+    if (Object.values(DB.players).some(p => p !== editing && p.name.toLowerCase() === name.toLowerCase())) { msg.textContent = "כבר יש שחקן בשם הזה. נסו שם אחר."; Snd.sfx("wrong"); return; }
+    if (!picker.get()) { msg.textContent = "בחרו בן או בת 🙂"; Snd.sfx("wrong"); return; }
+    if (editing) { editing.name = name; editing.gender = picker.get(); editing.genderAsked = true; saveDB(); Snd.sfx("star"); go("players"); }
+    else { createPlayer(name, picker.get()); Snd.sfx("star"); go("home"); }
   };
   input.addEventListener("keydown", e => { if (e.key === "Enter") submit(); });
   modal([
-    h("h2", {}, "שחקן חדש"),
-    input, msg,
+    h("h2", {}, editing ? "עריכת שחקן" : "שחקן חדש"),
+    input, picker, msg,
     h("div", { class: "btn-row" },
-      h("button", { class: "btn green", onclick: submit }, "יאללה!"),
-      Object.keys(DB.players).length ? h("button", { class: "btn white", onclick: () => { Snd.sfx("back"); closeModal(); } }, "ביטול") : null)
+      h("button", { class: "btn green", onclick: submit }, editing ? "שמירה" : "יאללה!"),
+      (editing || Object.keys(DB.players).length) ? h("button", { class: "btn white", onclick: () => { Snd.sfx("back"); closeModal(); } }, "ביטול") : null)
   ]);
   setTimeout(() => input.focus(), 50);
+}
+
+// shown once on the home screen of players created before gender existed
+function askGender(p) {
+  const picker = genderPicker(undefined);
+  const msg = h("div", { class: "form-msg" });
+  modal([
+    h("h2", {}, "בן או בת?"),
+    h("p", { style: "text-align:center" }, "כך אדע איך לדבר אליך נכון 🙂"),
+    picker, msg,
+    h("div", { class: "btn-row" },
+      h("button", { class: "btn green", onclick: () => { if (!picker.get()) { msg.textContent = "בחרו בן או בת 🙂"; return; } p.gender = picker.get(); p.genderAsked = true; saveDB(); Snd.sfx("star"); go("home"); } }, "שמירה"),
+      h("button", { class: "btn white", onclick: () => { p.genderAsked = true; saveDB(); Snd.sfx("back"); closeModal(); } }, "אחר כך"))
+  ]);
 }
 
 function confirmDelete(p) {
@@ -193,35 +231,53 @@ SCREENS.home = (root) => {
   const hero = h("div", { class: "hero", html: frookyFull("curious") });
   hero.addEventListener("click", () => { Snd.sfx("tap"); hero.innerHTML = frookyFull(rndItem(["happy", "surprised", "celebrating", "curious"])); hero.classList.remove("hop"); void hero.offsetWidth; hero.classList.add("hop"); setTimeout(() => { hero.innerHTML = frookyFull("curious"); }, 1400); });
   const gameBtns = GAMES.map(g => h("button", { class: "btn game " + g.color, onclick: () => { Snd.sfx("select"); g.open(); } },
-    h("span", { class: "gicon" }, g.icon), h("span", { class: "gtext" }, h("span", { class: "gtitle" }, g.title), h("span", { class: "gsub" }, g.subtitle(p)))));
-  const learned = Object.values(p.facts).filter(f => f.right >= 1).length;
+    h("span", { class: "gicon" }, g.icon), h("span", { class: "gtext" }, h("span", { class: "gtitle" }, typeof g.title === "function" ? g.title(p) : g.title), h("span", { class: "gsub" }, g.subtitle(p)))));
+  const learned = notebookCount(p);
   root.append(h("div", { class: "screen home" },
     h("div", { class: "home-top" },
       h("button", { class: "chip", onclick: () => { Snd.sfx("back"); go("players"); } }, h("span", { class: "avatar tiny", style: "background:" + p.color }, [...p.name][0]), p.name, " ⇄"),
       h("div", { class: "starcount" }, "⭐ " + p.stars),
       soundToggles()),
     hero, hello,
+    h("div", { class: "rank" }, "🎖️ " + rankOf(p)),
     h("div", { class: "games" }, gameBtns),
     h("div", { class: "btn-row two" },
       h("button", { class: "btn white", onclick: () => { Snd.sfx("select"); go("notebook"); } }, "📓 המחברת", h("small", {}, learned + " עובדות")),
-      h("button", { class: "btn white", onclick: () => { Snd.sfx("select"); go("briefcase"); } }, "💼 התיק", h("small", {}, p.tools.length + "/" + TOOL_COLLECTIONS.facts.length + " כלים"))),
+      h("button", { class: "btn white", onclick: () => { Snd.sfx("select"); go("briefcase"); } }, "💼 התיק", h("small", {}, p.tools.length + " כלים · " + Object.keys(p.medals).length + " פרסים"))),
     h("div", { class: "ver" }, "גרסה " + VERSION)));
+  if (!p.gender && !p.genderAsked) setTimeout(() => { if (currentScreen === "home" && !document.getElementById("modal")) askGender(p); }, 350);
 };
 
-/* ---------- briefcase: collection of tools ---------- */
+/* ---------- briefcase: tools and medals ---------- */
+let briefcaseTab = "tools";
 SCREENS.briefcase = (root) => {
-  const p = me(); const all = TOOL_COLLECTIONS.facts;
-  const grid = h("div", { class: "tool-grid" }, all.map(t => {
-    const owned = p.tools.includes(t.id);
-    return h("button", { class: "tool" + (owned ? " owned" : ""), onclick: () => { Snd.sfx(owned ? "star" : "back"); toast(owned ? t.name : "עוד לא פתחתם את הכלי הזה. אוספים כוכבים!"); } },
-      h("span", { class: "ticon" }, owned ? t.icon : "❔"), h("span", { class: "tname" }, owned ? t.name : "???"));
-  }));
-  const toNext = STARS_PER_TOOL - (p.stars % STARS_PER_TOOL);
+  const p = me(), all = TOOL_COLLECTIONS.facts, nMedals = Object.keys(p.medals).length;
+  const tab = (id, label) => h("button", { class: "tab" + (briefcaseTab === id ? " on" : ""), onclick: () => { Snd.sfx("tap"); briefcaseTab = id; go("briefcase"); } }, label);
+  let body, hint;
+  if (briefcaseTab === "tools") {
+    body = h("div", { class: "tool-grid" }, all.map(t => {
+      const owned = p.tools.includes(t.id);
+      return h("button", { class: "tool" + (owned ? " owned" : ""), onclick: () => { Snd.sfx(owned ? "star" : "back"); toast(owned ? t.name : G(p, "עוד לא פתחת את הכלי הזה. אוספים כוכבים!", "עוד לא פתחת את הכלי הזה. אוספים כוכבים!", "עוד לא פתחתם את הכלי הזה. אוספים כוכבים!")); } },
+        h("span", { class: "ticon" }, owned ? t.icon : "❔"), h("span", { class: "tname" }, owned ? t.name : "???"));
+    }));
+    const toNext = STARS_PER_TOOL - (p.stars % STARS_PER_TOOL);
+    hint = p.tools.length >= all.length ? G(p, "אספת את כל הכלים! 🎉", "אספת את כל הכלים! 🎉", "אספתם את כל הכלים! 🎉") : "עוד " + toNext + " כוכבים לכלי הבא";
+  } else {
+    const sorted = MEDALS.slice().sort((a, b) => (p.medals[b.id] ? 1 : 0) - (p.medals[a.id] ? 1 : 0));
+    body = h("div", { class: "medal-list" }, sorted.map(m => {
+      const got = !!p.medals[m.id];
+      return h("div", { class: "medal" + (got ? " got" : "") }, h("span", { class: "micon" }, got ? m.icon : "🔒"), h("div", { class: "mtext" }, h("b", {}, m.name), h("small", {}, m.desc)));
+    }));
+    hint = nMedals >= MEDALS.length ? "יש לך את כל הפרסים! 🎉" : "פרסים מקבלים אוטומטית כשמשחקים";
+  }
+  const nr = nextRank(p);
   root.append(h("div", { class: "screen" },
     topBar("התיק של פרוקי"),
     h("div", { class: "hero-small", html: frookyHead("happy") }),
-    h("p", { class: "hint" }, p.tools.length >= all.length ? "אספתם את כל הכלים! 🎉" : "עוד " + toNext + " כוכבים לכלי הבא"),
-    grid));
+    h("div", { class: "rank" }, "🎖️ " + rankOf(p) + (nr ? " · עוד " + (nr.min - p.stars) + " כוכבים ל" + G(p, nr.m, nr.f, nr.n) : "")),
+    h("div", { class: "tabs" }, tab("tools", "🧰 כלים " + p.tools.length + "/" + all.length), tab("medals", "🏅 פרסים " + nMedals + "/" + MEDALS.length)),
+    h("p", { class: "hint" }, hint),
+    body));
 };
 
 /* ---------- update check (button at the bottom of the home screen) ---------- */
