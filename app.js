@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.0.4";
+const VERSION = "1.0.5";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
@@ -194,12 +194,17 @@ SCREENS.briefcase = (root) => {
 
 /* ---------- hidden update button (long-press the version number) ---------- */
 function setupLongPress(el, fn) {
-  let timer = null;
-  const start = () => { clearTimeout(timer); timer = setTimeout(() => { timer = null; fn(); }, 900); };
+  let timer = null, taps = [];
+  const start = () => { clearTimeout(timer); timer = setTimeout(() => { timer = null; fn(); }, 700); };
   const stop = () => { clearTimeout(timer); timer = null; };
   el.addEventListener("pointerdown", start);
   ["pointerup", "pointerleave", "pointercancel"].forEach(ev => el.addEventListener(ev, stop));
-  el.addEventListener("contextmenu", e => e.preventDefault());
+  el.addEventListener("contextmenu", e => { e.preventDefault(); stop(); fn(); });  // Android may turn a long press into a context menu
+  // backup: tap the version number 5 times quickly
+  el.addEventListener("click", () => {
+    const now = Date.now(); taps = taps.filter(t => now - t < 3000); taps.push(now);
+    if (taps.length >= 5) { taps = []; fn(); }
+  });
 }
 function showUpdateReady(reg) {
   if (document.getElementById("update-banner")) return;

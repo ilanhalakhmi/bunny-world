@@ -70,7 +70,7 @@ small { font-size: 14px; color: inherit; opacity: .8; }
 .btn.game .gtext { display: flex; flex-direction: column; }
 .btn.game .gtitle { font-size: 22px; }
 .btn.game .gsub { font-size: 14px; font-weight: normal; opacity: .95; }
-.ver { margin-top: auto; text-align: center; color: #888; font-size: 12px; padding: 12px; min-height: 44px; }
+.ver { touch-action: none; -webkit-touch-callout: none; margin-top: auto; text-align: center; color: #888; font-size: 12px; padding: 12px; min-height: 44px; }
 
 /* ---------- case file / clue card ---------- */
 .case-card { position: relative; background: var(--paper); border: 3px solid #000; border-radius: 14px; padding: 22px 14px 14px; box-shadow: 0 4px 0 #000; text-align: center; }
