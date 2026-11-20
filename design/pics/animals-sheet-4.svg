@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 720" width="930" height="1080" font-family="Arial, sans-serif">
+<rect width="620" height="720" fill="#fff"/>
+<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+
+<!-- elephant -->
+<g transform="translate(10 10)">
+  <ellipse cx="42" cy="98" rx="34" ry="46" fill="#8FA7C0"/>
+  <ellipse cx="158" cy="98" rx="34" ry="46" fill="#8FA7C0"/>
+  <ellipse cx="46" cy="100" rx="17" ry="30" fill="#F4B6B6" stroke="none"/>
+  <ellipse cx="154" cy="100" rx="17" ry="30" fill="#F4B6B6" stroke="none"/>
+  <path d="M100 112 Q100 168 112 182 Q126 192 136 172" fill="none" stroke-width="32"/>
+  <ellipse cx="100" cy="98" rx="50" ry="54" fill="#8FA7C0"/>
+  <path d="M100 112 Q100 168 112 182 Q126 192 136 172" fill="none" stroke="#8FA7C0" stroke-width="20"/>
+  <path d="M96 130 V146 M104 136 V152 M100 124 V140" fill="none" stroke-width="3" opacity=".5"/>
+  <path d="M72 128 Q56 150 70 162 Q78 148 84 134 Z" fill="#fff" stroke-width="5"/>
+  <path d="M128 128 Q144 150 130 162 Q122 148 116 134 Z" fill="#fff" stroke-width="5"/>
+  <circle cx="80" cy="84" r="6" fill="#000" stroke="none"/><circle cx="120" cy="84" r="6" fill="#000" stroke="none"/>
+</g>
+<text x="110" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">elephant · פיל</text>
+
+<!-- chameleon -->
+<g transform="translate(210 10)">
+  <path d="M30 100 H190" fill="none" stroke="#8a5a2b" stroke-width="0"/>
+  <path d="M14 178 H188" fill="none" stroke-width="12"/>
+  <path d="M14 178 H188" fill="none" stroke="#8a5a2b" stroke-width="5"/>
+  <path d="M46 118 Q14 116 16 146 Q18 170 44 164 Q60 158 52 144 Q46 136 38 146" fill="none" stroke-width="18"/>
+  <path d="M46 118 Q14 116 16 146 Q18 170 44 164 Q60 158 52 144 Q46 136 38 146" fill="none" stroke="#008D36" stroke-width="8"/>
+  <rect x="76" y="132" width="16" height="42" rx="8" fill="#008D36"/>
+  <rect x="116" y="132" width="16" height="42" rx="8" fill="#008D36"/>
+  <ellipse cx="98" cy="112" rx="56" ry="38" fill="#008D36"/>
+  <path d="M60 80 L66 66 L74 78 L84 62 L92 76 L104 60 L110 76 L122 62 L126 78" fill="none" stroke-width="5"/>
+  <circle cx="150" cy="98" r="26" fill="#008D36"/>
+  <path d="M168 110 Q186 112 190 104" fill="none" stroke-width="5"/>
+  <circle cx="152" cy="90" r="13" fill="#FFD100"/><circle cx="154" cy="90" r="5.5" fill="#000" stroke="none"/>
+  <g fill="#F37021" stroke="none"><circle cx="76" cy="112" r="7"/><circle cx="100" cy="126" r="6"/><circle cx="108" cy="100" r="6"/><circle cx="128" cy="118" r="5"/></g>
+</g>
+<text x="310" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">chameleon · זיקית</text>
+
+<!-- frog -->
+<g transform="translate(410 10)">
+  <ellipse cx="50" cy="170" rx="24" ry="10" fill="#008D36"/>
+  <ellipse cx="150" cy="170" rx="24" ry="10" fill="#008D36"/>
+  <ellipse cx="100" cy="128" rx="64" ry="46" fill="#008D36"/>
+  <ellipse cx="100" cy="148" rx="40" ry="24" fill="#9BD18B" stroke="none"/>
+  <circle cx="68" cy="72" r="20" fill="#008D36"/><circle cx="132" cy="72" r="20" fill="#008D36"/>
+  <circle cx="68" cy="70" r="12" fill="#fff"/><circle cx="132" cy="70" r="12" fill="#fff"/>
+  <circle cx="70" cy="72" r="6" fill="#000" stroke="none"/><circle cx="130" cy="72" r="6" fill="#000" stroke="none"/>
+  <path d="M54 124 Q100 160 146 124" fill="none" stroke-width="5"/>
+  <circle cx="92" cy="108" r="2.5" fill="#000" stroke="none"/><circle cx="108" cy="108" r="2.5" fill="#000" stroke="none"/>
+</g>
+<text x="510" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">frog · צפרדע</text>
+
+<!-- turtle -->
+<g transform="translate(10 250)">
+  <rect x="56" y="128" width="26" height="34" rx="10" fill="#9BD18B"/>
+  <rect x="118" y="128" width="26" height="34" rx="10" fill="#9BD18B"/>
+  <path d="M168 134 L190 142 L168 148 Z" fill="#9BD18B"/>
+  <rect x="34" y="122" width="132" height="20" rx="10" fill="#9BD18B"/>
+  <ellipse cx="30" cy="106" rx="22" ry="17" fill="#9BD18B"/>
+  <circle cx="24" cy="102" r="3.5" fill="#000" stroke="none"/>
+  <path d="M14 114 Q24 120 32 114" fill="none" stroke-width="4"/>
+  <path d="M40 126 Q40 58 100 58 Q160 58 160 126 Z" fill="#008D36"/>
+  <path d="M100 58 V126 M70 66 Q74 100 72 126 M130 66 Q126 100 128 126 M46 100 H154" fill="none" stroke-width="4.5"/>
+</g>
+<text x="110" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">turtle · צב</text>
+
+<!-- flamingo -->
+<g transform="translate(210 250)">
+  <path d="M94 128 V184 M112 128 L116 184" fill="none" stroke="#F08CA4" stroke-width="7"/>
+  <path d="M94 184 H80 M116 184 H130" fill="none" stroke-width="6"/>
+  <path d="M94 128 V184 M112 128 L116 184" fill="none" stroke-width="2.5" opacity="0"/>
+  <ellipse cx="100" cy="104" rx="46" ry="30" fill="#F08CA4"/>
+  <path d="M64 100 Q92 132 132 104 Q110 90 64 100 Z" fill="#E86A8A" stroke-width="4.5"/>
+  <path d="M130 88 Q170 84 154 50 Q140 26 112 38" fill="none" stroke-width="22"/>
+  <path d="M130 88 Q170 84 154 50 Q140 26 112 38" fill="none" stroke="#F08CA4" stroke-width="12"/>
+  <circle cx="110" cy="38" r="14" fill="#F08CA4"/>
+  <path d="M100 40 Q84 42 82 54 Q96 54 104 46 Z" fill="#fff" stroke-width="5"/>
+  <path d="M82 54 Q96 54 104 46 L98 52 Z" fill="#000" stroke-width="3"/>
+  <circle cx="112" cy="34" r="3" fill="#000" stroke="none"/>
+</g>
+<text x="310" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">flamingo · פלמינגו</text>
+
+<!-- kangaroo -->
+<g transform="translate(410 250)">
+  <path d="M70 156 Q32 170 20 196 L68 190 Z" fill="#E39B4F"/>
+  <path d="M84 168 Q76 190 100 190 H128 V176 H108 Q104 168 100 160 Z" fill="#E39B4F"/>
+  <ellipse cx="96" cy="120" rx="40" ry="54" transform="rotate(-8 96 120)" fill="#E39B4F"/>
+  <path d="M74 118 Q96 150 122 118 Z" fill="#F6D9B0"/>
+  <circle cx="96" cy="112" r="13" fill="#E39B4F"/>
+  <ellipse cx="88" cy="97" rx="4" ry="8" transform="rotate(-20 88 97)" fill="#E39B4F"/><ellipse cx="104" cy="97" rx="4" ry="8" transform="rotate(20 104 97)" fill="#E39B4F"/>
+  <circle cx="92" cy="112" r="2.2" fill="#000" stroke="none"/><circle cx="102" cy="112" r="2.2" fill="#000" stroke="none"/>
+  <ellipse cx="112" cy="54" rx="24" ry="19" transform="rotate(-10 112 54)" fill="#E39B4F"/>
+  <ellipse cx="132" cy="62" rx="12" ry="10" fill="#E39B4F"/>
+  <ellipse cx="96" cy="30" rx="6" ry="16" transform="rotate(-18 96 30)" fill="#E39B4F"/><ellipse cx="116" cy="28" rx="6" ry="16" transform="rotate(12 116 28)" fill="#E39B4F"/>
+  <circle cx="114" cy="50" r="3.5" fill="#000" stroke="none"/><circle cx="140" cy="60" r="2.5" fill="#000" stroke="none"/>
+  <path d="M126 92 Q140 96 142 104" fill="none" stroke-width="7"/>
+</g>
+<text x="510" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">kangaroo · קנגורו</text>
+
+<!-- sloth -->
+<g transform="translate(10 490)">
+  <path d="M0 34 H200" fill="none" stroke-width="20"/>
+  <path d="M0 34 H200" fill="none" stroke="#8a5a2b" stroke-width="9"/>
+  <path d="M68 100 L56 40 M132 100 L144 40" fill="none" stroke-width="22"/>
+  <path d="M68 100 L56 40 M132 100 L144 40" fill="none" stroke="#B58B5E" stroke-width="11"/>
+  <ellipse cx="100" cy="150" rx="34" ry="36" fill="#B58B5E"/>
+  <path d="M82 178 L78 196 M118 178 L122 196" fill="none" stroke-width="12"/>
+  <path d="M82 178 L78 196 M118 178 L122 196" fill="none" stroke="#B58B5E" stroke-width="5"/>
+  <circle cx="100" cy="98" r="32" fill="#D9BE95"/>
+  <ellipse cx="86" cy="94" rx="11" ry="8" transform="rotate(25 86 94)" fill="#5a3a1a" stroke-width="4"/>
+  <ellipse cx="114" cy="94" rx="11" ry="8" transform="rotate(-25 114 94)" fill="#5a3a1a" stroke-width="4"/>
+  <circle cx="87" cy="94" r="3" fill="#fff" stroke="none"/><circle cx="113" cy="94" r="3" fill="#fff" stroke="none"/>
+  <ellipse cx="100" cy="106" rx="6" ry="4.5" fill="#000" stroke="none"/>
+  <path d="M90 116 Q100 124 110 116" fill="none" stroke-width="4.5"/>
+</g>
+<text x="110" y="708" text-anchor="middle" font-size="15" stroke="none" fill="#555">sloth · עצלן</text>
+
+<!-- jellyfish -->
+<g transform="translate(210 490)">
+  <g fill="none" stroke-linecap="round">
+    <path d="M62 104 Q50 130 64 150 Q76 170 62 192" stroke-width="15"/><path d="M84 106 Q74 134 88 156 Q98 176 86 194" stroke-width="15"/>
+    <path d="M110 106 Q122 134 108 156 Q98 176 112 194" stroke-width="15"/><path d="M136 104 Q150 130 136 150 Q124 170 138 192" stroke-width="15"/>
+  </g>
+  <g fill="none" stroke="#C58AD8" stroke-linecap="round" stroke-width="7">
+    <path d="M62 104 Q50 130 64 150 Q76 170 62 192"/><path d="M84 106 Q74 134 88 156 Q98 176 86 194"/>
+    <path d="M110 106 Q122 134 108 156 Q98 176 112 194"/><path d="M136 104 Q150 130 136 150 Q124 170 138 192"/>
+  </g>
+  <path d="M30 108 Q30 28 100 28 Q170 28 170 108 Q150 96 136 108 Q118 94 100 108 Q82 94 64 108 Q50 96 30 108 Z" fill="#C58AD8"/>
+  <g fill="#fff" stroke="none" opacity=".85"><circle cx="64" cy="62" r="6"/><circle cx="140" cy="56" r="5"/><circle cx="104" cy="44" r="4"/></g>
+  <circle cx="82" cy="76" r="5" fill="#000" stroke="none"/><circle cx="118" cy="76" r="5" fill="#000" stroke="none"/>
+  <path d="M92 88 Q100 94 108 88" fill="none" stroke-width="4.5"/>
+</g>
+<text x="310" y="708" text-anchor="middle" font-size="15" stroke="none" fill="#555">jellyfish · מדוזה</text>
+
+<!-- pig -->
+<g transform="translate(410 490)">
+  <path d="M46 60 L52 22 L88 46 Z" fill="#F5A3B5"/><path d="M154 60 L148 22 L112 46 Z" fill="#F5A3B5"/>
+  <path d="M54 54 L56 36 L70 46 Z" fill="#F08CA0" stroke="none"/><path d="M146 54 L144 36 L130 46 Z" fill="#F08CA0" stroke="none"/>
+  <circle cx="100" cy="102" r="60" fill="#F5A3B5"/>
+  <ellipse cx="100" cy="120" rx="30" ry="22" fill="#F08CA0"/>
+  <ellipse cx="90" cy="120" rx="4.5" ry="7" fill="#000" stroke="none"/><ellipse cx="110" cy="120" rx="4.5" ry="7" fill="#000" stroke="none"/>
+  <circle cx="74" cy="88" r="6" fill="#000" stroke="none"/><circle cx="126" cy="88" r="6" fill="#000" stroke="none"/>
+  <circle cx="64" cy="108" r="8" fill="#F08CA0" stroke="none" opacity=".7"/><circle cx="136" cy="108" r="8" fill="#F08CA0" stroke="none" opacity=".7"/>
+</g>
+<text x="510" y="708" text-anchor="middle" font-size="15" stroke="none" fill="#555">pig · חזיר</text>
+</g>
+</svg>

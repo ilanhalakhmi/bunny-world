@@ -128,5 +128,74 @@ const PICS_FOOD = {
   <path d="M130 66 C162 66 172 120 166 144 C160 170 98 170 94 140 C90 112 102 66 130 66 Z" fill="#C99060"/>
   <path d="M52 78 Q56 66 66 62" fill="none" stroke="#fff" stroke-width="5" opacity="0"/>
   <path d="M112 96 Q116 80 126 76" fill="none" stroke="#fff" stroke-width="5" opacity=".7"/>
+</g>`,
+  "apple": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M100 72 Q72 50 48 76 Q28 106 50 146 Q70 182 100 170 Q130 182 150 146 Q172 106 152 76 Q128 50 100 72 Z" fill="#E63B2E"/>
+  <path d="M100 72 Q98 52 110 38" fill="none" stroke="#8a5a2b" stroke-width="7"/>
+  <path d="M112 54 Q132 34 154 48 Q136 66 112 54 Z" fill="#008D36"/>
+  <path d="M60 98 Q58 120 66 138" fill="none" stroke="#fff" stroke-width="6" opacity=".7"/>
+</g>`,
+  "lemon": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <circle cx="34" cy="106" r="10" fill="#FFD100"/><circle cx="166" cy="106" r="10" fill="#FFD100"/>
+  <ellipse cx="100" cy="106" rx="66" ry="48" fill="#FFD100"/>
+  <path d="M56 80 Q70 64 92 62" fill="none" stroke="#fff" stroke-width="6" opacity=".8"/>
+  <path d="M112 58 Q126 36 150 40 Q142 62 112 58 Z" fill="#008D36"/>
+  <path d="M112 58 Q124 50 138 46" fill="none" stroke-width="3.5"/>
+</g>`,
+  "bread": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M26 124 Q26 62 100 62 Q174 62 174 124 Q174 152 156 154 V162 Q156 170 148 170 H52 Q44 170 44 162 V154 Q26 152 26 124 Z" fill="#E0A95F"/>
+  <path d="M62 78 L78 112 M96 72 L112 112 M130 78 L146 112" fill="none" stroke="#8a5a2b" stroke-width="6"/>
+  <path d="M40 112 Q44 92 58 82" fill="none" stroke="#fff" stroke-width="5" opacity=".6"/>
+</g>`,
+  "cheese": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M20 150 V108 L180 76 V150 Z" fill="#FFD100"/>
+  <path d="M20 108 L100 56 L180 76 Z" fill="#FFE766"/>
+  <circle cx="58" cy="128" r="11" fill="#F6C45A" stroke-width="4.5"/>
+  <circle cx="112" cy="124" r="8" fill="#F6C45A" stroke-width="4.5"/>
+  <circle cx="148" cy="108" r="10" fill="#F6C45A" stroke-width="4.5"/>
+  <circle cx="92" cy="104" r="6" fill="#F6C45A" stroke-width="4"/>
+</g>`,
+  "potato": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M36 112 Q30 70 82 64 Q140 54 166 90 Q184 130 140 150 Q92 170 50 148 Q36 136 36 112 Z" fill="#C99060"/>
+  <g fill="#8a5a2b" stroke="none"><ellipse cx="70" cy="100" rx="5" ry="4"/><ellipse cx="112" cy="86" rx="5" ry="4"/><ellipse cx="140" cy="120" rx="5" ry="4"/><ellipse cx="88" cy="134" rx="5" ry="4"/><ellipse cx="60" cy="128" rx="4" ry="3.5"/></g>
+  <path d="M54 88 Q64 76 82 74" fill="none" stroke="#fff" stroke-width="5" opacity=".6"/>
+</g>`,
+  "onion": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M94 162 L88 188 M100 164 V190 M106 162 L114 188" fill="none" stroke-width="4.5"/>
+  <path d="M100 38 Q108 56 128 70 Q170 92 160 128 Q150 162 100 166 Q50 162 40 128 Q30 92 72 70 Q92 56 100 38 Z" fill="#B05BA3"/>
+  <path d="M100 52 Q76 90 80 160 M100 52 Q124 90 120 160 M100 52 Q64 94 56 140 M100 52 Q136 94 144 140" fill="none" stroke="#E7B4E0" stroke-width="4" opacity=".9"/>
+</g>`,
+  "salt": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M60 80 H140 L148 164 Q148 176 136 176 H64 Q52 176 52 164 Z" fill="#fff"/>
+  <rect x="53" y="112" width="94" height="28" fill="#005CA9" stroke-width="5"/>
+  <path d="M60 80 Q60 52 100 50 Q140 52 140 80 Z" fill="#9aa5b1"/>
+  <g fill="#000" stroke="none"><circle cx="86" cy="66" r="3"/><circle cx="100" cy="62" r="3"/><circle cx="114" cy="66" r="3"/><circle cx="100" cy="72" r="3"/></g>
+  <path d="M68 96 Q66 140 68 162" fill="none" stroke="#9ec9f0" stroke-width="5" opacity=".8"/>
+  <g fill="#fff" stroke-width="4"><rect x="22" y="160" width="12" height="12" transform="rotate(14 28 166)"/><rect x="164" y="150" width="10" height="10" transform="rotate(-18 169 155)"/><rect x="172" y="174" width="12" height="12" transform="rotate(8 178 180)"/></g>
+</g>`,
+  "coconut": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <circle cx="100" cy="106" r="64" fill="#8a5a2b"/>
+  <g fill="none" stroke="#5a3a1a" stroke-width="3.5"><path d="M56 70 L48 62 M70 54 L66 44 M92 46 V36 M122 50 L128 40 M144 64 L154 58 M156 92 L168 90 M152 130 L164 136 M130 154 L136 166 M100 166 V178 M66 152 L58 162 M46 124 L34 128 M42 96 L30 94"/></g>
+  <g fill="#3a2a1a" stroke-width="3.5"><circle cx="84" cy="94" r="7"/><circle cx="116" cy="94" r="7"/><circle cx="100" cy="118" r="7"/></g>
+  <path d="M56 84 Q60 66 76 58" fill="none" stroke="#fff" stroke-width="5" opacity=".35"/>
+</g>`,
+  "chili": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M40 72 Q96 52 140 98 Q168 130 184 172 Q142 162 106 134 Q62 104 40 72 Z" fill="#E63B2E"/>
+  <path d="M46 78 Q30 66 32 44 Q52 48 60 68 Z" fill="#008D36"/>
+  <path d="M62 78 Q96 70 124 96" fill="none" stroke="#fff" stroke-width="5" opacity=".7"/>
+</g>`,
+  "pasta": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <g fill="none" stroke-width="12">
+    <path d="M44 112 Q50 52 82 66 Q96 40 118 62 Q146 50 156 112"/>
+  </g>
+  <g fill="none" stroke="#FFD100" stroke-width="6">
+    <path d="M44 112 Q50 52 82 66 Q96 40 118 62 Q146 50 156 112"/>
+  </g>
+  <g fill="none" stroke-width="10"><path d="M54 112 Q62 74 80 90 Q92 66 108 88 Q130 72 146 112"/></g>
+  <g fill="none" stroke="#FFD100" stroke-width="4"><path d="M54 112 Q62 74 80 90 Q92 66 108 88 Q130 72 146 112"/></g>
+  <circle cx="100" cy="80" r="12" fill="#E63B2E" stroke-width="4.5"/>
+  <path d="M28 112 H172 Q168 170 100 174 Q32 170 28 112 Z" fill="#005CA9"/>
+  <path d="M42 126 Q44 144 56 156" fill="none" stroke="#9ec9f0" stroke-width="5" opacity=".8"/>
+  <path d="M168 40 V92 M158 40 V62 M178 40 V62 M158 62 Q168 72 178 62" fill="none" stroke-width="5"/>
 </g>`
 };

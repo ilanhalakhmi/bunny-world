@@ -1,6 +1,6 @@
 # CLAUDE.md — Bunny World (working title; Hebrew title TBD)
 
-> Status: v1 playable build exists (players, Fact Detective, notebook, briefcase, Kitchen = placeholder). Built on explicit user request for family playtesting; Kitchen game still to be designed.
+> Status: v1.1 playable build (players, Fact Detective with ~50 clues per topic, notebook, briefcase, Kitchen = placeholder). Target ~100 clues per topic, added in fact-checked batches of ~25 (each batch: web fact-check + independent Hebrew review + new drawings as labeled sheets in design/pics). Kitchen game still to be designed.
 > Players: several per phone, stored only in the phone's localStorage (key `frooky.v1`); names are never in code or URLs. Facts with `verified: false` are hidden from the game.
 
 ## 1. Project Overview

@@ -181,5 +181,72 @@ const PICS_ART = {
   <path d="M44 150 Q74 100 104 130 Q130 108 156 134 V146 Q156 156 146 156 H54 Q44 156 44 146 Z" fill="#008D36" stroke-width="5"/>
   <path d="M60 80 Q58 68 72 68 Q78 58 90 64 Q102 62 100 76 Q104 86 90 86 H70 Q58 88 60 80 Z" fill="#fff" stroke-width="4"/>
   <rect x="44" y="44" width="112" height="112" rx="10" fill="none"/>
+</g>`,
+  "cubism-face": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M56 44 L102 38 L102 168 L62 138 Z" fill="#F6C4A0"/>
+  <path d="M102 38 L150 52 L152 120 L102 168 Z" fill="#9ec9f0"/>
+  <path d="M56 44 Q80 12 150 52 L102 38 Z" fill="#000"/>
+  <path d="M96 84 L124 112 L96 116 Z" fill="#F37021"/>
+  <circle cx="76" cy="76" r="12" fill="#fff"/><circle cx="78" cy="77" r="5" fill="#000" stroke="none"/>
+  <ellipse cx="132" cy="90" rx="14" ry="8" fill="#fff"/><circle cx="134" cy="90" r="4.5" fill="#000" stroke="none"/>
+  <path d="M70 142 L100 130 L136 146" fill="none" stroke="#E63B2E" stroke-width="7"/>
+</g>`,
+  "origami": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M40 124 L100 84 L160 124 L100 154 Z" fill="#005CA9"/>
+  <path d="M100 84 L58 38 L90 112 Z" fill="#F37021"/>
+  <path d="M100 84 L152 52 L122 120 Z" fill="#FFD100"/>
+  <path d="M160 124 L188 72 L174 68 L150 112 Z" fill="#005CA9"/>
+  <path d="M188 72 L198 78 L176 80 Z" fill="#F37021" stroke-width="4.5"/>
+  <path d="M40 124 L14 98 L30 140 Z" fill="#005CA9"/>
+</g>`,
+  "mosaic": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <g stroke-width="3">
+    <rect x="30" y="30" width="20" height="20" fill="#005CA9"/><rect x="50" y="30" width="20" height="20" fill="#9ec9f0"/><rect x="70" y="30" width="20" height="20" fill="#005CA9"/><rect x="90" y="30" width="20" height="20" fill="#9ec9f0"/><rect x="110" y="30" width="20" height="20" fill="#005CA9"/><rect x="130" y="30" width="20" height="20" fill="#9ec9f0"/><rect x="150" y="30" width="20" height="20" fill="#005CA9"/>
+    <rect x="30" y="50" width="20" height="20" fill="#9ec9f0"/><rect x="50" y="50" width="20" height="20" fill="#F37021"/><rect x="70" y="50" width="20" height="20" fill="#FFD100"/><rect x="90" y="50" width="20" height="20" fill="#005CA9"/><rect x="110" y="50" width="20" height="20" fill="#F37021"/><rect x="130" y="50" width="20" height="20" fill="#FFD100"/><rect x="150" y="50" width="20" height="20" fill="#9ec9f0"/>
+    <rect x="30" y="70" width="20" height="20" fill="#F37021"/><rect x="50" y="70" width="20" height="20" fill="#FFD100"/><rect x="70" y="70" width="20" height="20" fill="#F37021"/><rect x="90" y="70" width="20" height="20" fill="#FFD100"/><rect x="110" y="70" width="20" height="20" fill="#F37021"/><rect x="130" y="70" width="20" height="20" fill="#FFD100"/><rect x="150" y="70" width="20" height="20" fill="#F37021"/>
+    <rect x="30" y="90" width="20" height="20" fill="#FFD100"/><rect x="50" y="90" width="20" height="20" fill="#F37021"/><rect x="70" y="90" width="20" height="20" fill="#FFD100"/><rect x="90" y="90" width="20" height="20" fill="#F37021"/><rect x="110" y="90" width="20" height="20" fill="#FFD100"/><rect x="130" y="90" width="20" height="20" fill="#F37021"/><rect x="150" y="90" width="20" height="20" fill="#FFD100"/>
+    <rect x="30" y="110" width="20" height="20" fill="#005CA9"/><rect x="50" y="110" width="20" height="20" fill="#F37021"/><rect x="70" y="110" width="20" height="20" fill="#FFD100"/><rect x="90" y="110" width="20" height="20" fill="#F37021"/><rect x="110" y="110" width="20" height="20" fill="#FFD100"/><rect x="130" y="110" width="20" height="20" fill="#F37021"/><rect x="150" y="110" width="20" height="20" fill="#005CA9"/>
+    <rect x="30" y="130" width="20" height="20" fill="#9ec9f0"/><rect x="50" y="130" width="20" height="20" fill="#005CA9"/><rect x="70" y="130" width="20" height="20" fill="#F37021"/><rect x="90" y="130" width="20" height="20" fill="#FFD100"/><rect x="110" y="130" width="20" height="20" fill="#F37021"/><rect x="130" y="130" width="20" height="20" fill="#005CA9"/><rect x="150" y="130" width="20" height="20" fill="#9ec9f0"/>
+    <rect x="30" y="150" width="20" height="20" fill="#005CA9"/><rect x="50" y="150" width="20" height="20" fill="#9ec9f0"/><rect x="70" y="150" width="20" height="20" fill="#005CA9"/><rect x="90" y="150" width="20" height="20" fill="#F37021"/><rect x="110" y="150" width="20" height="20" fill="#005CA9"/><rect x="130" y="150" width="20" height="20" fill="#9ec9f0"/><rect x="150" y="150" width="20" height="20" fill="#005CA9"/>
+  </g>
+</g>`,
+  "clay": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M30 164 H170 V184 H30 Z" fill="#9aa5b1"/>
+  <ellipse cx="100" cy="164" rx="70" ry="8" fill="#B8C2CC"/>
+  <path d="M72 34 H128 Q122 58 148 88 Q168 124 138 160 H62 Q32 124 52 88 Q78 58 72 34 Z" fill="#C97B4A"/>
+  <path d="M54 100 Q100 116 146 100" fill="none" stroke="#FFD100" stroke-width="8"/>
+  <path d="M60 130 Q100 144 140 130" fill="none" stroke="#005CA9" stroke-width="7"/>
+  <path d="M62 70 Q58 90 62 112" fill="none" stroke="#fff" stroke-width="5" opacity=".6"/>
+  <ellipse cx="100" cy="34" rx="28" ry="7" fill="#8a4e2b"/>
+</g>`,
+  "stained-glass": `<defs><clipPath id="archClip"><path d="M40 190 V84 Q40 30 100 30 Q160 30 160 84 V190 Z"/></clipPath></defs><g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <g clip-path="url(#archClip)" stroke-width="5">
+    <rect x="40" y="20" width="60" height="64" fill="#FFD100"/><rect x="100" y="20" width="60" height="64" fill="#005CA9"/>
+    <rect x="40" y="84" width="60" height="50" fill="#E63B2E"/><rect x="100" y="84" width="60" height="50" fill="#FFD100"/>
+    <rect x="40" y="134" width="60" height="60" fill="#008D36"/><rect x="100" y="134" width="60" height="60" fill="#F37021"/>
+    <circle cx="100" cy="84" r="22" fill="#F37021"/>
+    <circle cx="100" cy="84" r="9" fill="#fff"/>
+  </g>
+  <path d="M40 190 V84 Q40 30 100 30 Q160 30 160 84 V190 Z" fill="none" stroke-width="9"/>
+</g>`,
+  "camera": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M30 72 H66 L76 54 H124 L134 72 H170 Q178 72 178 80 V158 Q178 166 170 166 H30 Q22 166 22 158 V80 Q22 72 30 72 Z" fill="#005CA9"/>
+  <rect x="30" y="82" width="140" height="14" fill="#9ec9f0" stroke="none"/>
+  <circle cx="100" cy="118" r="36" fill="#fff"/>
+  <circle cx="100" cy="118" r="23" fill="#2b2b3a"/>
+  <circle cx="100" cy="118" r="11" fill="#005CA9" stroke-width="4"/>
+  <path d="M84 104 Q88 98 96 98" fill="none" stroke="#fff" stroke-width="5"/>
+  <rect x="146" y="58" width="24" height="12" rx="3" fill="#FFD100" stroke-width="5"/>
+  <circle cx="44" cy="62" r="7" fill="#F37021" stroke-width="4.5"/>
+</g>`,
+  "brush": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <g transform="rotate(38 100 100)">
+    <path d="M92 90 H108 L112 190 Q100 198 88 190 Z" fill="#FFD100"/>
+    <rect x="86" y="62" width="28" height="32" rx="3" fill="#9aa5b1"/>
+    <path d="M90 72 H110 M90 82 H110" fill="none" stroke-width="3.5"/>
+    <path d="M88 62 Q82 30 100 8 Q118 30 112 62 Z" fill="#005CA9"/>
+  </g>
+  <circle cx="150" cy="170" r="14" fill="#005CA9" stroke-width="4.5"/>
+  <circle cx="176" cy="150" r="8" fill="#F37021" stroke-width="4"/>
 </g>`
 };

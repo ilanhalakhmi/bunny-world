@@ -285,5 +285,179 @@ const PICS_ANIMALS = {
   <ellipse cx="100" cy="64" rx="18" ry="16" fill="#8a5a2b"/>
   <circle cx="93" cy="62" r="4" fill="#fff" stroke="none"/><circle cx="107" cy="62" r="4" fill="#fff" stroke="none"/>
   <circle cx="93" cy="63" r="1.8" fill="#000" stroke="none"/><circle cx="107" cy="63" r="1.8" fill="#000" stroke="none"/>
+</g>`,
+  "elephant": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <ellipse cx="42" cy="98" rx="34" ry="46" fill="#8FA7C0"/>
+  <ellipse cx="158" cy="98" rx="34" ry="46" fill="#8FA7C0"/>
+  <ellipse cx="46" cy="100" rx="17" ry="30" fill="#F4B6B6" stroke="none"/>
+  <ellipse cx="154" cy="100" rx="17" ry="30" fill="#F4B6B6" stroke="none"/>
+  <path d="M100 112 Q100 168 112 182 Q126 192 136 172" fill="none" stroke-width="32"/>
+  <ellipse cx="100" cy="98" rx="50" ry="54" fill="#8FA7C0"/>
+  <path d="M100 112 Q100 168 112 182 Q126 192 136 172" fill="none" stroke="#8FA7C0" stroke-width="20"/>
+  <path d="M96 130 V146 M104 136 V152 M100 124 V140" fill="none" stroke-width="3" opacity=".5"/>
+  <path d="M72 128 Q56 150 70 162 Q78 148 84 134 Z" fill="#fff" stroke-width="5"/>
+  <path d="M128 128 Q144 150 130 162 Q122 148 116 134 Z" fill="#fff" stroke-width="5"/>
+  <circle cx="80" cy="84" r="6" fill="#000" stroke="none"/><circle cx="120" cy="84" r="6" fill="#000" stroke="none"/>
+</g>`,
+  "chameleon": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M30 100 H190" fill="none" stroke="#8a5a2b" stroke-width="0"/>
+  <path d="M14 178 H188" fill="none" stroke-width="12"/>
+  <path d="M14 178 H188" fill="none" stroke="#8a5a2b" stroke-width="5"/>
+  <path d="M46 118 Q14 116 16 146 Q18 170 44 164 Q60 158 52 144 Q46 136 38 146" fill="none" stroke-width="18"/>
+  <path d="M46 118 Q14 116 16 146 Q18 170 44 164 Q60 158 52 144 Q46 136 38 146" fill="none" stroke="#008D36" stroke-width="8"/>
+  <rect x="76" y="132" width="16" height="42" rx="8" fill="#008D36"/>
+  <rect x="116" y="132" width="16" height="42" rx="8" fill="#008D36"/>
+  <ellipse cx="98" cy="112" rx="56" ry="38" fill="#008D36"/>
+  <path d="M60 80 L66 66 L74 78 L84 62 L92 76 L104 60 L110 76 L122 62 L126 78" fill="none" stroke-width="5"/>
+  <circle cx="150" cy="98" r="26" fill="#008D36"/>
+  <path d="M168 110 Q186 112 190 104" fill="none" stroke-width="5"/>
+  <circle cx="152" cy="90" r="13" fill="#FFD100"/><circle cx="154" cy="90" r="5.5" fill="#000" stroke="none"/>
+  <g fill="#F37021" stroke="none"><circle cx="76" cy="112" r="7"/><circle cx="100" cy="126" r="6"/><circle cx="108" cy="100" r="6"/><circle cx="128" cy="118" r="5"/></g>
+</g>`,
+  "frog": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <ellipse cx="50" cy="170" rx="24" ry="10" fill="#008D36"/>
+  <ellipse cx="150" cy="170" rx="24" ry="10" fill="#008D36"/>
+  <ellipse cx="100" cy="128" rx="64" ry="46" fill="#008D36"/>
+  <ellipse cx="100" cy="148" rx="40" ry="24" fill="#9BD18B" stroke="none"/>
+  <circle cx="68" cy="72" r="20" fill="#008D36"/><circle cx="132" cy="72" r="20" fill="#008D36"/>
+  <circle cx="68" cy="70" r="12" fill="#fff"/><circle cx="132" cy="70" r="12" fill="#fff"/>
+  <circle cx="70" cy="72" r="6" fill="#000" stroke="none"/><circle cx="130" cy="72" r="6" fill="#000" stroke="none"/>
+  <path d="M54 124 Q100 160 146 124" fill="none" stroke-width="5"/>
+  <circle cx="92" cy="108" r="2.5" fill="#000" stroke="none"/><circle cx="108" cy="108" r="2.5" fill="#000" stroke="none"/>
+</g>`,
+  "turtle": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <rect x="56" y="128" width="26" height="34" rx="10" fill="#9BD18B"/>
+  <rect x="118" y="128" width="26" height="34" rx="10" fill="#9BD18B"/>
+  <path d="M168 134 L190 142 L168 148 Z" fill="#9BD18B"/>
+  <rect x="34" y="122" width="132" height="20" rx="10" fill="#9BD18B"/>
+  <ellipse cx="30" cy="106" rx="22" ry="17" fill="#9BD18B"/>
+  <circle cx="24" cy="102" r="3.5" fill="#000" stroke="none"/>
+  <path d="M14 114 Q24 120 32 114" fill="none" stroke-width="4"/>
+  <path d="M40 126 Q40 58 100 58 Q160 58 160 126 Z" fill="#008D36"/>
+  <path d="M100 58 V126 M70 66 Q74 100 72 126 M130 66 Q126 100 128 126 M46 100 H154" fill="none" stroke-width="4.5"/>
+</g>`,
+  "flamingo": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M94 128 V184 M112 128 L116 184" fill="none" stroke="#F08CA4" stroke-width="7"/>
+  <path d="M94 184 H80 M116 184 H130" fill="none" stroke-width="6"/>
+  <path d="M94 128 V184 M112 128 L116 184" fill="none" stroke-width="2.5" opacity="0"/>
+  <ellipse cx="100" cy="104" rx="46" ry="30" fill="#F08CA4"/>
+  <path d="M64 100 Q92 132 132 104 Q110 90 64 100 Z" fill="#E86A8A" stroke-width="4.5"/>
+  <path d="M130 88 Q170 84 154 50 Q140 26 112 38" fill="none" stroke-width="22"/>
+  <path d="M130 88 Q170 84 154 50 Q140 26 112 38" fill="none" stroke="#F08CA4" stroke-width="12"/>
+  <circle cx="110" cy="38" r="14" fill="#F08CA4"/>
+  <path d="M100 40 Q84 42 82 54 Q96 54 104 46 Z" fill="#fff" stroke-width="5"/>
+  <path d="M82 54 Q96 54 104 46 L98 52 Z" fill="#000" stroke-width="3"/>
+  <circle cx="112" cy="34" r="3" fill="#000" stroke="none"/>
+</g>`,
+  "kangaroo": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M70 156 Q32 170 20 196 L68 190 Z" fill="#E39B4F"/>
+  <path d="M84 168 Q76 190 100 190 H128 V176 H108 Q104 168 100 160 Z" fill="#E39B4F"/>
+  <ellipse cx="96" cy="120" rx="40" ry="54" transform="rotate(-8 96 120)" fill="#E39B4F"/>
+  <path d="M74 118 Q96 150 122 118 Z" fill="#F6D9B0"/>
+  <circle cx="96" cy="112" r="13" fill="#E39B4F"/>
+  <ellipse cx="88" cy="97" rx="4" ry="8" transform="rotate(-20 88 97)" fill="#E39B4F"/><ellipse cx="104" cy="97" rx="4" ry="8" transform="rotate(20 104 97)" fill="#E39B4F"/>
+  <circle cx="92" cy="112" r="2.2" fill="#000" stroke="none"/><circle cx="102" cy="112" r="2.2" fill="#000" stroke="none"/>
+  <ellipse cx="112" cy="54" rx="24" ry="19" transform="rotate(-10 112 54)" fill="#E39B4F"/>
+  <ellipse cx="132" cy="62" rx="12" ry="10" fill="#E39B4F"/>
+  <ellipse cx="96" cy="30" rx="6" ry="16" transform="rotate(-18 96 30)" fill="#E39B4F"/><ellipse cx="116" cy="28" rx="6" ry="16" transform="rotate(12 116 28)" fill="#E39B4F"/>
+  <circle cx="114" cy="50" r="3.5" fill="#000" stroke="none"/><circle cx="140" cy="60" r="2.5" fill="#000" stroke="none"/>
+  <path d="M126 92 Q140 96 142 104" fill="none" stroke-width="7"/>
+</g>`,
+  "sloth": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M0 34 H200" fill="none" stroke-width="20"/>
+  <path d="M0 34 H200" fill="none" stroke="#8a5a2b" stroke-width="9"/>
+  <path d="M68 100 L56 40 M132 100 L144 40" fill="none" stroke-width="22"/>
+  <path d="M68 100 L56 40 M132 100 L144 40" fill="none" stroke="#B58B5E" stroke-width="11"/>
+  <ellipse cx="100" cy="150" rx="34" ry="36" fill="#B58B5E"/>
+  <path d="M82 178 L78 196 M118 178 L122 196" fill="none" stroke-width="12"/>
+  <path d="M82 178 L78 196 M118 178 L122 196" fill="none" stroke="#B58B5E" stroke-width="5"/>
+  <circle cx="100" cy="98" r="32" fill="#D9BE95"/>
+  <ellipse cx="86" cy="94" rx="11" ry="8" transform="rotate(25 86 94)" fill="#5a3a1a" stroke-width="4"/>
+  <ellipse cx="114" cy="94" rx="11" ry="8" transform="rotate(-25 114 94)" fill="#5a3a1a" stroke-width="4"/>
+  <circle cx="87" cy="94" r="3" fill="#fff" stroke="none"/><circle cx="113" cy="94" r="3" fill="#fff" stroke="none"/>
+  <ellipse cx="100" cy="106" rx="6" ry="4.5" fill="#000" stroke="none"/>
+  <path d="M90 116 Q100 124 110 116" fill="none" stroke-width="4.5"/>
+</g>`,
+  "jellyfish": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <g fill="none" stroke-linecap="round">
+    <path d="M62 104 Q50 130 64 150 Q76 170 62 192" stroke-width="15"/><path d="M84 106 Q74 134 88 156 Q98 176 86 194" stroke-width="15"/>
+    <path d="M110 106 Q122 134 108 156 Q98 176 112 194" stroke-width="15"/><path d="M136 104 Q150 130 136 150 Q124 170 138 192" stroke-width="15"/>
+  </g>
+  <g fill="none" stroke="#C58AD8" stroke-linecap="round" stroke-width="7">
+    <path d="M62 104 Q50 130 64 150 Q76 170 62 192"/><path d="M84 106 Q74 134 88 156 Q98 176 86 194"/>
+    <path d="M110 106 Q122 134 108 156 Q98 176 112 194"/><path d="M136 104 Q150 130 136 150 Q124 170 138 192"/>
+  </g>
+  <path d="M30 108 Q30 28 100 28 Q170 28 170 108 Q150 96 136 108 Q118 94 100 108 Q82 94 64 108 Q50 96 30 108 Z" fill="#C58AD8"/>
+  <g fill="#fff" stroke="none" opacity=".85"><circle cx="64" cy="62" r="6"/><circle cx="140" cy="56" r="5"/><circle cx="104" cy="44" r="4"/></g>
+  <circle cx="82" cy="76" r="5" fill="#000" stroke="none"/><circle cx="118" cy="76" r="5" fill="#000" stroke="none"/>
+  <path d="M92 88 Q100 94 108 88" fill="none" stroke-width="4.5"/>
+</g>`,
+  "pig": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M46 60 L52 22 L88 46 Z" fill="#F5A3B5"/><path d="M154 60 L148 22 L112 46 Z" fill="#F5A3B5"/>
+  <path d="M54 54 L56 36 L70 46 Z" fill="#F08CA0" stroke="none"/><path d="M146 54 L144 36 L130 46 Z" fill="#F08CA0" stroke="none"/>
+  <circle cx="100" cy="102" r="60" fill="#F5A3B5"/>
+  <ellipse cx="100" cy="120" rx="30" ry="22" fill="#F08CA0"/>
+  <ellipse cx="90" cy="120" rx="4.5" ry="7" fill="#000" stroke="none"/><ellipse cx="110" cy="120" rx="4.5" ry="7" fill="#000" stroke="none"/>
+  <circle cx="74" cy="88" r="6" fill="#000" stroke="none"/><circle cx="126" cy="88" r="6" fill="#000" stroke="none"/>
+  <circle cx="64" cy="108" r="8" fill="#F08CA0" stroke="none" opacity=".7"/><circle cx="136" cy="108" r="8" fill="#F08CA0" stroke="none" opacity=".7"/>
+</g>`,
+  "crocodile": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M146 110 Q176 104 196 84 Q186 118 158 134 Z" fill="#008D36"/>
+  <rect x="64" y="136" width="22" height="30" rx="9" fill="#008D36"/>
+  <rect x="126" y="136" width="22" height="30" rx="9" fill="#008D36"/>
+  <ellipse cx="108" cy="116" rx="50" ry="28" fill="#008D36"/>
+  <path d="M10 112 Q10 96 36 96 H82 V130 H36 Q10 130 10 112 Z" fill="#008D36"/>
+  <path d="M10 114 H82" fill="none" stroke-width="4"/>
+  <path d="M22 114 L26 122 L30 114 M40 114 L44 122 L48 114 M58 114 L62 122 L66 114" fill="#fff" stroke-width="3.5"/>
+  <path d="M76 90 L84 76 L92 90 L102 74 L110 90 L120 76 L128 92 L138 80 L144 96" fill="#006B2A" stroke-width="5"/>
+  <circle cx="64" cy="94" r="10" fill="#fff"/><circle cx="66" cy="94" r="4.5" fill="#000" stroke="none"/>
+  <circle cx="22" cy="102" r="2.5" fill="#000" stroke="none"/>
+</g>`,
+  "hedgehog": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <ellipse cx="62" cy="168" rx="14" ry="8" fill="#E8C9A0"/><ellipse cx="128" cy="170" rx="14" ry="8" fill="#E8C9A0"/>
+  <path d="M30 138 L22 114 L40 118 L34 92 L54 104 L56 76 L74 94 L82 64 L96 86 L110 62 L118 86 L134 68 L136 94 L154 84 L150 108 L170 104 L162 130 L180 134 L162 158 Q100 176 34 150 Z" fill="#8a5a2b"/>
+  <path d="M44 110 L50 126 M64 96 L70 118 M88 82 L92 112 M114 82 L114 112 M138 96 L132 118 M152 116 L144 134" fill="none" stroke="#5a3a1a" stroke-width="4"/>
+  <path d="M14 146 Q14 120 50 116 Q76 118 82 146 Q76 166 46 166 Q14 164 14 146 Z" fill="#E8C9A0"/>
+  <circle cx="10" cy="148" r="7" fill="#000" stroke-width="4"/>
+  <circle cx="40" cy="136" r="4" fill="#000" stroke="none"/>
+  <path d="M50 116 Q54 108 62 112" fill="none" stroke-width="4.5"/>
+</g>`,
+  "zebra": `<defs><clipPath id="zebraClip"><ellipse cx="100" cy="104" rx="42" ry="58"/></clipPath></defs><g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M62 54 L56 8 L90 36 Z" fill="#fff"/><path d="M138 54 L144 8 L110 36 Z" fill="#fff"/>
+  
+  <ellipse cx="100" cy="104" rx="42" ry="58" fill="#fff"/>
+  <g clip-path="url(#zebraClip)" fill="#000" stroke="none">
+    <path d="M56 70 L100 64 L100 74 L56 82 Z"/><path d="M52 100 L100 90 L100 100 L52 112 Z"/><path d="M54 130 L100 120 L100 130 L54 142 Z"/>
+    <path d="M144 70 L100 64 L100 74 L144 82 Z"/><path d="M148 100 L100 90 L100 100 L148 112 Z"/><path d="M146 130 L100 120 L100 130 L146 142 Z"/>
+    <path d="M94 46 H106 V60 H94 Z"/>
+  </g>
+  <ellipse cx="100" cy="104" rx="42" ry="58" fill="none"/>
+  <ellipse cx="100" cy="150" rx="26" ry="20" fill="#D0D0D0"/>
+  <ellipse cx="90" cy="150" rx="3.5" ry="6" fill="#000" stroke="none"/><ellipse cx="110" cy="150" rx="3.5" ry="6" fill="#000" stroke="none"/>
+  <circle cx="78" cy="94" r="5" fill="#fff" stroke-width="4"/><circle cx="122" cy="94" r="5" fill="#fff" stroke-width="4"/>
+  <circle cx="78" cy="94" r="2.2" fill="#000" stroke="none"/><circle cx="122" cy="94" r="2.2" fill="#000" stroke="none"/>
+</g>`,
+  "mosquito": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M112 112 L96 152 L84 184 M122 116 L120 156 L124 186 M132 112 L146 150 L162 178" fill="none" stroke-width="4.5"/>
+  <ellipse cx="124" cy="80" rx="34" ry="13" transform="rotate(-35 124 80)" fill="#CFE8FF" opacity=".95"/>
+  <ellipse cx="92" cy="76" rx="30" ry="11" transform="rotate(-62 92 76)" fill="#CFE8FF" opacity=".95"/>
+  <ellipse cx="80" cy="118" rx="38" ry="14" transform="rotate(18 80 118)" fill="#6b4a3a"/>
+  <path d="M54 112 L56 130 M70 108 L72 126 M86 112 L88 130" fill="none" stroke="#fff" stroke-width="4" opacity=".8"/>
+  <circle cx="118" cy="106" r="15" fill="#6b4a3a"/>
+  <circle cx="140" cy="100" r="11" fill="#6b4a3a"/>
+  <path d="M148 102 L184 124" fill="none" stroke-width="4.5"/>
+  <circle cx="142" cy="97" r="3" fill="#fff" stroke="none"/>
+</g>`,
+  "mouse": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M140 150 Q190 150 186 104 Q184 86 170 90" fill="none" stroke="#F5A3B5" stroke-width="7"/>
+  <circle cx="60" cy="66" r="26" fill="#BDBDBD"/><circle cx="140" cy="66" r="26" fill="#BDBDBD"/>
+  <circle cx="60" cy="66" r="14" fill="#F5A3B5" stroke="none"/><circle cx="140" cy="66" r="14" fill="#F5A3B5" stroke="none"/>
+  <ellipse cx="100" cy="110" rx="48" ry="46" fill="#BDBDBD"/>
+  <ellipse cx="100" cy="142" rx="30" ry="20" fill="#E8E8E8" stroke="none"/>
+  <circle cx="80" cy="98" r="5.5" fill="#000" stroke="none"/><circle cx="120" cy="98" r="5.5" fill="#000" stroke="none"/>
+  <circle cx="100" cy="122" r="7" fill="#F5A3B5" stroke-width="4"/>
+  <path d="M100 129 V136 M90 140 Q95 146 100 138 Q105 146 110 140" fill="none" stroke-width="4"/>
+  <rect x="95" y="138" width="10" height="9" rx="2" fill="#fff" stroke-width="3.5"/>
+  <path d="M68 124 L36 118 M68 132 L38 140 M132 124 L164 118 M132 132 L162 140" fill="none" stroke-width="3.5"/>
 </g>`
 };

@@ -106,5 +106,56 @@ const PICS_SPACE = {
   <path d="M100 18 Q132 58 132 108 L132 144 L68 144 L68 108 Q68 58 100 18 Z" fill="#fff"/>
   <path d="M100 18 Q118 40 124 62 L76 62 Q82 40 100 18 Z" fill="#F37021"/>
   <circle cx="100" cy="92" r="16" fill="#005CA9"/><circle cx="95" cy="87" r="4" fill="#fff" stroke="none"/>
+</g>`,
+  "jupiter": `<defs><clipPath id="jupClip"><circle cx="100" cy="100" r="68"/></clipPath></defs><g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <g clip-path="url(#jupClip)" stroke="none">
+    <rect x="20" y="20" width="160" height="160" fill="#F6D9B0"/>
+    <rect x="20" y="46" width="160" height="16" fill="#E39B4F"/>
+    <rect x="20" y="74" width="160" height="20" fill="#C97B4A"/>
+    <rect x="20" y="108" width="160" height="14" fill="#E39B4F"/>
+    <rect x="20" y="136" width="160" height="18" fill="#C97B4A"/>
+  </g>
+  <circle cx="100" cy="100" r="68" fill="none"/>
+  <ellipse cx="126" cy="116" rx="19" ry="11" fill="#D9432B" stroke-width="4.5"/>
+</g>`,
+  "galaxy": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <circle cx="100" cy="100" r="76" fill="#0B2A5B"/>
+  <g fill="none" stroke="#FFD100" stroke-width="9" stroke-linecap="round">
+    <path d="M100 100 Q112 74 140 80 Q168 90 160 124"/>
+    <path d="M100 100 Q88 126 60 120 Q32 110 40 76"/>
+  </g>
+  <g fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".9">
+    <path d="M100 100 Q116 62 150 66"/>
+    <path d="M100 100 Q84 138 50 134"/>
+  </g>
+  <circle cx="100" cy="100" r="15" fill="#FFD100" stroke="none"/>
+  <g fill="#fff" stroke="none"><circle cx="52" cy="50" r="3"/><circle cx="150" cy="40" r="2.5"/><circle cx="162" cy="150" r="3"/><circle cx="64" cy="156" r="2.5"/><circle cx="112" cy="30" r="2"/></g>
+  <circle cx="100" cy="100" r="76" fill="none"/>
+</g>`,
+  "black-hole": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <circle cx="100" cy="100" r="76" fill="#0B2A5B"/>
+  <ellipse cx="100" cy="100" rx="66" ry="22" transform="rotate(-18 100 100)" fill="none" stroke="#F37021" stroke-width="12"/>
+  <ellipse cx="100" cy="100" rx="66" ry="22" transform="rotate(-18 100 100)" fill="none" stroke="#FFD100" stroke-width="4"/>
+  <circle cx="100" cy="100" r="28" fill="#000"/>
+  <g fill="#fff" stroke="none"><circle cx="44" cy="52" r="3"/><circle cx="152" cy="44" r="2.5"/><circle cx="160" cy="152" r="3"/><circle cx="48" cy="150" r="2"/></g>
+  <circle cx="100" cy="100" r="76" fill="none"/>
+</g>`,
+  "comet": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M72 132 Q132 92 192 36 Q156 108 128 162 Q98 168 72 164 Z" fill="#FFD100"/>
+  <path d="M80 136 Q130 104 170 64 Q146 118 120 152 Z" fill="#fff" stroke="none" opacity=".75"/>
+  <circle cx="60" cy="146" r="26" fill="#9ec9f0"/>
+  <path d="M46 138 Q50 128 60 126" fill="none" stroke="#fff" stroke-width="5" opacity=".9"/>
+  <g fill="#FFD100" stroke="none"><circle cx="30" cy="40" r="3"/><circle cx="120" cy="30" r="2.5"/><circle cx="170" cy="150" r="3"/></g>
+</g>`,
+  "eclipse": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <g stroke="#FFD100" stroke-width="9">
+    <path d="M100 14 V34 M100 166 V186 M14 100 H34 M166 100 H186 M38 38 L52 52 M148 148 L162 162 M162 38 L148 52 M52 148 L38 162"/>
+  </g>
+  <circle cx="100" cy="100" r="58" fill="#FFD100"/>
+  <circle cx="108" cy="98" r="50" fill="#2b2b3a"/>
+</g>`,
+  "star": `<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M100 30 L118 78 L170 82 L130 114 L144 164 L100 136 L56 164 L70 114 L30 82 L82 78 Z" fill="#FFD100"/>
+  <path d="M100 8 V20 M172 36 L164 44 M30 36 L38 44 M186 120 H174 M14 120 H26" fill="none" stroke-width="5"/>
 </g>`
 };
