@@ -250,7 +250,7 @@ const Snd = {
   // suspense before an answer reveal: 0 = skipped this time
   maybeSuspense() { return this.sfxOn ? (S.maybeSuspense() || 0) : 0; },
   // background music for a place: 'home' | 'animals' | 'space' | 'food' | 'art' | '' (silence)
-  music(style) { this.wanted = style || ''; if (this.musicOn && this.wanted) { try { musicStart(this.wanted); } catch (e) {} } else { musicStop(); } },
+  music(style) { this.wanted = style || ''; if (this.musicOn && this.wanted) { if (mus.timer && mus.style === this.wanted) return; try { musicStart(this.wanted); } catch (e) {} } else { musicStop(); } },
   setSfx(on) { this.sfxOn = on; },
   setMusic(on) { this.musicOn = on; this.music(this.wanted); },
   // browsers only allow sound after a tap: call this from the first tap
