@@ -14,7 +14,7 @@
 ## 2. Architecture & Tech Stack (STRICT)
 - Lightweight, offline-capable **PWA**. Only Vanilla HTML5, CSS3, ES6+ JS. No frameworks, bundlers, or npm deps. No build step.
 - Plain files loaded via `<script>` tags (no modules/bundler), split by purpose, e.g.:
-  `index.html`, `style.css`, `app.js` (hub/router/state), `audio.js`, `rewards.js`, `data-facts.js`, `data-recipes.js`, `game-facts.js`, `game-kitchen.js`, `manifest.json`, `sw.js`, `icons/`.
+  `index.html`, `style.css`, `app.js` (hub/router/state), `audio.js`, `rewards.js`, `data-facts-<topic>.js` (one per topic), `data-recipes.js`, `game-facts.js`, `game-kitchen.js`, `manifest.json`, `sw.js`, `icons/`.
 - **Visuals:** Bruna-style minimalism — crisp inline SVG, thick black outlines, white background. Palette: Orange `#F37021`, Blue `#005CA9`, Yellow `#FFD100`, Green `#008D36`.
 - **Audio:** Web Audio API synthesized effects only. Unlock AudioContext on first user tap.
 - **Persistence:** `localStorage` (wrapped in try/catch) for stars, stickers, progress. No accounts/servers.
@@ -28,7 +28,14 @@
 
 ## 4. Game Roadmap (Modular Hub)
 - **Home Screen:** hub with the bunny SVG; buttons launch mini-games; shows stars and sticker-book entry.
-- **Game 1 — "בלשית העובדות" (Fact Detective):** True/False trivia; bunny & friends react; 1-sentence explanation each. Data: editable `FACTS` array in `data-facts.js`.
+- **Game 1 — "בלשית העובדות" (Fact Detective):** The player is the detective; Frooky is her partner. True/False clues, no timer.
+  - Buttons: **נכון ✓** (green) and **שטויות במיץ עגבניות!** (orange, tomato icon, 2 lines). Stamps slam on the clue card: "נכון!" or "שטויות במיץ עגבניות!"; a wrong pick shows Frooky's sad face + a gentle stamp. Case-file card look; "case closed" at round end.
+  - Round = 10 clues. Player picks a topic first: animals / space / food / drawing-art / "surprise me". Missed facts return later in the same round. ~50% true / 50% false, false ones are popular myths where possible.
+  - Reaction faces: use Frooky expressions (happy, celebrating, sad, surprised, thinking). 1-sentence Hebrew explanation after every answer.
+  - Rewards: stars per correct answer; every 5 stars the briefcase opens → new tool from THIS game's collection.
+  - **Big pool:** target ~100 facts per topic (start ~30, grow in validated batches of 20-30). Per-fact status saved in `localStorage` (new/seen/missed/learned; learned = correct twice). Pick order: unseen → missed. Each fact has `level` (easy/medium/hard); harder ones appear as she masters a topic. Topic finished → special reward + suggest another topic.
+  - "Frooky's notebook": every fact she answers correctly is saved there by topic, so she can reread what she learned. (Later idea: she suggests her own facts, credited to her.)
+  - Data: one editable file per topic (`data-facts-animals.js`, `-space.js`, `-food.js`, `-art.js`), each an array of `{ id, topic, level, text, answer, explain }`.
 - **Game 2 — "הטבחית" (Kitchen):** pick ingredients from a pantry (incl. funny wrong ones), cook in a pot, feed the bunny → dynamic face (happy vs. disgusted/surprised). Data: editable `RECIPES` array in `data-recipes.js`. Primary design investment goes here.
 - **Rewards:** stars (correct answers, successful dishes, streak bonus) shared across games. Frooky's briefcase holds **collectable exploration tools** (collectables only — NO gameplay power-ups). Each game has its OWN separate collection: Fact Detective (animals, space, drawing, general: magnifying glass, telescope, compass, notebook+pencil, flashlight, bug jar/net, binoculars, paint brush, camera, magnet, microscope, map, mystery "?" tool…) and Kitchen (spoon, whisk, recipe book, spice jars, scale…). Tool unlocks follow the subject of the questions/recipes when possible; when a subject's set is complete, unlock from the next subject. Tools live in an editable array. Later: sticker book, decorate Frooky's room, kitchen ingredient/recipe unlocks, funny failed dishes earn "discovery" stickers.
 - **Content themes:** animals, food, space/universe, drawing.
