@@ -58,3 +58,4 @@ Before asking the user to review any facts/recipes/Hebrew text:
 2. Run an independent cold-read review (fresh agent) for Hebrew grammar, spelling, gender agreement, and 9-year-old suitability.
 3. Remove ambiguous true/false statements (answer depends on interpretation).
 4. Give the user a short list of least-certain items; the user is the final gate.
+5. Every fact needs `src: "url"` (at least one highly reliable source: Britannica, NASA/ESA/NOAA, Smithsonian, NatGeo, university/extension sites, museums; never content-farm sites). Not enough certainty = replace the fact, never keep it. All batch-2 facts (id 021+) have `src`; the first 30/20/20/20 facts still need a source audit.
