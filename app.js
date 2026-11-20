@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.0.5";
+const VERSION = "1.0.6";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
@@ -161,8 +161,6 @@ SCREENS.home = (root) => {
   const gameBtns = GAMES.map(g => h("button", { class: "btn game " + g.color, onclick: () => { Snd.sfx("select"); g.open(); } },
     h("span", { class: "gicon" }, g.icon), h("span", { class: "gtext" }, h("span", { class: "gtitle" }, g.title), h("span", { class: "gsub" }, g.subtitle(p)))));
   const learned = Object.values(p.facts).filter(f => f.right >= 1).length;
-  const ver = h("div", { class: "ver", "aria-hidden": "true" }, "גרסה " + VERSION);
-  setupLongPress(ver, checkUpdate);
   root.append(h("div", { class: "screen home" },
     h("div", { class: "home-top" },
       h("button", { class: "chip", onclick: () => { Snd.sfx("back"); go("players"); } }, h("span", { class: "avatar tiny", style: "background:" + p.color }, [...p.name][0]), p.name, " ⇄"),
@@ -173,7 +171,7 @@ SCREENS.home = (root) => {
     h("div", { class: "btn-row two" },
       h("button", { class: "btn white", onclick: () => { Snd.sfx("select"); go("notebook"); } }, "📓 המחברת", h("small", {}, learned + " עובדות")),
       h("button", { class: "btn white", onclick: () => { Snd.sfx("select"); go("briefcase"); } }, "💼 התיק", h("small", {}, p.tools.length + "/" + TOOL_COLLECTIONS.facts.length + " כלים"))),
-    ver));
+    h("div", { class: "ver" }, h("button", { class: "btn white ver-btn", onclick: checkUpdate }, "🔄 בדיקת עדכון"), h("small", {}, "גרסה " + VERSION))));
 };
 
 /* ---------- briefcase: collection of tools ---------- */
@@ -192,37 +190,31 @@ SCREENS.briefcase = (root) => {
     grid));
 };
 
-/* ---------- hidden update button (long-press the version number) ---------- */
-function setupLongPress(el, fn) {
-  let timer = null, taps = [];
-  const start = () => { clearTimeout(timer); timer = setTimeout(() => { timer = null; fn(); }, 700); };
-  const stop = () => { clearTimeout(timer); timer = null; };
-  el.addEventListener("pointerdown", start);
-  ["pointerup", "pointerleave", "pointercancel"].forEach(ev => el.addEventListener(ev, stop));
-  el.addEventListener("contextmenu", e => { e.preventDefault(); stop(); fn(); });  // Android may turn a long press into a context menu
-  // backup: tap the version number 5 times quickly
-  el.addEventListener("click", () => {
-    const now = Date.now(); taps = taps.filter(t => now - t < 3000); taps.push(now);
-    if (taps.length >= 5) { taps = []; fn(); }
-  });
+/* ---------- update check (button at the bottom of the home screen) ---------- */
+function updateModal(title, text, buttons) {
+  Snd.sfx("select");
+  modal([h("h2", {}, title), h("p", { style: "text-align:center;margin:8px 0 12px" }, text), ...buttons]);
 }
-function showUpdateReady(reg) {
-  if (document.getElementById("update-banner")) return;
-  const b = h("button", { class: "update-banner", id: "update-banner", onclick: () => { if (reg.waiting) reg.waiting.postMessage("SKIP_WAITING"); } }, "עדכון מוכן – לחצו להפעלה ✨");
-  document.body.append(b);
+const closeBtn = (label) => h("button", { class: "btn white", onclick: () => { Snd.sfx("back"); closeModal(); } }, label || "סגירה");
+function offerUpdate(reg) {
+  updateModal("יש גרסה חדשה! ✨", "רוצים לעדכן עכשיו? המשחק ייטען מחדש. הכוכבים והשחקנים נשמרים.", [
+    h("button", { class: "btn green", onclick: () => { closeModal(); if (reg.waiting) reg.waiting.postMessage("SKIP_WAITING"); else location.reload(); } }, "עדכנו עכשיו"),
+    closeBtn("אחר כך")]);
 }
 function checkUpdate() {
-  if (!("serviceWorker" in navigator)) return toast("עדכון לא נתמך כאן");
-  toast("בודקים אם יש עדכון…");
+  if (!("serviceWorker" in navigator)) return updateModal("לא נתמך", "הדפדפן הזה לא תומך בעדכונים אוטומטיים.", [closeBtn()]);
+  updateModal("בודקים…", "בודקים אם יש גרסה חדשה 🔍", [closeBtn("ביטול")]);
   navigator.serviceWorker.getRegistration().then(reg => {
-    if (!reg) return toast("עדיין אין גרסה שמורה");
-    reg.update().then(() => {
-      if (reg.waiting) return showUpdateReady(reg);
+    if (!reg) return updateModal("עוד לא נשמר", "המשחק עדיין לא נשמר במכשיר לעבודה בלי אינטרנט. נסו שוב בעוד רגע.", [closeBtn()]);
+    return reg.update().then(() => {
       const w = reg.installing;
-      if (w) { w.addEventListener("statechange", () => { if (w.state === "installed") showUpdateReady(reg); }); toast("מורידים עדכון…"); }
-      else toast("הכול מעודכן ✓ (גרסה " + VERSION + ")");
-    }).catch(() => toast("אין חיבור – ממשיכים עם הגרסה השמורה"));
-  });
+      if (reg.waiting) return offerUpdate(reg);
+      if (!w) return updateModal("הכול מעודכן ✓", "אין גרסה חדשה. יש לכם את הגרסה האחרונה (" + VERSION + ").", [closeBtn()]);
+      const done = () => { if (reg.waiting) offerUpdate(reg); else updateModal("הכול מעודכן ✓", "אין גרסה חדשה (" + VERSION + ").", [closeBtn()]); };
+      if (w.state === "installed" || w.state === "activated") return done();
+      w.addEventListener("statechange", () => { if (w.state === "installed" || w.state === "activated") done(); else if (w.state === "redundant") updateModal("לא הצלחנו", "ההורדה נכשלה. נסו שוב.", [closeBtn()]); });
+    });
+  }).catch(() => updateModal("אין חיבור", "אי אפשר לבדוק עכשיו. אפשר להמשיך לשחק עם הגרסה השמורה.", [closeBtn()]));
 }
 
 /* ---------- start ---------- */
