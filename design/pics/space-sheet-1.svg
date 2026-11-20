@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 720" width="930" height="1080" font-family="Arial, sans-serif">
+<defs>
+  <clipPath id="earthClip"><circle cx="100" cy="100" r="62"/></clipPath>
+  <clipPath id="jupClip"><circle cx="100" cy="100" r="66"/></clipPath>
+</defs>
+<rect width="620" height="720" fill="#fff"/>
+<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+
+<!-- sun -->
+<g transform="translate(10 10)">
+  <g fill="#F37021" stroke-width="5"><path id="ray" d="M91 50 L100 14 L109 50 Z"/>
+    <path d="M91 50 L100 14 L109 50 Z" transform="rotate(30 100 100)"/><path d="M91 50 L100 14 L109 50 Z" transform="rotate(60 100 100)"/>
+    <path d="M91 50 L100 14 L109 50 Z" transform="rotate(90 100 100)"/><path d="M91 50 L100 14 L109 50 Z" transform="rotate(120 100 100)"/>
+    <path d="M91 50 L100 14 L109 50 Z" transform="rotate(150 100 100)"/><path d="M91 50 L100 14 L109 50 Z" transform="rotate(180 100 100)"/>
+    <path d="M91 50 L100 14 L109 50 Z" transform="rotate(210 100 100)"/><path d="M91 50 L100 14 L109 50 Z" transform="rotate(240 100 100)"/>
+    <path d="M91 50 L100 14 L109 50 Z" transform="rotate(270 100 100)"/><path d="M91 50 L100 14 L109 50 Z" transform="rotate(300 100 100)"/>
+    <path d="M91 50 L100 14 L109 50 Z" transform="rotate(330 100 100)"/></g>
+  <circle cx="100" cy="100" r="50" fill="#FFD100"/>
+  <circle cx="84" cy="92" r="5" fill="#000" stroke="none"/><circle cx="116" cy="92" r="5" fill="#000" stroke="none"/>
+  <path d="M84 112 Q100 128 116 112" fill="none" stroke-width="5"/>
+  <ellipse cx="72" cy="108" rx="9" ry="6" fill="#F37021" stroke="none" opacity=".6"/><ellipse cx="128" cy="108" rx="9" ry="6" fill="#F37021" stroke="none" opacity=".6"/>
+</g>
+<text x="110" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">sun · שמש</text>
+
+<!-- moon -->
+<g transform="translate(210 10)">
+  <circle cx="100" cy="100" r="64" fill="#FFF3C4"/>
+  <g fill="#F0E2A8" stroke-width="4"><circle cx="76" cy="78" r="14"/><circle cx="124" cy="106" r="18"/><circle cx="84" cy="128" r="9"/><circle cx="118" cy="66" r="7"/></g>
+</g>
+<text x="310" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">moon · ירח</text>
+
+<!-- earth -->
+<g transform="translate(410 10)">
+  <circle cx="100" cy="100" r="62" fill="#005CA9"/>
+  <g clip-path="url(#earthClip)" stroke="none" fill="#008D36">
+    <path d="M60 66 Q82 46 104 62 Q100 82 114 94 Q96 118 76 106 Q52 92 60 66 Z"/>
+    <path d="M122 112 Q150 98 156 128 Q146 156 124 148 Q112 128 122 112 Z"/>
+    <path d="M72 138 Q86 130 92 146 Q82 160 70 152 Z"/>
+  </g>
+  <circle cx="100" cy="100" r="62" fill="none"/>
+</g>
+<text x="510" y="228" text-anchor="middle" font-size="15" stroke="none" fill="#555">earth · כדור הארץ</text>
+
+<!-- mercury -->
+<g transform="translate(10 250)">
+  <circle cx="100" cy="100" r="46" fill="#9aa3ad"/>
+  <g fill="#7d8791" stroke-width="4"><circle cx="82" cy="84" r="10"/><circle cx="116" cy="112" r="12"/><circle cx="90" cy="120" r="6"/><circle cx="120" cy="80" r="5"/></g>
+</g>
+<text x="110" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">mercury · כוכב חמה</text>
+
+<!-- venus -->
+<g transform="translate(210 250)">
+  <circle cx="100" cy="100" r="54" fill="#F6C45A"/>
+  <g fill="none" stroke="#fff" stroke-width="5" opacity=".9"><path d="M60 82 Q80 70 100 82 T140 82"/><path d="M52 104 Q76 92 100 104 T148 104"/><path d="M62 128 Q82 118 102 128 T138 126"/></g>
+</g>
+<text x="310" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">venus · נוגה</text>
+
+<!-- mars -->
+<g transform="translate(410 250)">
+  <circle cx="100" cy="100" r="50" fill="#D9501E"/>
+  <ellipse cx="100" cy="64" rx="20" ry="8" fill="#fff" stroke-width="3.5"/>
+  <g fill="#B8431A" stroke-width="4"><ellipse cx="84" cy="100" rx="12" ry="8"/><circle cx="120" cy="116" r="10"/><circle cx="96" cy="128" r="6"/><circle cx="124" cy="88" r="5"/></g>
+</g>
+<text x="510" y="468" text-anchor="middle" font-size="15" stroke="none" fill="#555">mars · מאדים</text>
+
+<!-- jupiter -->
+<g transform="translate(10 490)">
+  <circle cx="100" cy="100" r="66" fill="#FFE0B0"/>
+  <g clip-path="url(#jupClip)" stroke="none">
+    <rect x="30" y="56" width="140" height="16" fill="#F6A27A"/><rect x="30" y="82" width="140" height="14" fill="#F37021"/>
+    <rect x="30" y="112" width="140" height="16" fill="#F6C45A"/><rect x="30" y="138" width="140" height="12" fill="#F6A27A"/>
+  </g>
+  <ellipse cx="122" cy="116" rx="16" ry="10" fill="#D8452A" stroke-width="4"/>
+  <circle cx="100" cy="100" r="66" fill="none"/>
+</g>
+<text x="110" y="708" text-anchor="middle" font-size="15" stroke="none" fill="#555">jupiter · צדק</text>
+
+<!-- saturn -->
+<g transform="translate(210 490)">
+  <g transform="rotate(-20 100 100)" fill="none">
+    <ellipse cx="100" cy="100" rx="84" ry="24" stroke-width="20"/><ellipse cx="100" cy="100" rx="84" ry="24" stroke="#FFD100" stroke-width="9"/>
+  </g>
+  <circle cx="100" cy="100" r="44" fill="#F6C45A"/>
+  <g transform="rotate(-20 100 100)" fill="none">
+    <path d="M16 100 A84 24 0 0 0 184 100" stroke-width="20"/><path d="M16 100 A84 24 0 0 0 184 100" stroke="#FFD100" stroke-width="9"/>
+  </g>
+</g>
+<text x="310" y="708" text-anchor="middle" font-size="15" stroke="none" fill="#555">saturn · שבתאי</text>
+
+<!-- uranus -->
+<g transform="translate(410 490)">
+  <g fill="none"><ellipse cx="100" cy="100" rx="22" ry="84" stroke-width="12"/><ellipse cx="100" cy="100" rx="22" ry="84" stroke="#fff" stroke-width="4"/></g>
+  <circle cx="100" cy="100" r="46" fill="#7FD1D6"/>
+  <g fill="none"><path d="M100 16 A22 84 0 0 1 100 184" stroke-width="12"/><path d="M100 16 A22 84 0 0 1 100 184" stroke="#fff" stroke-width="4"/></g>
+</g>
+<text x="510" y="708" text-anchor="middle" font-size="15" stroke="none" fill="#555">uranus · אורנוס</text>
+</g>
+</svg>
