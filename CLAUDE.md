@@ -16,7 +16,11 @@
 - Plain files loaded via `<script>` tags (no modules/bundler), split by purpose, e.g.:
   `index.html`, `style.css`, `app.js` (hub/router/state), `audio.js`, `rewards.js`, `data/data-facts-<topic>.js` (one per topic), `data-recipes.js`, `game-facts.js`, `game-kitchen.js`, `manifest.json`, `sw.js`, `icons/`.
 - **Visuals:** Bruna-style minimalism — crisp inline SVG, thick black outlines, white background. Palette: Orange `#F37021`, Blue `#005CA9`, Yellow `#FFD100`, Green `#008D36`.
-- **Audio:** Web Audio API synthesized effects only. Unlock AudioContext on first user tap.
+- **Audio:** Web Audio API synthesized only (no sound files, no licensing, works offline). Unlock AudioContext on first user tap. Prototype + engine live in `design/sound-lab.html`; its engine code becomes `audio.js` (reuse it, don't redesign without asking).
+  - Every effect has random variants (pitch/notes) so it never gets boring: tap, select, back, swoosh; correct (3 arpeggios), streak, wrong (3 gentle ones: boing / oops / wah-wah, never harsh), stamp, star, briefcase open, case closed, topic done; Kitchen: bubble, splash, yum, yuck, sour, crunch.
+  - Suspense before revealing an answer: 5 random variants (drum roll, ticking clock, thinking bleeps, rising whistle, sneaky detective), ~1s each, `suspense()` returns its length so the game waits, then stamp + result. Skipped ~1 time in 3 (`maybeSuspense()`).
+  - Background music: generative loops, quiet, one style per place (home music-box, animals marimba, space pads+echo, food swing groove, art dreamy arpeggios); melodies are random walks so they never repeat exactly. Pause when the app is hidden.
+  - Settings: separate music and sound-effects on/off (+ volume), remembered in `localStorage`. Audio is tested by ear by the family (the developer can't hear it).
 - **Persistence:** `localStorage` (wrapped in try/catch) for stars, stickers, progress. No accounts/servers.
 
 ## 3. Hosting, PWA & Updates
