@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 560" width="1240" height="560" font-family="Arial, sans-serif">
+<defs>
+<clipPath id="c1"><rect width="360" height="640"/></clipPath>
+</defs>
+<rect width="1240" height="560" fill="#fff"/>
+
+<!-- ============ SAVANNA ============ -->
+<g transform="translate(20 20) scale(.75)">
+<g clip-path="url(#c1)" stroke="#000" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <rect width="360" height="640" fill="#FFF3C4" stroke="none"/>
+  <circle cx="250" cy="130" r="62" fill="#F6C45A"/>
+  <circle cx="250" cy="130" r="46" fill="#F37021"/>
+  <path d="M-10 380 Q80 330 170 372 Q260 326 370 368 V660 H-10 Z" fill="#E7C98B"/>
+  <path d="M-10 470 Q120 430 230 462 Q310 440 370 458 V660 H-10 Z" fill="#D9A066"/>
+  <!-- acacia -->
+  <path d="M70 470 V380 Q68 360 78 345" fill="none" stroke-width="12"/>
+  <path d="M70 470 V380 Q68 360 78 345" fill="none" stroke="#8a5a2b" stroke-width="5"/>
+  <path d="M10 336 Q20 306 70 312 Q96 292 130 314 Q170 316 160 344 Q100 366 10 336 Z" fill="#008D36"/>
+  <!-- small tree far -->
+  <path d="M290 378 V348" fill="none" stroke-width="7"/>
+  <path d="M262 344 Q270 326 292 330 Q316 326 322 346 Q292 358 262 344 Z" fill="#7BC47F" stroke-width="4"/>
+  <!-- grass tufts -->
+  <g fill="none" stroke="#008D36" stroke-width="5"><path d="M40 560 l-8 -26 M40 560 l4 -30 M40 560 l14 -24"/><path d="M300 590 l-8 -26 M300 590 l4 -30 M300 590 l14 -24"/><path d="M180 520 l-6 -20 M180 520 l4 -24 M180 520 l12 -18"/></g>
+  <!-- birds -->
+  <path d="M60 90 q10 -12 20 0 q10 -12 20 0" fill="none" stroke-width="4"/>
+  <path d="M120 140 q8 -9 16 0 q8 -9 16 0" fill="none" stroke-width="4"/>
+  <rect width="360" height="640" fill="none"/>
+</g></g>
+<text x="155" y="545" text-anchor="middle" font-size="16" fill="#555">savanna · ספארי</text>
+
+<!-- ============ SPACE ============ -->
+<g transform="translate(320 20) scale(.75)">
+<g clip-path="url(#c1)" stroke="#000" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <rect width="360" height="640" fill="#0B2A5B" stroke="none"/>
+  <g fill="#FFD100" stroke="none">
+    <circle cx="40" cy="60" r="4"/><circle cx="130" cy="30" r="3"/><circle cx="300" cy="50" r="4"/><circle cx="220" cy="90" r="3"/><circle cx="330" cy="180" r="3"/><circle cx="30" cy="210" r="3"/><circle cx="90" cy="320" r="4"/><circle cx="310" cy="400" r="3"/><circle cx="40" cy="470" r="3"/><circle cx="200" cy="560" r="4"/><circle cx="330" cy="590" r="3"/><circle cx="120" cy="610" r="3"/><circle cx="260" cy="250" r="3"/><circle cx="160" cy="180" r="2.5"/>
+  </g>
+  <path d="M80 130 L88 150 L110 152 L93 166 L99 188 L80 176 L61 188 L67 166 L50 152 L72 150 Z" fill="#FFD100" stroke-width="4"/>
+  <!-- ringed planet -->
+  <g transform="rotate(-20 280 150)" fill="none"><ellipse cx="280" cy="150" rx="68" ry="16" stroke-width="12"/><ellipse cx="280" cy="150" rx="68" ry="16" stroke="#F6879B" stroke-width="5"/></g>
+  <circle cx="280" cy="150" r="34" fill="#F37021"/>
+  <g transform="rotate(-20 280 150)" fill="none"><path d="M212 150 A68 16 0 0 0 348 150" stroke-width="12"/><path d="M212 150 A68 16 0 0 0 348 150" stroke="#F6879B" stroke-width="5"/></g>
+  <!-- moon -->
+  <path d="M70 470 A52 52 0 1 0 118 548 A42 42 0 1 1 70 470 Z" fill="#FFF3C4"/>
+  <!-- small blue planet -->
+  <circle cx="290" cy="480" r="26" fill="#7FD1D6"/>
+  <path d="M272 474 Q290 466 308 476" fill="none" stroke="#fff" stroke-width="4"/>
+  <circle cx="230" cy="340" r="12" fill="#9aa3ad" stroke-width="4"/>
+</g></g>
+<text x="455" y="545" text-anchor="middle" font-size="16" fill="#555">space · חלל</text>
+
+<!-- ============ KITCHEN / MARKET ============ -->
+<g transform="translate(620 20) scale(.75)">
+<g clip-path="url(#c1)" stroke="#000" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <rect width="360" height="640" fill="#FFF8E7" stroke="none"/>
+  <!-- awning -->
+  <path d="M-10 0 H370 V70 H-10 Z" fill="#fff"/>
+  <g stroke="none" fill="#F37021"><rect x="-10" y="0" width="38" height="70"/><rect x="66" y="0" width="38" height="70"/><rect x="142" y="0" width="38" height="70"/><rect x="218" y="0" width="38" height="70"/><rect x="294" y="0" width="38" height="70"/></g>
+  <path d="M-10 70 Q9 100 28 70 Q47 100 66 70 Q85 100 104 70 Q123 100 142 70 Q161 100 180 70 Q199 100 218 70 Q237 100 256 70 Q275 100 294 70 Q313 100 332 70 Q351 100 370 70" fill="none"/>
+  <!-- shelf with jars -->
+  <rect x="20" y="236" width="320" height="14" rx="4" fill="#C8A27A"/>
+  <g fill="#fff"><rect x="36" y="188" width="34" height="48" rx="6"/><rect x="84" y="176" width="34" height="60" rx="6"/><rect x="250" y="190" width="34" height="46" rx="6"/><rect x="298" y="180" width="30" height="56" rx="6"/></g>
+  <g stroke-width="4"><rect x="36" y="208" width="34" height="14" fill="#F37021"/><rect x="84" y="200" width="34" height="16" fill="#FFD100"/><rect x="250" y="208" width="34" height="14" fill="#008D36"/><rect x="298" y="204" width="30" height="16" fill="#E63B2E"/></g>
+  <g fill="#9aa3ad" stroke-width="4"><rect x="40" y="178" width="26" height="10" rx="3"/><rect x="88" y="166" width="26" height="10" rx="3"/><rect x="254" y="180" width="26" height="10" rx="3"/><rect x="301" y="170" width="24" height="10" rx="3"/></g>
+  <!-- hanging pot + ladle -->
+  <path d="M180 120 V150" fill="none"/>
+  <path d="M146 150 H214 V196 Q214 214 196 214 H164 Q146 214 146 196 Z" fill="#9aa3ad"/>
+  <!-- checker floor -->
+  <path d="M-10 470 H370 V660 H-10 Z" fill="#fff"/>
+  <g stroke="none" fill="#F6C45A"><rect x="-10" y="470" width="60" height="50"/><rect x="110" y="470" width="60" height="50"/><rect x="230" y="470" width="60" height="50"/><rect x="350" y="470" width="30" height="50"/><rect x="50" y="520" width="60" height="50"/><rect x="170" y="520" width="60" height="50"/><rect x="290" y="520" width="60" height="50"/><rect x="-10" y="570" width="60" height="50"/><rect x="110" y="570" width="60" height="50"/><rect x="230" y="570" width="60" height="50"/><rect x="350" y="570" width="30" height="50"/><rect x="50" y="620" width="60" height="40"/><rect x="170" y="620" width="60" height="40"/><rect x="290" y="620" width="60" height="40"/></g>
+  <path d="M-10 470 H370" fill="none"/>
+  <!-- crate with fruit -->
+  <rect x="20" y="410" width="110" height="62" rx="6" fill="#C8A27A"/>
+  <path d="M20 432 H130 M20 452 H130" fill="none" stroke-width="3.5"/>
+  <g stroke-width="4"><circle cx="48" cy="400" r="18" fill="#E63B2E"/><circle cx="84" cy="396" r="18" fill="#F37021"/><circle cx="114" cy="404" r="15" fill="#FFD100"/></g>
+  <!-- bread basket -->
+  <path d="M236 430 H340 L330 472 H246 Z" fill="#E0A85C"/>
+  <ellipse cx="270" cy="424" rx="26" ry="14" fill="#F6C45A" stroke-width="4"/><ellipse cx="312" cy="424" rx="22" ry="12" fill="#F6C45A" stroke-width="4"/>
+</g></g>
+<text x="755" y="545" text-anchor="middle" font-size="16" fill="#555">food market · שוק / מטבח</text>
+
+<!-- ============ ART STUDIO ============ -->
+<g transform="translate(920 20) scale(.75)">
+<g clip-path="url(#c1)" stroke="#000" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+  <rect width="360" height="640" fill="#F4ECE0" stroke="none"/>
+  <!-- window -->
+  <rect x="200" y="50" width="130" height="150" rx="6" fill="#9ED8F0"/>
+  <path d="M265 50 V200 M200 125 H330" fill="none"/>
+  <circle cx="236" cy="86" r="12" fill="#FFD100" stroke-width="4"/>
+  <!-- banner garland of colors -->
+  <path d="M10 30 Q100 80 190 30" fill="none" stroke-width="3.5"/>
+  <g stroke-width="4"><path d="M30 46 l14 4 l-6 16 Z" fill="#E63B2E"/><path d="M62 58 l14 2 l-4 16 Z" fill="#FFD100"/><path d="M96 64 l14 0 l-6 16 Z" fill="#008D36"/><path d="M128 62 l14 -2 l-8 16 Z" fill="#005CA9"/><path d="M158 52 l14 -4 l-10 16 Z" fill="#F37021"/></g>
+  <!-- easel -->
+  <path d="M60 240 L36 470 M140 240 L164 470 M100 250 V470" fill="none" stroke-width="12"/>
+  <path d="M60 240 L36 470 M140 240 L164 470 M100 250 V470" fill="none" stroke="#C8A27A" stroke-width="5"/>
+  <rect x="42" y="250" width="116" height="130" rx="4" fill="#fff"/>
+  <path d="M42 350 Q80 310 104 340 Q130 316 158 344 V376 Q158 380 154 380 H46 Q42 380 42 376 Z" fill="#7BC47F" stroke-width="4"/>
+  <circle cx="126" cy="286" r="14" fill="#FFD100" stroke-width="4"/>
+  <!-- wooden floor -->
+  <path d="M-10 480 H370 V660 H-10 Z" fill="#E0A85C"/>
+  <path d="M-10 540 H370 M-10 600 H370 M60 480 V540 M210 480 V540 M130 540 V600 M280 540 V600 M60 600 V660 M210 600 V660" fill="none" stroke="#B9803A" stroke-width="3.5"/>
+  <!-- paint splashes -->
+  <g stroke-width="4"><circle cx="250" cy="520" r="14" fill="#E63B2E"/><circle cx="276" cy="534" r="7" fill="#E63B2E"/><circle cx="310" cy="580" r="12" fill="#005CA9"/><circle cx="290" cy="602" r="6" fill="#005CA9"/><circle cx="80" cy="590" r="12" fill="#FFD100"/><circle cx="104" cy="610" r="6" fill="#FFD100"/></g>
+  <!-- brush jar -->
+  <path d="M230 420 H292 L286 476 H236 Z" fill="#fff"/>
+  <path d="M244 420 L238 372 M260 420 L262 366 M278 420 L288 376" fill="none" stroke-width="6"/>
+  <g stroke="none"><circle cx="238" cy="372" r="6" fill="#F37021"/><circle cx="262" cy="366" r="6" fill="#005CA9"/><circle cx="288" cy="376" r="6" fill="#008D36"/></g>
+  <rect x="236" y="436" width="50" height="14" fill="#F37021" stroke="none"/>
+</g></g>
+<text x="1055" y="545" text-anchor="middle" font-size="16" fill="#555">art studio · סטודיו</text>
+</svg>
