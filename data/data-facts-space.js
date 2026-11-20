@@ -44,7 +44,7 @@ const FACTS_SPACE = [
     explain: "הירח לא מפיק אור. אנחנו רואים אותו כי הוא מחזיר אלינו את האור של השמש.", src: "https://science.nasa.gov/moon/moonlight" },
   { id: "space-012", topic: "space", pic: "great-wall", level: "medium", answer: false,
     text: "אפשר לראות את החומה הגדולה של סין בעין בלתי מזוינת ממסלול סביב כדור הארץ.",
-    explain: "החומה ארוכה מאוד אבל צרה, ולפי נאס"א בדרך כלל לא רואים אותה בעין בלתי מזוינת.", src: "https://www.britannica.com/question/Can-you-see-the-Great-Wall-of-China-from-space" },
+    explain: "החומה ארוכה מאוד אבל צרה, ולפי נאס״א בדרך כלל לא רואים אותה בעין בלתי מזוינת.", src: "https://www.britannica.com/question/Can-you-see-the-Great-Wall-of-China-from-space" },
   { id: "space-013", topic: "space", pic: "mercury", level: "medium", answer: false,
     text: "כוכב חמה, שהכי קרוב לשמש, הוא כוכב הלכת החם ביותר.",
     explain: "נוגה הכי חם! האטמוספרה העבה שלה לוכדת את החום, ובכוכב חמה כמעט אין אטמוספרה.", src: "https://spaceplace.nasa.gov/all-about-venus/" },

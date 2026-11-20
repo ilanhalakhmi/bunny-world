@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.1.5";
+const VERSION = "1.1.6";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
