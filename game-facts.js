@@ -27,7 +27,8 @@ function picSVG(f) {
   const inner = (PIC_SOURCES()[f.topic] || {})[f.pic];
   return inner ? `<svg viewBox="0 0 200 200" aria-hidden="true">${inner}</svg>` : "";
 }
-const isLearned = (p, id) => { const s = p.facts[id]; return !!s && s.s === "learned"; };
+// Learned = answered correctly at least once (and not missed since). Clues no longer repeat within a cycle, so "twice" was rarely reachable.
+const isLearned = (p, id) => { const s = p.facts[id]; return !!s && s.right >= 1 && s.s !== "missed"; };
 const learnedCount = (p, topic) => topicFacts(topic).filter(f => isLearned(p, f.id)).length;
 
 // Harder levels open up as the player masters the easier ones.
@@ -187,7 +188,7 @@ SCREENS.factsPlay = (root) => {
     // --- save progress for this fact ---
     const st = p.facts[f.id] || (p.facts[f.id] = { right: 0, wrong: 0, s: "seen" });
     const wasMissed = st.s === "missed";
-    if (right) { st.right++; st.s = st.right >= 2 ? "learned" : "seen"; p.correct++; R.solved++; R.streak++; if (!isRepeat) R.firstTry++;
+    if (right) { st.right++; st.s = "learned"; p.correct++; R.solved++; R.streak++; if (!isRepeat) R.firstTry++;
       if (!f.answer) p.myths++; if (wasMissed) p.comebacks++; if (R.streak > p.bestStreak) p.bestStreak = R.streak; }
     else { st.wrong++; st.s = "missed"; p.wrong++; R.streak = 0; }
     ensureAsked(p); askedIn(p, f.topic)[f.id] = 1;

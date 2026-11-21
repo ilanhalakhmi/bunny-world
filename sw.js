@@ -1,6 +1,6 @@
 // Service worker: cache-first so the game works offline.
 // BUMP `VERSION` on every release, otherwise phones keep the old cached files.
-const VERSION = "1.2.1";
+const VERSION = "1.2.2";
 const CACHE = "frooky-" + VERSION;
 const FILES = [
   "./", "index.html", "style.css", "app.js", "frooky.js", "audio.js", "rewards.js", "game-facts.js", "game-kitchen.js",
