@@ -1,7 +1,7 @@
 // App core: storage, players (several per phone), router, home screen, briefcase, update button.
 // Games live in game-facts.js and game-kitchen.js and register themselves in SCREENS / GAMES.
 
-const VERSION = "1.2.0";
+const VERSION = "1.2.1";
 const STORE_KEY = "frooky.v1";
 const SCREENS = {};          // name -> function(root, args)
 const GAMES = [];            // registered mini-games (shown on the home screen)
@@ -51,6 +51,11 @@ function normalizeDB() {
       gender: p.gender === "m" || p.gender === "f" ? p.gender : undefined, genderAsked: p.genderAsked === true,
       medals: {}, bestStreak: num(p.bestStreak), perfect: num(p.perfect), myths: num(p.myths), comebacks: num(p.comebacks), topicsPlayed: obj(p.topicsPlayed)
     };
+    // clues already shown in the current cycle, per topic: { topic: { clueId: 1 } }. Missing = old save, filled in by buildQueue.
+    if (p.asked && typeof p.asked === "object" && !Array.isArray(p.asked)) {
+      q.asked = {}; q.cycles = {};
+      for (const t in p.asked) { q.asked[t] = {}; const m = obj(p.asked[t]); for (const k in m) if (m[k]) q.asked[t][k] = 1; q.cycles[t] = Math.max(1, num(obj(p.cycles)[t], 1)); }
+    }
     const known = MEDALS.map(m => m.id), got = obj(p.medals);
     for (const k in got) if (known.includes(k)) q.medals[k] = num(got[k], Date.now());
     const facts = obj(p.facts);
@@ -74,7 +79,7 @@ function newPlayerData(name, gender) {
   const used = Object.values(DB.players).map(p => p.color);
   const color = PLAYER_COLORS.find(c => !used.includes(c)) || rndItem(PLAYER_COLORS);
   return { id, name, color, gender: gender === "m" || gender === "f" ? gender : undefined, genderAsked: !!gender, stars: 0, tools: [], facts: {}, round: null, casesClosed: 0, correct: 0, wrong: 0, topicDone: {}, lastPlayed: Date.now(),
-    medals: {}, bestStreak: 0, perfect: 0, myths: 0, comebacks: 0, topicsPlayed: {} };
+    medals: {}, bestStreak: 0, perfect: 0, myths: 0, comebacks: 0, topicsPlayed: {}, asked: {}, cycles: {} };
 }
 function createPlayer(name, gender) { const p = newPlayerData(name, gender); DB.players[p.id] = p; DB.current = p.id; saveDB(); return p; }
 function deletePlayer(id) { delete DB.players[id]; if (DB.current === id) DB.current = null; saveDB(); }

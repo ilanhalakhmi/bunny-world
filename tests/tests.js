@@ -163,6 +163,36 @@ async function core() {
     ok(q.filter(id => !p2.facts[id]).length >= Math.min(ROUND_SIZE, list.length - seenAll) - 1, "unseen clues not preferred");
   });
 
+  await T("queue: a clue is never repeated until every clue of the topic was shown (cycles), missed ones lead the next cycle", () => {
+    const answerRound = (p, q, wrongIds = []) => q.forEach(id => { const f = factById(id); askedIn(p, f.topic)[id] = 1; p.facts[id] = wrongIds.includes(id) ? { right: 0, wrong: 1, s: "missed" } : { right: 1, wrong: 0, s: "seen" }; });
+    for (const topic of ["animals", "space", "food", "art", "mix"]) {
+      freshDB(); const p = createPlayer("מחזור"); const topics = topic === "mix" ? ["animals", "space", "food", "art"] : [topic];
+      for (let r = 0; r < 70; r++) {
+        const before = {}, cyc = JSON.stringify(p.cycles); topics.forEach(t => { before[t] = Object.assign({}, askedIn(p, t)); });
+        const q = buildQueue(p, topic), unaskedBefore = topics.flatMap(t => topicFacts(t)).filter(f => !before[f.topic][f.id]);
+        ok(q.length === ROUND_SIZE && new Set(q).size === q.length, topic + ": round " + r + " size/unique");
+        const repeats = q.filter(id => before[factById(id).topic][id]);
+        if (JSON.stringify(p.cycles) === cyc) ok(repeats.length === 0, topic + " round " + r + ": " + repeats.length + " repeated clue(s) although unasked clues remain");
+        else { ok(unaskedBefore.every(f => q.includes(f.id)), topic + " round " + r + ": new cycle began before all unasked clues were used"); ok(repeats.length === ROUND_SIZE - unaskedBefore.length, topic + ": repeats only fill the gap"); }
+        answerRound(p, q);
+      }
+      ok(topics.every(t => p.cycles[t] >= 2), topic + ": cycles never advanced");
+    }
+    // a clue missed in the old cycle is the first thing asked in the next one
+    freshDB(); const p = createPlayer("החמצה"), list = topicFacts("food");
+    list.forEach(f => { askedIn(p, "food")[f.id] = 1; p.facts[f.id] = { right: 1, wrong: 0, s: "seen" }; });
+    const missed = list.slice(0, 3).map(f => f.id); missed.forEach(id => { p.facts[id] = { right: 0, wrong: 1, s: "missed" }; });
+    const q = buildQueue(p, "food"); ok(missed.every(id => q.includes(id)), "missed clues must lead the new cycle"); ok(p.cycles.food === 2, "cycle counter");
+    // balance never beats freshness: only false clues are left unasked -> they are all used before any true clue repeats
+    freshDB(); const p2 = createPlayer("איזון"), sp = topicFacts("space"), falses = sp.filter(f => !f.answer);
+    sp.forEach(f => { if (f.answer) { askedIn(p2, "space")[f.id] = 1; p2.facts[f.id] = { right: 1, wrong: 0, s: "seen" }; } });
+    const q2 = buildQueue(p2, "space"); ok(q2.filter(id => !factById(id).answer).length === Math.min(ROUND_SIZE, falses.length), "unasked clues must come before repeats even if they are all myths");
+    // a save from before cycles existed: answered clues count as already asked
+    freshDB(); const p3 = createPlayer("ישן"); delete p3.asked; delete p3.cycles; topicFacts("art").slice(0, 25).forEach(f => { p3.facts[f.id] = { right: 1, wrong: 0, s: "seen" }; });
+    const q3 = buildQueue(p3, "art"); ok(q3.every(id => !p3.facts[id]), "old save: answered clues were asked again"); saveDB(); loadDB();
+    ok(me().asked && me().asked.art && Object.keys(me().asked.art).length === 25, "asked clues must survive save/load");
+  });
+
   await T("ui: new player flow (empty state, validation, gender, duplicate names, 12-char limit)", async () => {
     freshDB(); go("players");
     await waitFor(".modal .name-input");

@@ -43,18 +43,41 @@ function levelsOpen(p, list) {
   return open;
 }
 
-// Choose the 10 clues of a round: unseen first, then missed, then seen; about half true / half myths.
+// Clues are asked once per "cycle" of a topic: a clue is not shown again until every clue of the topic
+// has been shown, then the cycle restarts (clues missed earlier come first in the new cycle).
+// Clues missed inside a round still come back later in that same round (see reveal()).
+function ensureAsked(p) {
+  if (p.asked) return;
+  p.asked = {}; p.cycles = {};
+  for (const id in p.facts) { const f = factById(id); if (f) (p.asked[f.topic] = p.asked[f.topic] || {})[id] = 1; }   // old save: whatever was answered counts as asked
+}
+const askedIn = (p, t) => p.asked[t] || (p.asked[t] = {});
+
+// Choose the 10 clues of a round: only clues not yet shown in this cycle; missed-in-a-past-cycle first, then new,
+// then seen, then learned. About half true / half myths, but never at the cost of repeating a clue.
 function buildQueue(p, topicId) {
+  ensureAsked(p);
   const topics = topicId === "mix" ? FACT_TOPICS.map(t => t.id) : [topicId];
-  let pool = [], all = [];
-  topics.forEach(t => { const list = topicFacts(t); const open = levelsOpen(p, list); all.push(...list); pool.push(...list.filter(f => open.includes(f.level))); });
-  if (pool.length < ROUND_SIZE) pool = all;
-  const rank = f => { const s = p.facts[f.id]; if (!s) return 0; if (s.s === "missed") return 1; if (s.s === "learned") return 3; return 2; };
-  pool = shuffle(pool).sort((a, b) => rank(a) - rank(b));
-  const picked = []; let want = Math.random() < 0.5;
-  for (let i = 0; i < ROUND_SIZE && pool.length; i++) {
-    let idx = pool.findIndex(f => f.answer === want); if (idx < 0) idx = 0;
-    picked.push(pool.splice(idx, 1)[0]); want = !want;
+  const rank = f => { const s = p.facts[f.id]; if (!s) return 1; if (s.s === "missed") return 0; if (s.s === "learned") return 3; return 2; };
+  const picked = [], taken = {};
+  let want = Math.random() < 0.5;
+  const take = list => {
+    const pool = shuffle(list.filter(f => !taken[f.id]));
+    while (picked.length < ROUND_SIZE && pool.length) {
+      const best = Math.min(...pool.map(rank));
+      let i = pool.findIndex(f => rank(f) === best && f.answer === want);
+      if (i < 0) i = pool.findIndex(f => rank(f) === best);
+      const f = pool.splice(i, 1)[0]; picked.push(f); taken[f.id] = 1; want = !want;
+    }
+  };
+  // 1) unasked clues in the open levels, 2) unasked clues in levels not open yet (before anything repeats)
+  const open = [], closed = [];
+  topics.forEach(t => { const list = topicFacts(t), lv = levelsOpen(p, list); list.filter(f => !askedIn(p, t)[f.id]).forEach(f => (lv.includes(f.level) ? open : closed).push(f)); });
+  take(open); take(closed);
+  // 3) everything was shown: start a new cycle (the clues just picked count as the first ones of it)
+  if (picked.length < ROUND_SIZE) {
+    topics.forEach(t => { p.cycles[t] = (p.cycles[t] || 1) + 1; p.asked[t] = {}; picked.filter(f => f.topic === t).forEach(f => { p.asked[t][f.id] = 1; }); });
+    take(topics.flatMap(t => topicFacts(t)));
   }
   return shuffle(picked).map(f => f.id);
 }
@@ -167,6 +190,7 @@ SCREENS.factsPlay = (root) => {
     if (right) { st.right++; st.s = st.right >= 2 ? "learned" : "seen"; p.correct++; R.solved++; R.streak++; if (!isRepeat) R.firstTry++;
       if (!f.answer) p.myths++; if (wasMissed) p.comebacks++; if (R.streak > p.bestStreak) p.bestStreak = R.streak; }
     else { st.wrong++; st.s = "missed"; p.wrong++; R.streak = 0; }
+    ensureAsked(p); askedIn(p, f.topic)[f.id] = 1;
     R.seen[f.id] = true; R.pos++;
     if (!right) {                       // missed clues come back later in the same round (max 2 times)
       const n = R.requeued[f.id] || 0;
